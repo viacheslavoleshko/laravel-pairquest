@@ -9,8 +9,15 @@ class PartnerTask extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     public function tasks()
     {
         return $this->belongsToMany(Task::class, 'task_combinations');
+    }
+
+    public function gender()
+    {
+        return $this->belongsTo(Gender::class);
     }
 }

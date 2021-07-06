@@ -9,6 +9,8 @@ class Task extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     public function user_level()
     {
         return $this->belongsTo(UserLevel::class);

@@ -5,19 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UserLevel extends Model
+class Like extends Model
 {
     use HasFactory;
-
-    public $timestamps = false;
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function tasks()
+    public function generated_task()
     {
-        return $this->hasMany(Preference::class);
+        return $this->belongsTo(GeneratedTask::class);
     }
 }

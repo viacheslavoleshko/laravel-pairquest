@@ -43,7 +43,7 @@ class User extends \TCG\Voyager\Models\User
 
     public function gender()
     {
-        return $this->hasOne(Gender::class);
+        return $this->belongsTo(Gender::class);
     }
 
     public function user_level()
@@ -69,5 +69,10 @@ class User extends \TCG\Voyager\Models\User
     public function generated_tasks()
     {
         return $this->hasMany(GeneratedTask::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
     }
 }

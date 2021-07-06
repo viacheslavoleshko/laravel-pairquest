@@ -11,13 +11,18 @@ class Gender extends Model
     
     public $timestamps = false;
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(User::class);
     }
 
     public function tasks()
     {
         return $this->hasMany(Task::class);
+    }
+
+    public function partner_tasks()
+    {
+        return $this->hasMany(PartnerTask::class);
     }
 }
