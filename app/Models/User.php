@@ -65,4 +65,9 @@ class User extends \TCG\Voyager\Models\User
     {
         return $this->belongsToMany(Accessory::class);
     }
+
+    public function generated_tasks()
+    {
+        return $this->hasMany(GeneratedTask::class);
+    }
 }

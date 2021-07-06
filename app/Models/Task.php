@@ -28,4 +28,14 @@ class Task extends Model
     {
         return $this->belongsTo(Gender::class);
     }
+
+    public function partner_tasks()
+    {
+        return $this->belongsToMany(PartnerTask::class, 'task_combinations');
+    }
+
+    public function generated_tasks()
+    {
+        return $this->hasMany(GeneratedTask::class);
+    }
 }

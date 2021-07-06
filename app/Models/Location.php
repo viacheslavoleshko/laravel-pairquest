@@ -13,4 +13,9 @@ class Location extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function generated_tasks()
+    {
+        return $this->hasMany(GeneratedTask::class);
+    }
 }
