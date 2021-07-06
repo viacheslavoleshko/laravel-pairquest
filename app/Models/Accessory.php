@@ -5,19 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Gender extends Model
+class Accessory extends Model
 {
     use HasFactory;
-    
-    public $timestamps = false;
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function tasks()
+    public function preferences()
     {
-        return $this->hasMany(Task::class);
+        return $this->hasMany(Preference::class);
     }
 }

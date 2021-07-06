@@ -45,4 +45,24 @@ class User extends \TCG\Voyager\Models\User
     {
         return $this->hasOne(Gender::class);
     }
+
+    public function user_level()
+    {
+        return $this->hasOne(UserLevel::class);
+    }
+
+    public function preferences()
+    {
+        return $this->belongsToMany(Preferences::class);
+    }
+
+    public function locations()
+    {
+        return $this->hasMany(Location::class);
+    }
+
+    public function accessories()
+    {
+        return $this->belongsToMany(Accessory::class);
+    }
 }

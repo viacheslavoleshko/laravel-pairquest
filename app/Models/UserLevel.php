@@ -5,11 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Gender extends Model
+class UserLevel extends Model
 {
     use HasFactory;
-    
-    public $timestamps = false;
 
     public function user()
     {
@@ -18,6 +16,6 @@ class Gender extends Model
 
     public function tasks()
     {
-        return $this->hasMany(Task::class);
+        return $this->hasMany(Preference::class);
     }
 }
