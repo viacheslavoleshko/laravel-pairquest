@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\Gender;
 use Illuminate\Database\Seeder;
 
-class SexSeeder extends Seeder
+class GenderSeeder extends Seeder
 {
     /**
      * Run the database seeds.
