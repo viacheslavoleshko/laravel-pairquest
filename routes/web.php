@@ -1,6 +1,12 @@
 <?php
 
+use App\Http\Controllers\AccessoryController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\PreferenceController;
+use App\Http\Controllers\QuestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +27,20 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+Auth::routes();
+
+Route::get('/partner', [PartnerController::class, 'index'])->name('partner');
+Route::post('/partner/{user}', [PartnerController::class, 'update'])->name('partner.store');
+
+Route::get('/prefs', [PreferenceController::class, 'index'])->name('prefs');
+Route::post('/prefs/{user}', [PreferenceController::class, 'store'])->name('prefs.store');
+
+
+Route::get('/locations', [LocationController::class, 'index'])->name('locations');
+Route::post('/locations/{user}', [LocationController::class, 'store'])->name('locations.store');
+
+Route::get('/accessories', [AccessoryController::class, 'index'])->name('accessories');
+Route::post('/accessories/{user}', [AccessoryController::class, 'store'])->name('accessories.store');
+
+Route::get('/quest', [QuestController::class, 'index'])->name('quest');

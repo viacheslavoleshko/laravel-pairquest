@@ -9,9 +9,12 @@ class Preference extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
+
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'user_preference');
     }
 
     public function accessory()

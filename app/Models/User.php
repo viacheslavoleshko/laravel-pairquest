@@ -20,6 +20,8 @@ class User extends \TCG\Voyager\Models\User
         'name',
         'email',
         'password',
+        'gender_id',
+        'user_level_id',
     ];
 
     /**
@@ -53,7 +55,7 @@ class User extends \TCG\Voyager\Models\User
 
     public function preferences()
     {
-        return $this->belongsToMany(Preferences::class);
+        return $this->belongsToMany(Preference::class, 'user_preference');
     }
 
     public function locations()
