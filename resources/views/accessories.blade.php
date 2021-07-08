@@ -17,15 +17,18 @@
                 @csrf
                 <div id="new_chq" class="form-input-item">
                     <div class="form-outline mb-4">
-                        <input type="text" id="form2Example3" name="accessories[]" class="form-control" value="Вино">
-                    </div>
-                    <div class="form-outline mb-4">
                         <input type="text" id="form2Example3" name="accessories[]" class="form-control" value="Свічки">
                     </div>
-                    <div class="form-outline mb-4">
-                        <input type="text" id="form2Example3" name="accessories[]" class="form-control" value="Суші">
-                    </div>
                 </div>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <button type="submit" class="btn btn-success mb-4 btn-centr">Далі</button>
             </form>
             <div class="btn-add-input" onclick="add()"></div>

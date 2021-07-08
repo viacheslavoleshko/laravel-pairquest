@@ -22,11 +22,11 @@ class AccessoryController extends Controller
         // $user = User::with('locations')->findOrFail($id);
 
         $validatedData = $request->validate([
-            'accessories' => 'required',
+            'accessories.*' => 'required',
         ]);
 
         foreach ($validatedData['accessories'] as $accessory) {
-            $new_accessory = new Accessory();
+            $new_accessory = Accessory::firstOrNew(['name' => $accessory, 'user_id' => $id]);;
             $new_accessory->name = $accessory;
             $new_accessory->user_id = $id;
             $new_accessory->save();

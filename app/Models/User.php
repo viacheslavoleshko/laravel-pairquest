@@ -65,12 +65,12 @@ class User extends \TCG\Voyager\Models\User
 
     public function accessories()
     {
-        return $this->belongsToMany(Accessory::class);
+        return $this->hasMany(Accessory::class);
     }
 
-    public function generated_tasks()
+    public function generated_task()
     {
-        return $this->hasMany(GeneratedTask::class);
+        return $this->hasOne(GeneratedTask::class);
     }
 
     public function likes()

@@ -15,7 +15,7 @@ class CreatePartnerTasksTable extends Migration
     {
         Schema::create('partner_tasks', function (Blueprint $table) {
             $table->id();
-            $table->text('partner_description');
+            $table->text('description');
 
             $table->unsignedBigInteger('gender_id')->index();
             $table->foreign('gender_id')->references('id')->on('genders')->onDelete('cascade');

@@ -33,7 +33,7 @@ class CreateTasksTable extends Migration
             $table->unsignedBigInteger('gender_id')->index();
             $table->foreign('gender_id')->references('id')->on('genders')->onDelete('cascade');
 
-            $table->string('image');
+            $table->string('image')->nullable();
 
         });
     }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccessoryController;
+use App\Http\Controllers\GeneratedTaskController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LocationController;
@@ -44,3 +45,7 @@ Route::get('/accessories', [AccessoryController::class, 'index'])->name('accesso
 Route::post('/accessories/{user}', [AccessoryController::class, 'store'])->name('accessories.store');
 
 Route::get('/quest', [QuestController::class, 'index'])->name('quest');
+Route::get('/quest-duration/{duration}', [QuestController::class, 'duration'])->name('quest-duration');
+Route::get('/quest-organisator/{organisator}', [QuestController::class, 'organisator'])->name('quest-organisator');
+
+Route::post('/generator/{user}', [GeneratedTaskController::class, 'store'])->name('generator');

@@ -23,11 +23,11 @@ class LocationController extends Controller
         // $user = User::with('locations')->findOrFail($id);
 
         $validatedData = $request->validate([
-            'locations' => 'required',
+            'locations.*' => 'required',
         ]);
 
         foreach ($validatedData['locations'] as $location) {
-            $new_location = new Location;
+            $new_location = Location::firstOrNew(['name' => $location, 'user_id' => $id]);
             $new_location->name = $location;
             $new_location->user_id = $id;
             $new_location->save();

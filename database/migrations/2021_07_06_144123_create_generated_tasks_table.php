@@ -35,7 +35,7 @@ class CreateGeneratedTasksTable extends Migration
             $table->unsignedBigInteger('accessory_id')->index();
             $table->foreign('accessory_id')->references('id')->on('accessories');
 
-            $table->boolean('is_rejected');
+            $table->boolean('is_rejected')->nullable();
             $table->timestamps();
         });
     }

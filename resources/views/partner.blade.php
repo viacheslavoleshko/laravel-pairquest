@@ -7,9 +7,18 @@
 @section('content')
 <div class="main">
     <div class="main-title">
-        <h1>
-            Введи емейл своєї пари
-        </h1>
+        @if ($errors->has('partner_email'))
+            <h1>
+                Вашої пари не знайдено
+            </h1>
+            <p>
+                Перевірте введений емейл
+            </p>
+        @else
+            <h1>
+                Введи емейл своєї пари
+            </h1>
+        @endif
     </div>
     <div class="main__inner">
         <form method="POST" action="{{ route('partner.store', ['user' => Auth::user()->id]) }}">
@@ -24,7 +33,7 @@
                     </span>
                 @enderror
             </div>
-
+            <a class="reg-link" href="{{ route('prefs') }}">Пропустити</a>
             <button type="submit" class="btn btn-success mb-4 btn-centr">Ввести</button>
         </form>
     </div>

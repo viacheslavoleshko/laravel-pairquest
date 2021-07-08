@@ -13,11 +13,11 @@
         </div>
         <div class="main__inner">
             <form>
-                <a class="btn-link" href="">Короткий</a>
-                <a class="btn-link" href="">На вечір</a>
-                <a class="btn-link" href="">Великий квест</a>
+                @foreach ($durations as $duration)
+                <a class="btn-link" href="{{ route('quest-duration', ['duration' => $duration->id]) }}">{{ $duration->name }}</a>
+                @endforeach
 
-                <a class="reg-link" href="{{ route('prefs') }}">Редагувати вподообання</a>
+                <a class="reg-link" href="{{ route('prefs') }}">Редагувати вподобання</a>
             </form>
         </div>
     </div>
