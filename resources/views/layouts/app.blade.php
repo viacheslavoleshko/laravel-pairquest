@@ -13,6 +13,16 @@
     </head>
 
     <body>
+        @auth
+            <ul class="nav nav-pills justify-content-end">
+                <li class="nav-item">
+                    <a href="{{ route('logout') }}" class="nav-link" role="button" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
+                </li>
+            </ul>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+        @endauth
         @yield('content')
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
         @yield('javascript')

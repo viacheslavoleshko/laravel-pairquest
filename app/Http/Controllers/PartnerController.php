@@ -25,7 +25,15 @@ class PartnerController extends Controller
      */
     public function index()
     {
-        return view('partner');
+        $user = User::findOrFail(Auth::user()->id);
+
+        if(isset($user->partner_email) && isset($user->user_level_id)) {
+            return redirect()->route('quest');
+        } elseif (isset($user->partner_email) && is_null($user->user_level_id)) {
+            return redirect()->route('prefs');
+        } else {
+            return view('partner');
+        }
     }
 
     public function update(Request $request, $id)

@@ -17,7 +17,7 @@
                 <a class="btn-link" href="">На вечір</a>
                 <a class="btn-link" href="">Великий квест</a>
 
-                <a class="reg-link" href="#">Редагувати вподообання</a>
+                <a class="reg-link" href="{{ route('prefs') }}">Редагувати вподообання</a>
             </form>
         </div>
     </div>
