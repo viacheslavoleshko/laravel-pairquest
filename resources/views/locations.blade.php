@@ -17,7 +17,7 @@
                 @csrf
                 <div id="new_chq" class="form-input-item">
                     <div class="form-outline mb-4">
-                        <input type="text" id="form2Example3" name="locations[]" class="form-control" value="Дім">
+                        <input type="text" id="form2Example3" name="locations[]" class="form-control mb-4" value="Дім">
                     </div>
                 </div>
                 @if ($errors->any())
@@ -42,7 +42,7 @@
     <script>
         function add() {
             var new_chq_no = parseInt($('.total_chq').val()) + 1;
-            var new_input = "<input type='text' class='new_" + new_chq_no + "' name='locations[]'>";
+            var new_input = "<input type='text' class='form-control mb-4 new_" + new_chq_no + "' name='locations[]'>";
             $('#new_chq').append(new_input);
             $('#total_chq').val(new_chq_no)
         }

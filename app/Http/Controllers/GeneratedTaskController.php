@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -22,13 +23,6 @@ class GeneratedTaskController extends Controller
             $partner_locations[$location->id] = $location->name;
         }
 
-        foreach($user->accessories as $accessory) {
-            $user_accessories[$accessory->id] = $accessory->name;
-        }
-        foreach($partner->accessories as $accessory) {
-            $partner_accessories[$accessory->id] = $accessory->name;
-        }
-
         foreach($user->preferences as $preference) {
             $user_preferences[$preference->id] = $preference->description;
         }
@@ -37,32 +31,43 @@ class GeneratedTaskController extends Controller
         }
 
         $intersect_locations = array_intersect($user_locations, $partner_locations);
-        $intersect_accessories = array_intersect($user_accessories, $partner_accessories);
-        $intersect_preferences = array_intersect($user_preferences, $partner_preferences);
-        dump($intersect_preferences);
 
-        $task = Task::inRandomOrder()->with('partner_tasks')->where('preference_id', array_rand($intersect_preferences))->first(); // TODO додати фільтрацію по тривалості, статі
+        $intersect_preferences = array_intersect($user_preferences, $partner_preferences);
+        $random_preference_from_intersect = array_rand($intersect_preferences);
+        
+        dump($intersect_preferences); dump($random_preference_from_intersect);
+        
+
+        $task = Task::inRandomOrder()->with('partner_tasks')->where([
+            ['preference_id', $random_preference_from_intersect],
+            ['user_level_id', min($user->user_level_id, $partner->user_level_id)],
+            ['duration_id', min($user->duration_id, $partner->duration_id)]
+        ])->first(); // TODO додати фільтрацію по статі 
+        dump($task);
+        $accessory = $user->accessories->where('preference_id', $random_preference_from_intersect)->first(); dump($accessory->name ?? 'null');
         $partner_task = $task->partner_tasks->random(1)->first();
-        dump($task->description, $partner_task->partner_description);
+        
+        dump($task->description, $partner_task->description);
 
 
         $validatedData = $request->validate([
-            'quest_start' => 'required|date',
+            'quest_start' => 'required',
         ]);
-
-        dd($validatedData['quest_start']);
 
         $generated_task = new GeneratedTask();
         $generated_task->user_id = $user->id;
         $generated_task->partner_id = $partner->id;
         $generated_task->location_id = array_rand($intersect_locations);
-        $generated_task->accessory_id = array_rand($intersect_accessories);
+        if(isset($accessory)) {
+            $generated_task->accessory_id = $accessory->id;
+        }
         $generated_task->started_at = $validatedData['quest_start'];
         $generated_task->task_id = $task->id;
         $generated_task->partner_task_id = $partner_task->id;
+
+        // dd($generated_task);
         $generated_task->save();
 
         return redirect()->route('quest');
-        // dd($generated_task);
     }
 }

@@ -9,13 +9,21 @@ class Like extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'task_id',
+        'user_id',
+        'is_like',
+    ];
+
+    public $timestamps = false;
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function generated_task()
+    public function task()
     {
-        return $this->belongsTo(GeneratedTask::class);
+        return $this->belongsTo(Task::class);
     }
 }

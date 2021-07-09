@@ -16,13 +16,13 @@ class CreateLikesTable extends Migration
         Schema::create('likes', function (Blueprint $table) {
             $table->id();
             
-            $table->unsignedBigInteger('generated_task_id')->index();
-            $table->foreign('generated_task_id')->references('id')->on('generated_tasks');
+            $table->unsignedBigInteger('task_id')->index();
+            $table->foreign('task_id')->references('id')->on('tasks');
 
             $table->unsignedBigInteger('user_id')->index();
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->boolean('is_like');
+            $table->boolean('is_like')->default(0);
         });
     }
 

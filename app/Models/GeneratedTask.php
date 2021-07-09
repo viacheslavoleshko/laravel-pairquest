@@ -36,9 +36,4 @@ class GeneratedTask extends Model
     {
         return $this->belongsTo(Accessory::class);
     }
-
-    public function likes()
-    {
-        return $this->hasMany(Like::class);
-    }
 }

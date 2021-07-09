@@ -14,6 +14,7 @@ class Accessory extends Model
     protected $fillable = [
         'name',
         'user_id',
+        'preference_id',
     ];
 
     public function user()
@@ -21,9 +22,9 @@ class Accessory extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function preferences()
+    public function preference()
     {
-        return $this->hasMany(Preference::class);
+        return $this->hasOne(Preference::class);
     }
 
     public function generated_tasks()

@@ -28,8 +28,10 @@
                     <p>{{ Carbon\Carbon::parse($generated_task->started_at)->locale('uk')->calendar() }}</p>
                     <h4>Завдання</h4>
                     <p>{{ $task->description }}</p>
-                    <h4>Аксесуари</h4>
-                    <p>{{ $accessory->name }}</p>
+                    @if (isset($accessory))
+                        <h4>Аксесуари</h4>
+                        <p>{{ $accessory->name }}</p>
+                    @endif
                 </div>
 
                 <div class="form-btn">

@@ -40,4 +40,9 @@ class Task extends Model
     {
         return $this->hasMany(GeneratedTask::class);
     }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
 }

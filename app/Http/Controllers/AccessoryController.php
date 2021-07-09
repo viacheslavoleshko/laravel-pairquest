@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Accessory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AccessoryController extends Controller
 {
@@ -14,7 +16,8 @@ class AccessoryController extends Controller
 
     public function index()
     {
-        return view('accessories');
+        $user = User::with('preferences')->findOrFail(Auth::user()->id);
+        return view('accessories', ['preferences' => $user->preferences]);
     }
 
     public function store(Request $request, $id)
@@ -22,14 +25,12 @@ class AccessoryController extends Controller
         // $user = User::with('locations')->findOrFail($id);
 
         $validatedData = $request->validate([
-            'accessories.*' => 'required',
+            'accessories.*' => 'required|unique:accessories,name',
+            'preferences.*' => 'required',
         ]);
 
-        foreach ($validatedData['accessories'] as $accessory) {
-            $new_accessory = Accessory::firstOrNew(['name' => $accessory, 'user_id' => $id]);;
-            $new_accessory->name = $accessory;
-            $new_accessory->user_id = $id;
-            $new_accessory->save();
+        foreach ($validatedData['accessories'] as $key => $accessory) {
+            $new_accessory = Accessory::firstOrCreate(['name' => $accessory, 'preference_id' => $validatedData['preferences'][$key], 'user_id' => $id]);
         }
         return redirect()->route('quest');
     }
