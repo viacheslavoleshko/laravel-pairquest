@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 08 2021 г., 18:56
+-- Время создания: Июл 09 2021 г., 17:49
 -- Версия сервера: 10.3.16-MariaDB
 -- Версия PHP: 7.3.7
 
@@ -40,12 +40,11 @@ CREATE TABLE `accessories` (
 --
 
 INSERT INTO `accessories` (`id`, `name`, `user_id`, `preference_id`) VALUES
-(1, 'Вино', 3, NULL),
-(2, 'Свічки', 3, NULL),
-(3, 'Суші', 3, NULL),
-(4, 'Сукня', 3, NULL),
-(5, 'Свічки', 14, NULL),
-(6, 'Вино', 14, NULL);
+(9, 'Вино', 14, 1),
+(10, 'Сукня', 14, 1),
+(11, 'Відеокамера', 14, 1),
+(12, 'Вино', 14, 3),
+(13, 'Фотоапарат', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -229,13 +228,13 @@ CREATE TABLE `generated_tasks` (
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `partner_id` bigint(20) UNSIGNED NOT NULL,
   `location_id` bigint(20) UNSIGNED NOT NULL,
-  `started_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `started_at` timestamp NULL DEFAULT NULL,
   `task_id` bigint(20) UNSIGNED NOT NULL,
   `partner_task_id` bigint(20) UNSIGNED NOT NULL,
-  `accessory_id` bigint(20) UNSIGNED NOT NULL,
+  `accessory_id` bigint(20) UNSIGNED DEFAULT NULL,
   `is_rejected` tinyint(1) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -243,7 +242,10 @@ CREATE TABLE `generated_tasks` (
 --
 
 INSERT INTO `generated_tasks` (`id`, `user_id`, `partner_id`, `location_id`, `started_at`, `task_id`, `partner_task_id`, `accessory_id`, `is_rejected`, `created_at`, `updated_at`) VALUES
-(1, 14, 3, 11, '2021-07-07 21:00:00', 6, 21, 6, NULL, '2021-07-08 12:31:09', '2021-07-08 12:31:09');
+(1, 14, 3, 11, '2021-07-09 09:54:45', 6, 21, 6, 0, '2021-07-08 12:31:09', '2021-07-09 10:26:29'),
+(2, 3, 14, 2, '2021-07-12 14:00:00', 4, 17, NULL, 0, '2021-07-09 13:16:45', '2021-07-09 14:14:02'),
+(3, 3, 14, 1, '2021-07-14 19:00:00', 4, 17, NULL, 0, '2021-07-09 14:47:10', '2021-07-09 15:00:23'),
+(4, 14, 3, 10, '2021-07-11 15:00:00', 7, 17, 9, 0, '2021-07-09 15:27:24', '2021-07-09 15:28:08');
 
 -- --------------------------------------------------------
 
@@ -253,10 +255,20 @@ INSERT INTO `generated_tasks` (`id`, `user_id`, `partner_id`, `location_id`, `st
 
 CREATE TABLE `likes` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `generated_task_id` bigint(20) UNSIGNED NOT NULL,
+  `task_id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
-  `is_like` tinyint(1) NOT NULL
+  `is_like` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `likes`
+--
+
+INSERT INTO `likes` (`id`, `task_id`, `user_id`, `is_like`) VALUES
+(5, 3, 3, 1),
+(6, 3, 14, 1),
+(7, 7, 14, 1),
+(8, 7, 3, 0);
 
 -- --------------------------------------------------------
 
@@ -280,7 +292,9 @@ INSERT INTO `locations` (`id`, `name`, `user_id`) VALUES
 (3, 'Парк', 3),
 (8, 'Сіновал', 3),
 (10, 'Дім', 14),
-(11, 'Ресторан', 14);
+(11, 'Ресторан', 14),
+(13, 'Ліс', 14),
+(14, 'Міст', 14);
 
 -- --------------------------------------------------------
 
@@ -675,7 +689,8 @@ INSERT INTO `tasks` (`id`, `name`, `preference_id`, `duration_id`, `user_level_i
 (3, 'Домашній вечір', 2, 2, 1, 1, 'Зберіться вдома для перегляду улюблених фільмів.', 0, 1, NULL),
 (4, 'Кіношка', 2, 2, 2, 1, 'Купи квитки у кінотеатр.', 0, 1, NULL),
 (5, 'Концертній двіж', 3, 2, 3, 1, 'Купи квитки на концерт улюбленого гурту твого коханого.', 0, 2, NULL),
-(6, 'Домашня дискотека', 3, 2, 1, 1, 'Зроби перегляд концерту улюбленого гурту вдома.', 0, 2, NULL);
+(6, 'Домашня дискотека', 3, 2, 1, 1, 'Зроби перегляд концерту улюбленого гурту вдома.', 0, 2, NULL),
+(7, 'Пробіжка', 1, 2, 2, 1, 'Зроби вечірню пробіжку за ручку.', 0, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -705,7 +720,8 @@ INSERT INTO `task_combinations` (`id`, `task_id`, `partner_task_id`) VALUES
 (9, 5, 19),
 (10, 5, 20),
 (11, 6, 21),
-(12, 6, 22);
+(12, 6, 22),
+(13, 7, 17);
 
 -- --------------------------------------------------------
 
@@ -744,17 +760,18 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `partner_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `gender_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `user_level_id` bigint(20) UNSIGNED DEFAULT NULL
+  `user_level_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `duration_id` bigint(20) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`, `partner_email`, `gender_id`, `user_level_id`) VALUES
-(1, 1, 'admin', 'admin@admin.com', 'users/default.png', NULL, '$2y$10$vALnBdtdRR7MYVorxGGEi.NwolxJ3R3/vqYPV1xdq2SyFdeBHjDre', NULL, '{\"locale\":\"en\"}', '2021-07-06 08:30:05', '2021-07-07 05:24:58', 'test@admin.com', NULL, NULL),
-(3, 2, 'John', 'john@laravel.test', 'users/default.png', NULL, '$2y$10$Vh0l/JzwtwBnCDcquRcOr.zfMsVUA57ebiHe2zL6X90e9CzPdjATO', NULL, NULL, '2021-07-07 05:56:24', '2021-07-08 11:24:45', 'vyacheslav.oleshko.work@gmail.com', 1, 3),
-(14, 2, 'Viacheslav', 'vyacheslav.oleshko.work@gmail.com', 'users/default.png', NULL, '$2y$10$McRMdlbXwnsrCQseuaM8yuck9Sa6kARczRgd/prCEi2QG9Z3RigC.', NULL, NULL, '2021-07-07 11:46:32', '2021-07-08 11:41:27', 'john@laravel.test', 1, 1);
+INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`, `partner_email`, `gender_id`, `user_level_id`, `duration_id`) VALUES
+(1, 1, 'admin', 'admin@admin.com', 'users/default.png', NULL, '$2y$10$vALnBdtdRR7MYVorxGGEi.NwolxJ3R3/vqYPV1xdq2SyFdeBHjDre', NULL, '{\"locale\":\"en\"}', '2021-07-06 08:30:05', '2021-07-09 06:11:44', NULL, NULL, NULL, NULL),
+(3, 2, 'John', 'john@laravel.test', 'users/default.png', NULL, '$2y$10$Vh0l/JzwtwBnCDcquRcOr.zfMsVUA57ebiHe2zL6X90e9CzPdjATO', NULL, NULL, '2021-07-07 05:56:24', '2021-07-09 14:46:44', 'vyacheslav.oleshko.work@gmail.com', 1, 3, 3),
+(14, 2, 'Viacheslav', 'vyacheslav.oleshko.work@gmail.com', 'users/default.png', NULL, '$2y$10$McRMdlbXwnsrCQseuaM8yuck9Sa6kARczRgd/prCEi2QG9Z3RigC.', NULL, NULL, '2021-07-07 11:46:32', '2021-07-09 14:46:57', 'john@laravel.test', 1, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -793,11 +810,10 @@ CREATE TABLE `user_preference` (
 --
 
 INSERT INTO `user_preference` (`id`, `user_id`, `preference_id`) VALUES
-(43, 3, 1),
-(44, 3, 2),
-(45, 3, 3),
-(46, 14, 2),
-(47, 14, 3);
+(60, 3, 1),
+(61, 3, 2),
+(62, 14, 1),
+(63, 14, 2);
 
 -- --------------------------------------------------------
 
@@ -872,8 +888,8 @@ ALTER TABLE `generated_tasks`
 --
 ALTER TABLE `likes`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `likes_generated_task_id_index` (`generated_task_id`),
-  ADD KEY `likes_user_id_index` (`user_id`);
+  ADD KEY `likes_user_id_index` (`user_id`),
+  ADD KEY `likes_task_id_index` (`task_id`) USING BTREE;
 
 --
 -- Индексы таблицы `locations`
@@ -983,7 +999,8 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`),
   ADD KEY `users_role_id_foreign` (`role_id`),
   ADD KEY `users_gender_id_index` (`gender_id`),
-  ADD KEY `users_user_level_id_index` (`user_level_id`);
+  ADD KEY `users_user_level_id_index` (`user_level_id`),
+  ADD KEY `users_duration_id_index` (`duration_id`) USING BTREE;
 
 --
 -- Индексы таблицы `user_levels`
@@ -1015,7 +1032,7 @@ ALTER TABLE `user_roles`
 -- AUTO_INCREMENT для таблицы `accessories`
 --
 ALTER TABLE `accessories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT для таблицы `data_rows`
@@ -1051,19 +1068,19 @@ ALTER TABLE `genders`
 -- AUTO_INCREMENT для таблицы `generated_tasks`
 --
 ALTER TABLE `generated_tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT для таблицы `locations`
 --
 ALTER TABLE `locations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT для таблицы `menus`
@@ -1117,13 +1134,13 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT для таблицы `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT для таблицы `task_combinations`
 --
 ALTER TABLE `task_combinations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT для таблицы `translations`
@@ -1147,7 +1164,7 @@ ALTER TABLE `user_levels`
 -- AUTO_INCREMENT для таблицы `user_preference`
 --
 ALTER TABLE `user_preference`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
@@ -1180,7 +1197,7 @@ ALTER TABLE `generated_tasks`
 -- Ограничения внешнего ключа таблицы `likes`
 --
 ALTER TABLE `likes`
-  ADD CONSTRAINT `likes_generated_task_id_foreign` FOREIGN KEY (`generated_task_id`) REFERENCES `generated_tasks` (`id`),
+  ADD CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`task_id`) REFERENCES `tasks` (`id`),
   ADD CONSTRAINT `likes_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
@@ -1229,6 +1246,7 @@ ALTER TABLE `task_combinations`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_gender_id_foreign` FOREIGN KEY (`gender_id`) REFERENCES `genders` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`duration_id`) REFERENCES `durations` (`id`),
   ADD CONSTRAINT `users_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`),
   ADD CONSTRAINT `users_user_level_id_foreign` FOREIGN KEY (`user_level_id`) REFERENCES `user_levels` (`id`) ON DELETE CASCADE;
 
