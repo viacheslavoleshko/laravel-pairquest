@@ -35,19 +35,20 @@ class GeneratedTaskController extends Controller
         $intersect_preferences = array_intersect($user_preferences, $partner_preferences);
         $random_preference_from_intersect = array_rand($intersect_preferences);
         
-        dump($intersect_preferences); dump($random_preference_from_intersect);
+        // dump($intersect_preferences); dump($random_preference_from_intersect);
         
 
         $task = Task::inRandomOrder()->with('partner_tasks')->where([
             ['preference_id', $random_preference_from_intersect],
             ['user_level_id', min($user->user_level_id, $partner->user_level_id)],
             ['duration_id', min($user->duration_id, $partner->duration_id)]
-        ])->first(); // TODO додати фільтрацію по статі 
-        dump($task);
-        $accessory = $user->accessories->where('preference_id', $random_preference_from_intersect)->first(); dump($accessory->name ?? 'null');
+        ])->first(); // TODO додати фільтрацію по статі, лайкам
+        // dump($task);
+        $accessory = $user->accessories->where('preference_id', $random_preference_from_intersect)->first(); 
+        // dump($accessory->name ?? 'null');
         $partner_task = $task->partner_tasks->random(1)->first();
         
-        dump($task->description, $partner_task->description);
+        // dump($task->description, $partner_task->description);
 
 
         $validatedData = $request->validate([
