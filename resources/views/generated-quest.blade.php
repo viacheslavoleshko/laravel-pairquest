@@ -12,7 +12,8 @@
             </h1>
         </div>
         <div class="main__inner">
-            <form>
+            <form method="POST" action="{{ route('end-quest', ['generated_task' => $generated_task]) }}">
+                @csrf
                 <div class="form-box">
                     <h4>Назва</h4>
                     @if (isset($task->name))
@@ -32,8 +33,8 @@
                 </div>
 
                 <div class="form-btn">
-                    <button type="submit" class="btn btn-danger ">Відхилити</button>
-                    <button type="submit" class="btn btn-success ">Закінчити</button>
+                    <button type="submit" class="btn btn-danger " name="is_rejected" value="1">Відхилити</button>
+                    <button type="submit" class="btn btn-success " name="is_rejected" value="0">Закінчити</button>
                 </div>
             </form>
         </div>

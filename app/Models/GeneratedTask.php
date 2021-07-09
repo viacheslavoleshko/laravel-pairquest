@@ -9,6 +9,9 @@ class GeneratedTask extends Model
 {
     use HasFactory;
 
+    // const CREATED_AT = 'creation_date';
+    const UPDATED_AT = 'updated_at';
+
     public function user()
     {
         return $this->belongsTo(User::class);

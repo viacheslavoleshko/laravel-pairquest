@@ -41,7 +41,7 @@ class GeneratedTaskController extends Controller
         $intersect_preferences = array_intersect($user_preferences, $partner_preferences);
         dump($intersect_preferences);
 
-        $task = Task::inRandomOrder()->with('partner_tasks')->where('preference_id', array_rand($intersect_preferences))->first();
+        $task = Task::inRandomOrder()->with('partner_tasks')->where('preference_id', array_rand($intersect_preferences))->first(); // TODO додати фільтрацію по тривалості, статі
         $partner_task = $task->partner_tasks->random(1)->first();
         dump($task->description, $partner_task->partner_description);
 
@@ -49,6 +49,8 @@ class GeneratedTaskController extends Controller
         $validatedData = $request->validate([
             'quest_start' => 'required|date',
         ]);
+
+        dd($validatedData['quest_start']);
 
         $generated_task = new GeneratedTask();
         $generated_task->user_id = $user->id;
