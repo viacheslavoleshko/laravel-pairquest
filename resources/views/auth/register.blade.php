@@ -59,7 +59,7 @@
                         </span>
                     @enderror
                 </div>
-
+                <a class="reg-link" href="{{ route('login') }}">Вхід</a>
                 <button type="submit" class="btn btn-success mb-4 btn-centr">create account</button>
             </form>
         </div>

@@ -16,10 +16,18 @@
             <form method="POST" action="{{ route('locations.store', ['user' => Auth::user()->id]) }}">
                 @csrf
                 <div id="new_chq" class="form-input-item">
+                    {{-- {{ dump(Auth::user()->locations->isEmpty()) }} --}}
+                    @foreach (Auth::user()->locations as $location)
                     <div class="form-outline mb-4">
-                        <input type="text" id="form2Example3" name="locations[]" class="form-control mb-4" value="Дім">
+                        <input type="text" id="form2Example3" name="locations[]" class="form-control mb-4" value="{{ old('locations[]', $location->name) ?? null }}">
                     </div>
+                    @endforeach
                 </div>
+                @if (Auth::user()->locations->isEmpty())
+                <div class="form-outline mb-4">
+                    <input type="text" id="form2Example4" name="locations[]" class="form-control mb-4">
+                </div>
+                @endif
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>

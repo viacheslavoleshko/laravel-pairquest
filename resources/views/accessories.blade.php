@@ -15,17 +15,30 @@
         <div class="main__inner-box">
             <form method="POST" action="{{ route('accessories.store', ['user' => Auth::user()->id]) }}">
                 @csrf
-                <div id="new_chq" class="form-input-item">
-                    <div class="form-input-item-box mb-4 ">
-                        <input type="text" id="form2Example3" name="accessories[]" class="form-control form-input-items" value="Свічки">
-                        <select class="form-control form-input-items" name="preferences[]">
-                            <option selected disabled>Обери вподобання</option>
-                            @foreach ($preferences as $preference)
-                                <option value="{{ $preference->id }}">{{ $preference->description}}</option>
-                            @endforeach
-                        </select>
+                @foreach (Auth::user()->accessories as $accessory)
+                    <div id="new_chq" class="form-input-item">
+                        <div class="form-input-item-box mb-4 ">
+                            <input type="text" id="form2Example3" name="accessories[]" class="form-control form-input-items" value="{{ old('accessories[]', $accessory->name) ?? null }}">
+                            <select class="form-control form-input-items" name="preferences[]">
+                                @foreach ($preferences as $preference)
+                                    <option value="{{ $preference->id }}" {{ (old('preferences[]', $accessory->preference_id) == $preference->id  ? 'selected' : '') }}>{{ $preference->description}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
-                </div>
+                @endforeach
+                @if (Auth::user()->accessories->isEmpty())
+                    <div id="new_chq" class="form-input-item">
+                        <div class="form-input-item-box mb-4 ">
+                            <input type="text" id="form2Example3" name="accessories[]" class="form-control form-input-items">
+                            <select class="form-control form-input-items" name="preferences[]">
+                                @foreach ($preferences as $preference)
+                                    <option value="{{ $preference->id }}">{{ $preference->description}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                @endif
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>

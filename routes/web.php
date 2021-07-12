@@ -21,9 +21,9 @@ use App\Http\Controllers\QuestController;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 
@@ -34,7 +34,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 Auth::routes();
 
-Route::get('/partner', [PartnerController::class, 'index'])->name('partner');
+Route::get('/', [PartnerController::class, 'index'])->name('partner');
 Route::post('/partner/{user}', [PartnerController::class, 'update'])->name('partner.store');
 
 Route::get('/prefs', [PreferenceController::class, 'index'])->name('prefs');

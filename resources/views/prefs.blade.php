@@ -14,9 +14,10 @@
     <div class="main__inner">
         <form method="POST" action="{{ route('prefs.store', ['user' => Auth::user()->id]) }}">
             @csrf
-            @foreach ($preferences as $preference)
+            @foreach ($preferences as $key => $preference)
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="preferences[]" value="{{ $preference->id }}" id="flexCheckDefault" />
+                    {{-- {{ dump(Auth::user()->preferences->contains('id', $preference->id) ) }} --}}
+                    <input class="form-check-input" type="checkbox" name="preferences[]" value="{{ $preference->id }}" id="flexCheckDefault" {{ old('preferences[]', Auth::user()->preferences->contains('id', $preference->id) ? 'checked' : '') }} />
                     <label class="form-check-label" for="flexCheckDefault">
                         {{ $preference->description }}
                     </label>
@@ -34,7 +35,7 @@
             </div>
             @foreach ($user_levels as $user_level)
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="{{ $user_level->id }}" id="flexCheckDefault" name="user_level">
+                    <input class="form-check-input" type="checkbox" value="{{ $user_level->id }}" id="flexCheckDefault" name="user_level" {{ (old('user_level', Auth::user()->user_level_id) == $user_level->id ? 'checked' : '') }} />
                     <label class="form-check-label" for="flexCheckDefault">
                         {{ $user_level->name }}
                     </label>
