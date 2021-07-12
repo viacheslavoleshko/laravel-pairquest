@@ -18,12 +18,12 @@ class GeneratedTaskController extends Controller
         $user = User::with(['locations', 'accessories', 'preferences', 'generated_task'])->findOrFail($id);
         $partner = User::with(['locations', 'accessories', 'preferences'])->where('email', $user->partner_email)->first();
 
-        foreach($user->locations as $location) {
-            $user_locations[$location->id] = $location->name;
-        }
-        foreach($partner->locations as $location) {
-            $partner_locations[$location->id] = $location->name;
-        }
+        // foreach($user->locations as $location) {
+        //     $user_locations[$location->id] = $location->name;
+        // }
+        // foreach($partner->locations as $location) {
+        //     $partner_locations[$location->id] = $location->name;
+        // }
 
         foreach($user->preferences as $preference) {
             $user_preferences[$preference->id] = $preference->description;
@@ -33,13 +33,13 @@ class GeneratedTaskController extends Controller
         }
 
         try {
-            $intersect_locations = array_intersect($user_locations, $partner_locations);
+            // $intersect_locations = array_intersect($user_locations, $partner_locations);
             $intersect_preferences = array_intersect($user_preferences, $partner_preferences);
         } catch (\ErrorException $e) {
             return view('errors.quest-error');
         }
 
-        if(empty($intersect_locations) || empty($intersect_preferences)) {
+        if(empty($intersect_preferences)) {
             return view('errors.quest-error');
         }
         
@@ -64,7 +64,6 @@ class GeneratedTaskController extends Controller
         
         // dump($task->description, $partner_task->description);
 
-
         $validatedData = $request->validate([
             'quest_start' => 'required',
         ]);
@@ -72,7 +71,7 @@ class GeneratedTaskController extends Controller
         $generated_task = new GeneratedTask();
         $generated_task->user_id = $user->id;
         $generated_task->partner_id = $partner->id;
-        $generated_task->location_id = array_rand($intersect_locations);
+        $generated_task->location_id = $user->locations->random()->id;
         if(isset($accessory)) {
             $generated_task->accessory_id = $accessory->id;
         }
@@ -80,7 +79,7 @@ class GeneratedTaskController extends Controller
         $generated_task->task_id = $task->id;
         $generated_task->partner_task_id = $partner_task->id;
 
-        // dd($generated_task);
+        dd($generated_task);
         $generated_task->save();
 
         return redirect()->route('quest');
