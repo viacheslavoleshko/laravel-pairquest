@@ -79,7 +79,7 @@ class GeneratedTaskController extends Controller
         $generated_task->task_id = $task->id;
         $generated_task->partner_task_id = $partner_task->id;
 
-        dd($generated_task);
+        // dd($generated_task);
         $generated_task->save();
 
         return redirect()->route('quest');
