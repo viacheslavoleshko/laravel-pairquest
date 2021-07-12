@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Task;
 use App\Models\User;
+use App\Models\Duration;
 use Illuminate\Http\Request;
 use App\Models\GeneratedTask;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class GeneratedTaskController extends Controller
 {
@@ -30,20 +32,28 @@ class GeneratedTaskController extends Controller
             $partner_preferences[$preference->id] = $preference->description;
         }
 
-        $intersect_locations = array_intersect($user_locations, $partner_locations);
-
-        $intersect_preferences = array_intersect($user_preferences, $partner_preferences);
+        try {
+            $intersect_locations = array_intersect($user_locations, $partner_locations);
+            $intersect_preferences = array_intersect($user_preferences, $partner_preferences);
+        } catch (\ErrorException $e) {
+            return view('errors.quest-error');
+        }
+        
         $random_preference_from_intersect = array_rand($intersect_preferences);
         
         // dump($intersect_preferences); dump($random_preference_from_intersect);
         
 
-        $task = Task::inRandomOrder()->with('partner_tasks')->where([
-            ['preference_id', $random_preference_from_intersect],
-            ['user_level_id', min($user->user_level_id, $partner->user_level_id)],
-            ['duration_id', min($user->duration_id, $partner->duration_id)]
-        ])->first(); // TODO додати фільтрацію по статі, лайкам
-        // dump($task);
+        try {
+            $task = Task::inRandomOrder()->with('partner_tasks')->where([
+                ['preference_id', $random_preference_from_intersect],
+                ['user_level_id', min($user->user_level_id, $partner->user_level_id)],
+                ['duration_id', min($user->duration_id, $partner->duration_id)]
+            ])->firstOrFail(); // TODO додати фільтрацію по статі, лайкам
+        } catch(ModelNotFoundException $e) {
+            return view('errors.quest-error2');
+        }
+        
         $accessory = $user->accessories->where('preference_id', $random_preference_from_intersect)->first(); 
         // dump($accessory->name ?? 'null');
         $partner_task = $task->partner_tasks->random(1)->first();
