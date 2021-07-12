@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 09 2021 г., 17:49
+-- Время создания: Июл 12 2021 г., 17:21
 -- Версия сервера: 10.3.16-MariaDB
 -- Версия PHP: 7.3.7
 
@@ -42,9 +42,9 @@ CREATE TABLE `accessories` (
 INSERT INTO `accessories` (`id`, `name`, `user_id`, `preference_id`) VALUES
 (9, 'Вино', 14, 1),
 (10, 'Сукня', 14, 1),
-(11, 'Відеокамера', 14, 1),
-(12, 'Вино', 14, 3),
-(13, 'Фотоапарат', 3, 1);
+(11, 'Відеокамера', 14, 2),
+(13, 'Фотоапарат', 3, 1),
+(21, 'Відеокамера', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -245,7 +245,13 @@ INSERT INTO `generated_tasks` (`id`, `user_id`, `partner_id`, `location_id`, `st
 (1, 14, 3, 11, '2021-07-09 09:54:45', 6, 21, 6, 0, '2021-07-08 12:31:09', '2021-07-09 10:26:29'),
 (2, 3, 14, 2, '2021-07-12 14:00:00', 4, 17, NULL, 0, '2021-07-09 13:16:45', '2021-07-09 14:14:02'),
 (3, 3, 14, 1, '2021-07-14 19:00:00', 4, 17, NULL, 0, '2021-07-09 14:47:10', '2021-07-09 15:00:23'),
-(4, 14, 3, 10, '2021-07-11 15:00:00', 7, 17, 9, 0, '2021-07-09 15:27:24', '2021-07-09 15:28:08');
+(4, 14, 3, 10, '2021-07-11 15:00:00', 7, 17, 9, 0, '2021-07-09 15:27:24', '2021-07-09 15:28:08'),
+(5, 14, 3, 10, '2021-07-23 12:42:00', 7, 17, 9, 0, '2021-07-12 07:37:11', '2021-07-12 07:37:18'),
+(6, 14, 3, 11, '2021-07-10 14:57:00', 4, 18, 11, 0, '2021-07-12 14:58:17', '2021-07-12 14:58:21'),
+(7, 14, 3, 11, '2021-07-10 14:58:00', 7, 17, 9, 1, '2021-07-12 14:58:36', '2021-07-12 14:58:38'),
+(8, 14, 3, 11, '2021-07-22 14:58:00', 7, 17, 9, 1, '2021-07-12 14:58:56', '2021-07-12 14:59:10'),
+(9, 14, 3, 10, '2021-07-15 14:59:00', 4, 17, 11, 1, '2021-07-12 14:59:20', '2021-07-12 14:59:24'),
+(10, 14, 3, 11, '2021-07-08 15:07:00', 7, 17, 9, NULL, '2021-07-12 15:10:54', '2021-07-12 15:10:54');
 
 -- --------------------------------------------------------
 
@@ -268,7 +274,8 @@ INSERT INTO `likes` (`id`, `task_id`, `user_id`, `is_like`) VALUES
 (5, 3, 3, 1),
 (6, 3, 14, 1),
 (7, 7, 14, 1),
-(8, 7, 3, 0);
+(8, 7, 3, 0),
+(9, 4, 14, 1);
 
 -- --------------------------------------------------------
 
@@ -769,9 +776,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`, `partner_email`, `gender_id`, `user_level_id`, `duration_id`) VALUES
-(1, 1, 'admin', 'admin@admin.com', 'users/default.png', NULL, '$2y$10$vALnBdtdRR7MYVorxGGEi.NwolxJ3R3/vqYPV1xdq2SyFdeBHjDre', NULL, '{\"locale\":\"en\"}', '2021-07-06 08:30:05', '2021-07-09 06:11:44', NULL, NULL, NULL, NULL),
-(3, 2, 'John', 'john@laravel.test', 'users/default.png', NULL, '$2y$10$Vh0l/JzwtwBnCDcquRcOr.zfMsVUA57ebiHe2zL6X90e9CzPdjATO', NULL, NULL, '2021-07-07 05:56:24', '2021-07-09 14:46:44', 'vyacheslav.oleshko.work@gmail.com', 1, 3, 3),
-(14, 2, 'Viacheslav', 'vyacheslav.oleshko.work@gmail.com', 'users/default.png', NULL, '$2y$10$McRMdlbXwnsrCQseuaM8yuck9Sa6kARczRgd/prCEi2QG9Z3RigC.', NULL, NULL, '2021-07-07 11:46:32', '2021-07-09 14:46:57', 'john@laravel.test', 1, 2, 2);
+(1, 1, 'admin', 'admin@admin.com', 'users/default.png', NULL, '$2y$10$vALnBdtdRR7MYVorxGGEi.NwolxJ3R3/vqYPV1xdq2SyFdeBHjDre', NULL, '{\"locale\":\"en\"}', '2021-07-06 08:30:05', '2021-07-12 11:52:52', NULL, NULL, NULL, NULL),
+(3, 2, 'John', 'john@laravel.test', 'users/default.png', NULL, '$2y$10$Vh0l/JzwtwBnCDcquRcOr.zfMsVUA57ebiHe2zL6X90e9CzPdjATO', NULL, NULL, '2021-07-07 05:56:24', '2021-07-12 14:56:46', 'vyacheslav.oleshko.work@gmail.com', 1, 3, 2),
+(14, 2, 'Viacheslav', 'vyacheslav.oleshko.work@gmail.com', 'users/default.png', NULL, '$2y$10$McRMdlbXwnsrCQseuaM8yuck9Sa6kARczRgd/prCEi2QG9Z3RigC.', NULL, NULL, '2021-07-07 11:46:32', '2021-07-12 15:06:59', 'john@laravel.test', 1, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -812,8 +819,8 @@ CREATE TABLE `user_preference` (
 INSERT INTO `user_preference` (`id`, `user_id`, `preference_id`) VALUES
 (60, 3, 1),
 (61, 3, 2),
-(62, 14, 1),
-(63, 14, 2);
+(67, 14, 1),
+(68, 14, 2);
 
 -- --------------------------------------------------------
 
@@ -1032,7 +1039,7 @@ ALTER TABLE `user_roles`
 -- AUTO_INCREMENT для таблицы `accessories`
 --
 ALTER TABLE `accessories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT для таблицы `data_rows`
@@ -1068,13 +1075,13 @@ ALTER TABLE `genders`
 -- AUTO_INCREMENT для таблицы `generated_tasks`
 --
 ALTER TABLE `generated_tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT для таблицы `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT для таблицы `locations`
@@ -1164,7 +1171,7 @@ ALTER TABLE `user_levels`
 -- AUTO_INCREMENT для таблицы `user_preference`
 --
 ALTER TABLE `user_preference`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
