@@ -38,6 +38,10 @@ class GeneratedTaskController extends Controller
         } catch (\ErrorException $e) {
             return view('errors.quest-error');
         }
+
+        if(empty($intersect_locations) || empty($intersect_preferences)) {
+            return view('errors.quest-error');
+        }
         
         $random_preference_from_intersect = array_rand($intersect_preferences);
         
