@@ -3,6 +3,7 @@
 /public/storage
 /storage/*.key
 .env
+/vendor
 .env.backup
 .phpunit.result.cache
 docker-compose.override.yml
@@ -15,11 +16,11 @@ yarn-error.log
 
 
 
-/vendor/*
-!/vendor/laravel/
+# /vendor/*
+# !/vendor/laravel/
 
-/vendor/laravel/*
-!/vendor/laravel/ui/
+# /vendor/laravel/*
+# !/vendor/laravel/ui/
 
-/vendor/laravel/ui/*
-!/vendor/laravel/ui/auth-backend/
+# /vendor/laravel/ui/*
+# !/vendor/laravel/ui/auth-backend/

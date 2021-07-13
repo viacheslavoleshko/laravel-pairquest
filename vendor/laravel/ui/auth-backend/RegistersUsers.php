@@ -19,7 +19,7 @@ trait RegistersUsers
      */
     public function showRegistrationForm()
     {
-        return view('auth.register', ['genders' => Gender::all()]);
+        return view('auth.register');
     }
 
     /**
