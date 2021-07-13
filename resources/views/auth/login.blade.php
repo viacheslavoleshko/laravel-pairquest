@@ -27,7 +27,7 @@
                 
 
                 <div class="form-outline mb-4">
-                    <input type="password  @error('password') is-invalid @enderror"  id="form2Example2" class="form-control" name="password" required autocomplete="current-password"/>
+                    <input type="password" id="form2Example2"  class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password"/>
                     <label class="form-label" for="form2Example2">Password</label>
                     
                     @error('password')

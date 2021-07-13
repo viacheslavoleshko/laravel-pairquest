@@ -29,7 +29,12 @@ class QuestController extends Controller
 
 
         } elseif ($generated_task = GeneratedTask::where('partner_id', $user->id)->whereNull('is_rejected')->first()) {
-            $partner_task = PartnerTask::findOrFail($generated_task->partner_task_id);
+            if(isset($generated_task->partner_task_id)) {
+                $partner_task = PartnerTask::findOrFail($generated_task->partner_task_id);
+            } else {
+                $partner_task = Task::findOrFail($generated_task->task_id);
+            }
+            
             $accessory = Accessory::find($generated_task->accessory_id);
             return view('generated-quest', ['generated_task' => $generated_task, 'task' => $partner_task, 'location' => Location::findOrFail($generated_task->location_id), 'accessory' => $accessory, 'name' => Task::findOrFail($generated_task->task_id)->name]);
 
@@ -55,7 +60,7 @@ class QuestController extends Controller
 
     public function finish(Request $request, $id)
     {
-        $generated_task = GeneratedTask::findOrFail($id);
+        $generated_task = GeneratedTask::whereNull('is_rejected')->findOrFail($id);
         $task = Task::findOrFail($generated_task->task_id);
         $generated_task->is_rejected = $request->is_rejected;
         $generated_task->save();

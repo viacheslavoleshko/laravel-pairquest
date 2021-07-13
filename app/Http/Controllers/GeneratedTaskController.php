@@ -18,7 +18,6 @@ class GeneratedTaskController extends Controller
         $user = User::with(['locations', 'accessories', 'preferences', 'generated_task'])->findOrFail($id);
         $partner = User::with(['locations', 'accessories', 'preferences'])->where('email', $user->partner_email)->first();
         $organisator = session('organisator');
-        dump($organisator);
 
         $user_preferences = $user->preferences->pluck('id', 'description');
         $partner_preferences = $partner->preferences->pluck('id', 'description');
@@ -31,16 +30,15 @@ class GeneratedTaskController extends Controller
                 $task = Task::inRandomOrder()->with('partner_tasks')->where([
                     ['preference_id', $random_preference_from_intersect],
                     ['user_level_id', min($user->user_level_id, $partner->user_level_id)],
-                    ['duration_id', min($user->duration_id, $partner->duration_id)]
+                    ['duration_id', $user->duration_id]
                 ])->firstOrFail(); // TODO додати фільтрацію по статі, лайкам
             } catch(ModelNotFoundException $e) {
                 return view('errors.quest-error2');
             }
             
             $accessory = $user->accessories->where('preference_id', $random_preference_from_intersect)->first(); 
-            $partner_task = $task->partner_tasks->random();
             
-            dump($task->description, $partner_task->description);
+            // dump($task->description, /*$task->partner_tasks->random()->description*/);
 
             $validatedData = $request->validate([
                 'quest_start' => 'required',
@@ -61,7 +59,10 @@ class GeneratedTaskController extends Controller
             }
             $generated_task->started_at = $validatedData['quest_start'];
             $generated_task->task_id = $task->id;
-            $generated_task->partner_task_id = $partner_task->id;
+            if($task->is_partner_task == 1) {
+                $generated_task->partner_task_id = $task->partner_tasks->random()->id;
+            }
+            
 
             // dd($generated_task);
             $generated_task->save();

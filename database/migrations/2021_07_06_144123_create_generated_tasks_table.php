@@ -29,7 +29,7 @@ class CreateGeneratedTasksTable extends Migration
             $table->unsignedBigInteger('task_id')->index();
             $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
 
-            $table->unsignedBigInteger('partner_task_id')->index();
+            $table->unsignedBigInteger('partner_task_id')->index()->nullable();
             $table->foreign('partner_task_id')->references('partner_task_id')->on('task_combinations');
 
             $table->unsignedBigInteger('accessory_id')->index()->nullable();
