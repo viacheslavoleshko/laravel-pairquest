@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 12 2021 г., 17:21
+-- Время создания: Июл 13 2021 г., 14:58
 -- Версия сервера: 10.3.16-MariaDB
 -- Версия PHP: 7.3.7
 
@@ -106,24 +106,24 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (31, 1, 'user_level_id', 'text', 'User Level Id', 0, 1, 1, 1, 1, 1, '{}', 4),
 (32, 7, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
 (33, 7, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{}', 10),
-(34, 7, 'preference_id', 'text', 'Preference Id', 1, 0, 0, 0, 0, 0, '{}', 2),
-(35, 7, 'duration_id', 'text', 'Duration Id', 1, 0, 0, 0, 0, 0, '{}', 4),
-(36, 7, 'user_level_id', 'text', 'User Level Id', 1, 0, 0, 0, 0, 0, '{}', 6),
-(37, 7, 'is_partner_task', 'text', 'Is Partner Task', 1, 1, 1, 1, 1, 1, '{}', 11),
+(34, 7, 'preference_id', 'text', 'Preference Id', 1, 1, 1, 1, 1, 1, '{}', 2),
+(35, 7, 'duration_id', 'text', 'Duration Id', 1, 1, 1, 1, 1, 1, '{}', 4),
+(36, 7, 'user_level_id', 'text', 'User Level Id', 1, 1, 1, 1, 1, 1, '{}', 6),
+(37, 7, 'is_partner_task', 'select_dropdown', 'Is Partner Task', 1, 1, 1, 1, 1, 1, '{\"options\":{\"0\":\"No\",\"1\":\"Yes\"}}', 11),
 (38, 7, 'description', 'text', 'Description', 1, 1, 1, 1, 1, 1, '{}', 12),
-(39, 7, 'is_accessories', 'text', 'Is Accessories', 1, 1, 1, 1, 1, 1, '{}', 14),
-(40, 7, 'gender_id', 'text', 'Gender Id', 1, 0, 0, 1, 0, 0, '{}', 8),
-(41, 7, 'image', 'text', 'Image', 1, 1, 1, 1, 1, 1, '{}', 15),
-(42, 7, 'task_hasmany_preference_relationship', 'relationship', 'Preference', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Preference\",\"table\":\"preferences\",\"type\":\"belongsTo\",\"column\":\"id\",\"key\":\"id\",\"label\":\"description\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 3),
-(43, 7, 'task_belongsto_duration_relationship', 'relationship', 'Duration', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Duration\",\"table\":\"durations\",\"type\":\"belongsTo\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 5),
-(44, 7, 'task_belongsto_user_level_relationship', 'relationship', 'User Level', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\UserLevel\",\"table\":\"user_levels\",\"type\":\"belongsTo\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 7),
-(46, 7, 'task_belongsto_gender_relationship', 'relationship', 'Gender', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Gender\",\"table\":\"genders\",\"type\":\"belongsTo\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 9),
+(39, 7, 'is_accessories', 'select_dropdown', 'Is Accessories', 1, 1, 1, 1, 1, 1, '{\"options\":{\"0\":\"No\",\"1\":\"Yes\"}}', 14),
+(40, 7, 'gender_id', 'text', 'Gender Id', 1, 1, 1, 1, 1, 1, '{}', 8),
+(41, 7, 'image', 'image', 'Image', 0, 1, 1, 1, 1, 1, '{}', 15),
+(42, 7, 'task_hasmany_preference_relationship', 'relationship', 'Preference', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Preference\",\"table\":\"preferences\",\"type\":\"belongsTo\",\"column\":\"preference_id\",\"key\":\"id\",\"label\":\"description\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 3),
+(43, 7, 'task_belongsto_duration_relationship', 'relationship', 'Duration', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Duration\",\"table\":\"durations\",\"type\":\"belongsTo\",\"column\":\"duration_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 5),
+(44, 7, 'task_belongsto_user_level_relationship', 'relationship', 'User Level', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\UserLevel\",\"table\":\"user_levels\",\"type\":\"belongsTo\",\"column\":\"user_level_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 7),
+(46, 7, 'task_belongsto_gender_relationship', 'relationship', 'Gender', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Gender\",\"table\":\"genders\",\"type\":\"belongsTo\",\"column\":\"gender_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 9),
 (47, 8, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
-(48, 8, 'partner_description', 'text', 'Task', 1, 1, 1, 1, 1, 1, '{}', 4),
 (49, 8, 'gender_id', 'text', 'Gender Id', 1, 0, 0, 0, 0, 0, '{}', 2),
-(50, 8, 'partner_task_belongsto_gender_relationship', 'relationship', 'Gender', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Gender\",\"table\":\"genders\",\"type\":\"belongsTo\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 3),
+(50, 8, 'partner_task_belongsto_gender_relationship', 'relationship', 'Gender', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Gender\",\"table\":\"genders\",\"type\":\"belongsTo\",\"column\":\"gender_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 3),
 (51, 8, 'partner_task_belongstomany_task_relationship', 'relationship', 'Partner task', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Task\",\"table\":\"tasks\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"description\",\"pivot_table\":\"task_combinations\",\"pivot\":\"1\",\"taggable\":\"0\"}', 5),
-(52, 7, 'task_belongstomany_partner_task_relationship', 'relationship', 'Partner task', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\PartnerTask\",\"table\":\"partner_tasks\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"partner_description\",\"pivot_table\":\"task_combinations\",\"pivot\":\"1\",\"taggable\":\"0\"}', 13);
+(52, 7, 'task_belongstomany_partner_task_relationship', 'relationship', 'Partner task', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\PartnerTask\",\"table\":\"partner_tasks\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"description\",\"pivot_table\":\"task_combinations\",\"pivot\":\"1\",\"taggable\":\"on\"}', 13),
+(54, 8, 'description', 'text', 'Description', 1, 1, 1, 1, 1, 1, '{}', 3);
 
 -- --------------------------------------------------------
 
@@ -159,8 +159,8 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, 'TCG\\Voyager\\Http\\Controllers\\VoyagerRoleController', '', 1, 0, NULL, '2021-07-06 08:28:42', '2021-07-06 08:28:42'),
 (4, 'genders', 'genders', 'Gender', 'Genders', NULL, 'App\\Models\\Gender', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-06 09:15:55', '2021-07-07 05:36:12'),
 (6, 'user_levels', 'user-levels', 'User Level', 'User Levels', NULL, 'App\\Models\\UserLevel', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2021-07-06 13:01:18', '2021-07-06 13:01:18'),
-(7, 'tasks', 'tasks', 'Task', 'Tasks', NULL, 'App\\Models\\Task', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-06 13:07:15', '2021-07-06 13:41:01'),
-(8, 'partner_tasks', 'partner-tasks', 'Partner Task', 'Partner Tasks', NULL, 'App\\Models\\PartnerTask', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-06 13:27:51', '2021-07-06 13:42:56');
+(7, 'tasks', 'tasks', 'Task', 'Tasks', NULL, 'App\\Models\\Task', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-06 13:07:15', '2021-07-13 10:55:44'),
+(8, 'partner_tasks', 'partner-tasks', 'Partner Task', 'Partner Tasks', NULL, 'App\\Models\\PartnerTask', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-06 13:27:51', '2021-07-13 10:39:24');
 
 -- --------------------------------------------------------
 
@@ -230,7 +230,7 @@ CREATE TABLE `generated_tasks` (
   `location_id` bigint(20) UNSIGNED NOT NULL,
   `started_at` timestamp NULL DEFAULT NULL,
   `task_id` bigint(20) UNSIGNED NOT NULL,
-  `partner_task_id` bigint(20) UNSIGNED NOT NULL,
+  `partner_task_id` bigint(20) UNSIGNED DEFAULT NULL,
   `accessory_id` bigint(20) UNSIGNED DEFAULT NULL,
   `is_rejected` tinyint(1) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -251,7 +251,33 @@ INSERT INTO `generated_tasks` (`id`, `user_id`, `partner_id`, `location_id`, `st
 (7, 14, 3, 11, '2021-07-10 14:58:00', 7, 17, 9, 1, '2021-07-12 14:58:36', '2021-07-12 14:58:38'),
 (8, 14, 3, 11, '2021-07-22 14:58:00', 7, 17, 9, 1, '2021-07-12 14:58:56', '2021-07-12 14:59:10'),
 (9, 14, 3, 10, '2021-07-15 14:59:00', 4, 17, 11, 1, '2021-07-12 14:59:20', '2021-07-12 14:59:24'),
-(10, 14, 3, 11, '2021-07-08 15:07:00', 7, 17, 9, NULL, '2021-07-12 15:10:54', '2021-07-12 15:10:54');
+(10, 14, 3, 11, '2021-07-08 15:07:00', 7, 17, 9, 1, '2021-07-12 15:10:54', '2021-07-13 07:46:20'),
+(11, 3, 14, 10, '2021-07-08 08:56:00', 5, 19, NULL, 1, '2021-07-13 08:56:48', '2021-07-13 08:56:52'),
+(12, 14, 3, 10, '2021-07-20 12:09:00', 2, 14, 9, 1, '2021-07-13 12:09:17', '2021-07-13 12:09:21'),
+(13, 14, 3, 14, '2021-07-09 12:28:00', 2, 13, 9, 1, '2021-07-13 12:36:44', '2021-07-13 12:36:49'),
+(14, 14, 3, 10, '2021-07-14 12:36:00', 5, 20, NULL, 1, '2021-07-13 12:36:54', '2021-07-13 12:36:57'),
+(15, 14, 3, 14, '2021-07-03 12:37:00', 2, 13, 9, 1, '2021-07-13 12:37:02', '2021-07-13 12:37:05'),
+(16, 14, 3, 13, '2021-07-09 12:37:00', 5, 20, NULL, 1, '2021-07-13 12:37:10', '2021-07-13 12:37:14'),
+(17, 14, 3, 10, '2021-07-17 12:37:00', 2, 13, 9, 1, '2021-07-13 12:37:18', '2021-07-13 12:37:21'),
+(18, 14, 3, 10, '2021-07-24 12:37:00', 2, 14, 9, 1, '2021-07-13 12:37:25', '2021-07-13 12:37:46'),
+(19, 14, 3, 14, '2021-07-10 12:37:00', 5, 19, NULL, 1, '2021-07-13 12:37:51', '2021-07-13 12:37:54'),
+(20, 14, 3, 11, '2021-07-22 12:37:00', 2, 13, 9, 1, '2021-07-13 12:37:59', '2021-07-13 12:38:01'),
+(21, 14, 3, 10, '2021-07-10 12:38:00', 5, 19, NULL, 1, '2021-07-13 12:38:05', '2021-07-13 12:38:07'),
+(22, 14, 3, 10, '2021-07-23 12:38:00', 2, 14, 9, 1, '2021-07-13 12:38:11', '2021-07-13 12:38:13'),
+(23, 14, 3, 11, '2021-07-31 12:38:00', 5, 19, NULL, 1, '2021-07-13 12:38:18', '2021-07-13 12:38:32'),
+(24, 14, 3, 10, '2021-07-03 12:38:00', 5, 20, NULL, 1, '2021-07-13 12:38:36', '2021-07-13 12:38:43'),
+(25, 14, 3, 10, '2021-07-10 16:42:00', 5, 19, NULL, 1, '2021-07-13 12:40:13', '2021-07-13 12:40:47'),
+(26, 14, 3, 14, '2021-07-15 14:40:00', 5, 20, NULL, 1, '2021-07-13 12:40:53', '2021-07-13 12:40:56'),
+(27, 14, 3, 14, '2021-07-25 12:46:00', 5, 19, NULL, 1, '2021-07-13 12:41:02', '2021-07-13 12:41:04'),
+(28, 14, 3, 13, '2021-08-06 12:41:00', 8, NULL, 9, 1, '2021-07-13 12:41:09', '2021-07-13 12:48:44'),
+(29, 14, 3, 11, '2021-07-13 14:48:00', 8, NULL, 9, 1, '2021-07-13 12:48:51', '2021-07-13 12:49:10'),
+(30, 14, 3, 10, '2021-07-11 12:49:00', 8, NULL, 9, 1, '2021-07-13 12:49:14', '2021-07-13 12:49:16'),
+(31, 14, 3, 11, '2021-07-15 12:49:00', 8, NULL, 9, 1, '2021-07-13 12:49:20', '2021-07-13 12:49:22'),
+(32, 14, 3, 13, '2021-07-03 12:49:00', 2, 13, 9, 1, '2021-07-13 12:49:26', '2021-07-13 12:50:02'),
+(33, 3, 14, 11, '2021-07-04 12:50:00', 8, NULL, 9, 1, '2021-07-13 12:50:11', '2021-07-13 12:50:17'),
+(34, 14, 3, 10, '2021-07-10 12:50:00', 2, 14, 9, 1, '2021-07-13 12:50:22', '2021-07-13 12:50:41'),
+(35, 3, 14, 14, '2021-07-18 16:54:00', 5, 20, NULL, 1, '2021-07-13 12:50:53', '2021-07-13 12:51:02'),
+(36, 14, 3, 14, '2021-07-19 12:52:00', 8, NULL, 9, 1, '2021-07-13 12:52:18', '2021-07-13 12:52:25');
 
 -- --------------------------------------------------------
 
@@ -692,12 +718,13 @@ CREATE TABLE `tasks` (
 
 INSERT INTO `tasks` (`id`, `name`, `preference_id`, `duration_id`, `user_level_id`, `is_partner_task`, `description`, `is_accessories`, `gender_id`, `image`) VALUES
 (1, 'Романтична подорож', 1, 3, 3, 1, 'Купи квитки для подорожі в місто, яке твоє кохання обожнює.', 0, 1, NULL),
-(2, 'Незабутня подорож', 1, 3, 3, 1, 'Організуй подорож по незвичним місцям твого міста.', 0, 1, NULL),
+(2, 'Незабутня подорож', 1, 2, 3, 1, 'Організуй подорож по незвичним місцям твого міста.', 0, 1, NULL),
 (3, 'Домашній вечір', 2, 2, 1, 1, 'Зберіться вдома для перегляду улюблених фільмів.', 0, 1, NULL),
 (4, 'Кіношка', 2, 2, 2, 1, 'Купи квитки у кінотеатр.', 0, 1, NULL),
 (5, 'Концертній двіж', 3, 2, 3, 1, 'Купи квитки на концерт улюбленого гурту твого коханого.', 0, 2, NULL),
 (6, 'Домашня дискотека', 3, 2, 1, 1, 'Зроби перегляд концерту улюбленого гурту вдома.', 0, 2, NULL),
-(7, 'Пробіжка', 1, 2, 2, 1, 'Зроби вечірню пробіжку за ручку.', 0, 1, NULL);
+(7, 'Пробіжка', 1, 2, 2, 1, 'Зроби вечірню пробіжку за ручку.', 0, 1, NULL),
+(8, 'Історична подорож', 1, 2, 3, 0, 'Сходи у музей зі своєю парою.', 0, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -778,7 +805,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`, `partner_email`, `gender_id`, `user_level_id`, `duration_id`) VALUES
 (1, 1, 'admin', 'admin@admin.com', 'users/default.png', NULL, '$2y$10$vALnBdtdRR7MYVorxGGEi.NwolxJ3R3/vqYPV1xdq2SyFdeBHjDre', NULL, '{\"locale\":\"en\"}', '2021-07-06 08:30:05', '2021-07-12 11:52:52', NULL, NULL, NULL, NULL),
 (3, 2, 'John', 'john@laravel.test', 'users/default.png', NULL, '$2y$10$Vh0l/JzwtwBnCDcquRcOr.zfMsVUA57ebiHe2zL6X90e9CzPdjATO', NULL, NULL, '2021-07-07 05:56:24', '2021-07-12 14:56:46', 'vyacheslav.oleshko.work@gmail.com', 1, 3, 2),
-(14, 2, 'Viacheslav', 'vyacheslav.oleshko.work@gmail.com', 'users/default.png', NULL, '$2y$10$McRMdlbXwnsrCQseuaM8yuck9Sa6kARczRgd/prCEi2QG9Z3RigC.', NULL, NULL, '2021-07-07 11:46:32', '2021-07-12 15:06:59', 'john@laravel.test', 1, 2, 2);
+(14, 2, 'Viacheslav', 'vyacheslav.oleshko.work@gmail.com', 'users/default.png', NULL, '$2y$10$McRMdlbXwnsrCQseuaM8yuck9Sa6kARczRgd/prCEi2QG9Z3RigC.', NULL, NULL, '2021-07-07 11:46:32', '2021-07-13 12:28:12', 'john@laravel.test', 1, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -817,10 +844,11 @@ CREATE TABLE `user_preference` (
 --
 
 INSERT INTO `user_preference` (`id`, `user_id`, `preference_id`) VALUES
-(60, 3, 1),
-(61, 3, 2),
-(67, 14, 1),
-(68, 14, 2);
+(72, 3, 2),
+(73, 3, 3),
+(74, 3, 1),
+(75, 14, 1),
+(76, 14, 3);
 
 -- --------------------------------------------------------
 
@@ -1045,7 +1073,7 @@ ALTER TABLE `accessories`
 -- AUTO_INCREMENT для таблицы `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT для таблицы `data_types`
@@ -1075,7 +1103,7 @@ ALTER TABLE `genders`
 -- AUTO_INCREMENT для таблицы `generated_tasks`
 --
 ALTER TABLE `generated_tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT для таблицы `likes`
@@ -1141,7 +1169,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT для таблицы `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT для таблицы `task_combinations`
@@ -1171,7 +1199,7 @@ ALTER TABLE `user_levels`
 -- AUTO_INCREMENT для таблицы `user_preference`
 --
 ALTER TABLE `user_preference`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
