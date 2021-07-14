@@ -31,10 +31,10 @@ use App\Http\Controllers\QuestController;
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
-    Route::post('/task-import', [ImportExportController::class, 'taskImport'])->name('task-import');
-    Route::get('/ask-export', [ImportExportController::class, 'taskExport'])->name('task-export');
-    Route::post('/partner-task-import', [ImportExportController::class, 'partnerTaskImport'])->name('partner-task-import');
-    Route::get('/partner-task-export', [ImportExportController::class, 'partnerTaskExport'])->name('partner-task-export');
+    Route::post('/tasks/import', [ImportExportController::class, 'taskImport'])->name('tasks-import');
+    Route::get('/tasks/export', [ImportExportController::class, 'taskExport'])->name('tasks-export');
+    Route::post('/partner-tasks/import', [ImportExportController::class, 'partnerTaskImport'])->name('partner-tasks-import');
+    Route::get('/partner-tasks/export', [ImportExportController::class, 'partnerTaskExport'])->name('partner-tasks-export');
 });
 
 Auth::routes();

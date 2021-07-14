@@ -51,7 +51,7 @@
             @include('voyager::multilingual.language-selector')
         </div>
         <div style="width: 15%;margin-top: auto;margin-bottom: auto;">
-            <form action="{{ route('partner-task-import') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('partner-tasks-import') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <div class="custom-file">
@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <button class="btn btn-primary"><i class="voyager-upload"></i> <span>Import data</span></button>
-                <a class="btn btn-success" href="{{ route('partner-task-export') }}"><i class="voyager-download"></i> <span>Export data</span></a>
+                <a class="btn btn-success" href="{{ route('partner-tasks-export') }}"><i class="voyager-download"></i> <span>Export data</span></a>
             </form>
         </div>
     </div>
