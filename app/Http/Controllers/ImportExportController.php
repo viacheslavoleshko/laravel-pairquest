@@ -12,29 +12,24 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class ImportExportController extends Controller
 {
-    public function index()
-    {
-        return view('import-export');
-    }
-
-    public function taskExport()
+    public function tasksExport()
     {
         return Excel::download(new TasksExport, 'tasks-collection.xlsx');
     }
 
-    public function taskImport(FileRequest $request)
+    public function tasksImport(FileRequest $request)
     {
         $validatedData = $request->validated();
         Excel::import(new TasksImport, $validatedData['file']);
         return back()->with('status', 'File imported!');;
     }
 
-    public function partnerTaskExport()
+    public function partnerTasksExport()
     {
         return Excel::download(new PartnerTasksExport, 'partner-tasks-collection.xlsx');
     }
 
-    public function partnerTaskImport(FileRequest $request)
+    public function partnerTasksImport(FileRequest $request)
     {
         $validatedData = $request->validated();
         Excel::import(new PartnerTasksImport, $validatedData['file']);
