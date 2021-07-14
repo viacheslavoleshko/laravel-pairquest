@@ -9,6 +9,18 @@ class Task extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'preference_id',
+        'duration_id',
+        'user_level_id',
+        'is_partner_task',
+        'description',
+        'is_accessories',
+        'gender_id'
+    ];
+
+
     public $timestamps = false;
 
     public function user_level()
@@ -18,7 +30,7 @@ class Task extends Model
 
     public function preference()
     {
-        return $this->belongsTo(UserLevel::class);
+        return $this->belongsTo(Preference::class);
     }
 
     public function duration()

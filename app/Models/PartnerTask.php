@@ -9,6 +9,11 @@ class PartnerTask extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'description',
+        'gender_id'
+    ];
+
     public $timestamps = false;
 
     public function tasks()

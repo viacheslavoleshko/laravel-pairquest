@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccessoryController;
 use App\Http\Controllers\GeneratedTaskController;
+use App\Http\Controllers\ImportExportController;
 use App\Http\Controllers\LikeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,10 @@ use App\Http\Controllers\QuestController;
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+    Route::post('/task-import', [ImportExportController::class, 'taskImport'])->name('task-import');
+    Route::get('/ask-export', [ImportExportController::class, 'taskExport'])->name('task-export');
+    Route::post('/partner-task-import', [ImportExportController::class, 'partnerTaskImport'])->name('partner-task-import');
+    Route::get('/partner-task-export', [ImportExportController::class, 'partnerTaskExport'])->name('partner-task-export');
 });
 
 Auth::routes();
@@ -54,4 +59,3 @@ Route::post('/end-quest/{generated_task}', [QuestController::class, 'finish'])->
 Route::post('/like/{task}', [LikeController::class, 'store'])->name('like');
 
 Route::post('/generator/{user}', [GeneratedTaskController::class, 'store'])->name('generator');
-
