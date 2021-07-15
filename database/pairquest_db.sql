@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 14 2021 г., 16:56
+-- Время создания: Июл 15 2021 г., 14:30
 -- Версия сервера: 10.3.16-MariaDB
 -- Версия PHP: 7.3.7
 
@@ -121,7 +121,7 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (47, 8, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
 (49, 8, 'gender_id', 'text', 'Gender Id', 1, 0, 0, 0, 0, 0, '{}', 2),
 (50, 8, 'partner_task_belongsto_gender_relationship', 'relationship', 'Gender', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Gender\",\"table\":\"genders\",\"type\":\"belongsTo\",\"column\":\"gender_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 3),
-(51, 8, 'partner_task_belongstomany_task_relationship', 'relationship', 'Partner task', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Task\",\"table\":\"tasks\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"description\",\"pivot_table\":\"task_combinations\",\"pivot\":\"1\",\"taggable\":\"0\"}', 5),
+(51, 8, 'partner_task_belongstomany_task_relationship', 'relationship', 'Main task', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Task\",\"table\":\"tasks\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"description\",\"pivot_table\":\"task_combinations\",\"pivot\":\"1\",\"taggable\":\"0\"}', 5),
 (52, 7, 'task_belongstomany_partner_task_relationship', 'relationship', 'Partner task', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\PartnerTask\",\"table\":\"partner_tasks\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"description\",\"pivot_table\":\"task_combinations\",\"pivot\":\"1\",\"taggable\":\"on\"}', 13),
 (54, 8, 'description', 'text', 'Description', 1, 1, 1, 1, 1, 1, '{}', 3);
 
@@ -160,7 +160,7 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (4, 'genders', 'genders', 'Gender', 'Genders', NULL, 'App\\Models\\Gender', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-06 09:15:55', '2021-07-07 05:36:12'),
 (6, 'user_levels', 'user-levels', 'User Level', 'User Levels', NULL, 'App\\Models\\UserLevel', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2021-07-06 13:01:18', '2021-07-06 13:01:18'),
 (7, 'tasks', 'tasks', 'Task', 'Tasks', NULL, 'App\\Models\\Task', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-06 13:07:15', '2021-07-13 10:55:44'),
-(8, 'partner_tasks', 'partner-tasks', 'Partner Task', 'Partner Tasks', NULL, 'App\\Models\\PartnerTask', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-06 13:27:51', '2021-07-13 10:39:24');
+(8, 'partner_tasks', 'partner-tasks', 'Partner Task', 'Partner Tasks', NULL, 'App\\Models\\PartnerTask', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-06 13:27:51', '2021-07-14 15:01:30');
 
 -- --------------------------------------------------------
 
@@ -445,7 +445,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (42, '2021_07_06_142445_create_partner_tasks_table', 4),
 (43, '2021_07_06_143408_create_task_combinations_table', 5),
 (44, '2021_07_06_144123_create_generated_tasks_table', 6),
-(45, '2021_07_06_154841_create_likes_table', 7);
+(45, '2021_07_06_154841_create_likes_table', 7),
+(46, '2021_07_15_113644_create_user_level_stack_table', 8);
 
 -- --------------------------------------------------------
 
@@ -794,7 +795,6 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `partner_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `gender_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `user_level_id` bigint(20) UNSIGNED DEFAULT NULL,
   `duration_id` bigint(20) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -802,10 +802,10 @@ CREATE TABLE `users` (
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`, `partner_email`, `gender_id`, `user_level_id`, `duration_id`) VALUES
-(1, 1, 'admin', 'admin@admin.com', 'users/default.png', NULL, '$2y$10$vALnBdtdRR7MYVorxGGEi.NwolxJ3R3/vqYPV1xdq2SyFdeBHjDre', NULL, '{\"locale\":\"en\"}', '2021-07-06 08:30:05', '2021-07-12 11:52:52', NULL, NULL, NULL, NULL),
-(3, 2, 'John', 'john@laravel.test', 'users/default.png', NULL, '$2y$10$Vh0l/JzwtwBnCDcquRcOr.zfMsVUA57ebiHe2zL6X90e9CzPdjATO', NULL, NULL, '2021-07-07 05:56:24', '2021-07-12 14:56:46', 'vyacheslav.oleshko.work@gmail.com', 1, 3, 2),
-(14, 2, 'Viacheslav', 'vyacheslav.oleshko.work@gmail.com', 'users/default.png', NULL, '$2y$10$McRMdlbXwnsrCQseuaM8yuck9Sa6kARczRgd/prCEi2QG9Z3RigC.', NULL, NULL, '2021-07-07 11:46:32', '2021-07-13 12:28:12', 'john@laravel.test', 1, 3, 2);
+INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`, `partner_email`, `gender_id`, `duration_id`) VALUES
+(1, 1, 'admin', 'admin@admin.com', 'users/default.png', NULL, '$2y$10$vALnBdtdRR7MYVorxGGEi.NwolxJ3R3/vqYPV1xdq2SyFdeBHjDre', NULL, '{\"locale\":\"en\"}', '2021-07-06 08:30:05', '2021-07-12 11:52:52', NULL, NULL, NULL),
+(3, 2, 'John', 'john@laravel.test', 'users/default.png', NULL, '$2y$10$Vh0l/JzwtwBnCDcquRcOr.zfMsVUA57ebiHe2zL6X90e9CzPdjATO', NULL, NULL, '2021-07-07 05:56:24', '2021-07-15 12:10:49', 'vyacheslav.oleshko.work@gmail.com', 1, 2),
+(14, 2, 'Viacheslav', 'vyacheslav.oleshko.work@gmail.com', 'users/default.png', NULL, '$2y$10$McRMdlbXwnsrCQseuaM8yuck9Sa6kARczRgd/prCEi2QG9Z3RigC.', NULL, NULL, '2021-07-07 11:46:32', '2021-07-13 12:28:12', 'john@laravel.test', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -830,6 +830,28 @@ INSERT INTO `user_levels` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `user_level_stack`
+--
+
+CREATE TABLE `user_level_stack` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `user_level_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `user_level_stack`
+--
+
+INSERT INTO `user_level_stack` (`id`, `user_id`, `user_level_id`) VALUES
+(11, 14, 1),
+(14, 14, 2),
+(20, 3, 3),
+(21, 3, 2);
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `user_preference`
 --
 
@@ -847,8 +869,8 @@ INSERT INTO `user_preference` (`id`, `user_id`, `preference_id`) VALUES
 (72, 3, 2),
 (73, 3, 3),
 (74, 3, 1),
-(75, 14, 1),
-(76, 14, 3);
+(99, 14, 2),
+(101, 14, 1);
 
 -- --------------------------------------------------------
 
@@ -1034,14 +1056,22 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`),
   ADD KEY `users_role_id_foreign` (`role_id`),
   ADD KEY `users_gender_id_index` (`gender_id`),
-  ADD KEY `users_user_level_id_index` (`user_level_id`),
-  ADD KEY `users_duration_id_index` (`duration_id`) USING BTREE;
+  ADD KEY `users_duration_id_index` (`duration_id`) USING BTREE,
+  ADD KEY `gender_id` (`gender_id`);
 
 --
 -- Индексы таблицы `user_levels`
 --
 ALTER TABLE `user_levels`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `user_level_stack`
+--
+ALTER TABLE `user_level_stack`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_level_stack_user_id_index` (`user_id`),
+  ADD KEY `user_level_stack_user_level_id_index` (`user_level_id`);
 
 --
 -- Индексы таблицы `user_preference`
@@ -1133,13 +1163,13 @@ ALTER TABLE `menu_items`
 -- AUTO_INCREMENT для таблицы `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT для таблицы `partner_tasks`
 --
 ALTER TABLE `partner_tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT для таблицы `permissions`
@@ -1196,10 +1226,16 @@ ALTER TABLE `user_levels`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT для таблицы `user_level_stack`
+--
+ALTER TABLE `user_level_stack`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
 -- AUTO_INCREMENT для таблицы `user_preference`
 --
 ALTER TABLE `user_preference`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
@@ -1282,8 +1318,14 @@ ALTER TABLE `task_combinations`
 ALTER TABLE `users`
   ADD CONSTRAINT `users_gender_id_foreign` FOREIGN KEY (`gender_id`) REFERENCES `genders` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`duration_id`) REFERENCES `durations` (`id`),
-  ADD CONSTRAINT `users_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`),
-  ADD CONSTRAINT `users_user_level_id_foreign` FOREIGN KEY (`user_level_id`) REFERENCES `user_levels` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `users_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
+
+--
+-- Ограничения внешнего ключа таблицы `user_level_stack`
+--
+ALTER TABLE `user_level_stack`
+  ADD CONSTRAINT `user_level_stack_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `user_level_stack_user_level_id_foreign` FOREIGN KEY (`user_level_id`) REFERENCES `user_levels` (`id`) ON DELETE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `user_preference`
