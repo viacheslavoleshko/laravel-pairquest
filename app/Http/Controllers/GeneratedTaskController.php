@@ -18,6 +18,7 @@ class GeneratedTaskController extends Controller
         $user = User::with(['locations', 'accessories', 'preferences', 'generated_task'])->findOrFail($id);
         $partner = User::with(['locations', 'accessories', 'preferences'])->where('email', $user->partner_email)->first();
         $organisator = session('organisator');
+        $final_user_level = session('final_user_level');
 
         $user_preferences = $user->preferences->pluck('id', 'description');
         $partner_preferences = $partner->preferences->pluck('id', 'description');
@@ -29,7 +30,7 @@ class GeneratedTaskController extends Controller
             try {
                 $task = Task::inRandomOrder()->with('partner_tasks')->where([
                     ['preference_id', $random_preference_from_intersect],
-                    ['user_level_id', min($user->user_level_id, $partner->user_level_id)],
+                    ['user_level_id', $final_user_level],
                     ['duration_id', $user->duration_id]
                 ])->firstOrFail(); // TODO додати фільтрацію по статі, лайкам
             } catch(ModelNotFoundException $e) {

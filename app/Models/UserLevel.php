@@ -11,9 +11,9 @@ class UserLevel extends Model
 
     public $timestamps = false;
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class, 'user_level_stack');
     }
 
     public function tasks()

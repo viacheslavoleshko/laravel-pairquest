@@ -40,14 +40,30 @@ class QuestController extends Controller
 
             
         } else {
-            return view('quest', ['durations' => Duration::all()]);
+            $partner = User::with('user_levels')->where('email', $user->partner_email)->first();
+
+            $user_level_stack = $user->user_levels->pluck('id', 'name');
+            $partner_level_stack = $partner->user_levels->pluck('id', 'name');
+            $intersect_level_stack = $user_level_stack->intersect($partner_level_stack);
+            if($intersect_level_stack->isEmpty()) {
+                return view('errors.quest-error');
+            }
+
+            return view('quest', ['durations' => Duration::all(), 'user_levels' => $intersect_level_stack]);
         }
     }
 
-    public function duration($duration_id)
+    public function duration(Request $request, $id)
     {
-        $user = User::with(['generated_task'])->findOrFail(Auth::user()->id);
-        $user->duration_id = $duration_id;
+
+        $validatedData = $request->validate([
+            'duration' => 'required',
+            'user_level' => 'required',
+        ]);
+
+        session(['final_user_level' => $validatedData['user_level']]);
+        $user = User::with(['generated_task'])->findOrFail($id);
+        $user->duration_id = $validatedData['duration'];
         $user->save();
         return view('quest2');
     }

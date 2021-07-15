@@ -53,7 +53,7 @@ Route::get('/accessories', [AccessoryController::class, 'index'])->name('accesso
 Route::post('/accessories/{user}', [AccessoryController::class, 'store'])->name('accessories.store');
 
 Route::get('/quest', [QuestController::class, 'index'])->name('quest');
-Route::get('/quest-duration/{duration}', [QuestController::class, 'duration'])->name('quest-duration');
+Route::post('/quest-duration/{user}', [QuestController::class, 'duration'])->name('quest-duration');
 Route::get('/quest-organisator/{organisator}', [QuestController::class, 'organisator'])->name('quest-organisator');
 Route::post('/end-quest/{generated_task}', [QuestController::class, 'finish'])->name('end-quest');
 Route::post('/like/{task}', [LikeController::class, 'store'])->name('like');

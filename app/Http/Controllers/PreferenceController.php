@@ -25,16 +25,11 @@ class PreferenceController extends Controller
 
         $validatedData = $request->validate([
             'preferences' => 'required',
-            'user_level' => 'required',
+            'user_levels' => 'required',
         ]);
 
-        $user->user_level_id = $request->user_level;
-        $user->preferences()->detach(); // delete all preferences w/ user
-        foreach ($validatedData['preferences'] as $preference) {
-            $user->preferences()->syncWithoutDetaching($preference);
-        }
-
-        $user->save();
+        $user->user_levels()->sync($validatedData['user_levels']);
+        $user->preferences()->sync($validatedData['preferences']);
         return redirect()->route('locations');
     }
 }

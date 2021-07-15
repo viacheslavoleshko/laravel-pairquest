@@ -48,9 +48,9 @@ class User extends \TCG\Voyager\Models\User
         return $this->belongsTo(Gender::class);
     }
 
-    public function user_level()
+    public function user_levels()
     {
-        return $this->hasOne(UserLevel::class);
+        return $this->belongsToMany(UserLevel::class, 'user_level_stack');
     }
 
     public function preferences()
