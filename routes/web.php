@@ -39,6 +39,10 @@ Route::group(['prefix' => 'admin'], function () {
 
 Auth::routes();
 
+Route::get('/offline', function () {    
+    return view('vendor/laravelpwa/offline');
+    });
+
 Route::get('/', [PartnerController::class, 'index'])->name('partner');
 Route::post('/partner/{user}', [PartnerController::class, 'update'])->name('partner.store');
 

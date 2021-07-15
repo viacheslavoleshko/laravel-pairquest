@@ -27,9 +27,9 @@ class PartnerController extends Controller
     {
         $user = User::findOrFail(Auth::user()->id);
 
-        if(isset($user->partner_email) && isset($user->user_level_id)) {
+        if(isset($user->partner_email) && isset($user->user_levels)) {
             return redirect()->route('quest');
-        } elseif (isset($user->partner_email) && is_null($user->user_level_id)) {
+        } elseif (isset($user->partner_email) && is_null($user->user_levels)) {
             return redirect()->route('prefs');
         } else {
             return view('partner');
