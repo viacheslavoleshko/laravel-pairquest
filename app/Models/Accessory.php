@@ -11,11 +11,6 @@ class Accessory extends Model
 
     public $timestamps = false;
 
-    protected $fillable = [
-        'name',
-        'preference_id',
-    ];
-
     public function tasks()
     {
         return $this->belongsToMany(Task::class, 'task_accessory');

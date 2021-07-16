@@ -29,6 +29,6 @@ class LocationController extends Controller
         foreach ($validatedData['locations'] as $location) {
             $new_location = Location::firstOrCreate(['name' => $location, 'user_id' => $id]);
         }
-        return redirect()->route('accessories');
+        return redirect()->route('quest');
     }
 }
