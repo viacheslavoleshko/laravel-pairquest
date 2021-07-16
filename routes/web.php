@@ -49,13 +49,6 @@ Route::post('/partner/{user}', [PartnerController::class, 'update'])->name('part
 Route::get('/prefs', [PreferenceController::class, 'index'])->name('prefs');
 Route::post('/prefs/{user}', [PreferenceController::class, 'store'])->name('prefs.store');
 
-
-Route::get('/locations', [LocationController::class, 'index'])->name('locations');
-Route::post('/locations/{user}', [LocationController::class, 'store'])->name('locations.store');
-
-Route::get('/accessories', [AccessoryController::class, 'index'])->name('accessories');
-Route::post('/accessories/{user}', [AccessoryController::class, 'store'])->name('accessories.store');
-
 Route::get('/quest', [QuestController::class, 'index'])->name('quest');
 Route::post('/quest-duration/{user}', [QuestController::class, 'duration'])->name('quest-duration');
 Route::get('/quest-organisator/{organisator}', [QuestController::class, 'organisator'])->name('quest-organisator');
