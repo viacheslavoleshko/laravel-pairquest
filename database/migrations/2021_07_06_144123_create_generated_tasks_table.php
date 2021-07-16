@@ -32,9 +32,6 @@ class CreateGeneratedTasksTable extends Migration
             $table->unsignedBigInteger('partner_task_id')->index()->nullable();
             $table->foreign('partner_task_id')->references('partner_task_id')->on('task_combinations');
 
-            $table->unsignedBigInteger('accessory_id')->index()->nullable();
-            $table->foreign('accessory_id')->references('id')->on('accessories');
-
             $table->boolean('is_rejected')->nullable();
             $table->timestamps();
         });

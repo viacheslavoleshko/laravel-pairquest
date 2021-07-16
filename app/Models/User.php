@@ -63,11 +63,6 @@ class User extends \TCG\Voyager\Models\User
         return $this->hasMany(Location::class);
     }
 
-    public function accessories()
-    {
-        return $this->hasMany(Accessory::class);
-    }
-
     public function generated_task()
     {
         return $this->hasOne(GeneratedTask::class);

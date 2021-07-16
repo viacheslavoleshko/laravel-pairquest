@@ -15,7 +15,7 @@
             <form method="POST" action="{{ route('generator', ['user' => Auth::user()->id]) }}">
                 @csrf
                 <div class="form-date">
-                    <input type="datetime-local" name="quest_start" class="form-control @error('partner_email') is-invalid @enderror" value="{{ old('quest_start') }}" required autocomplete="date" autofocus>
+                    <input type="datetime-local" name="quest_start" class="form-control @error('quest_start') is-invalid @enderror" value="{{ old('quest_start') }}">
                 </div>
                 @error('quest_start')
                     <div class="alert alert-danger">

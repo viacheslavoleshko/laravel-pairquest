@@ -13,22 +13,11 @@ class Accessory extends Model
 
     protected $fillable = [
         'name',
-        'user_id',
         'preference_id',
     ];
 
-    public function user()
+    public function tasks()
     {
-        return $this->belongsTo(User::class);
-    }
-
-    public function preference()
-    {
-        return $this->hasOne(Preference::class);
-    }
-
-    public function generated_tasks()
-    {
-        return $this->hasMany(GeneratedTask::class);
+        return $this->belongsToMany(Task::class, 'task_accessory');
     }
 }

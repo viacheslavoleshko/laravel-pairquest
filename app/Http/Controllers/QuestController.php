@@ -24,19 +24,18 @@ class QuestController extends Controller
         $user = User::findOrFail(Auth::user()->id);
         if($generated_task = GeneratedTask::where('user_id', $user->id)->whereNull('is_rejected')->first()) {
             $task = Task::findOrFail($generated_task->task_id);
-            $accessory = Accessory::find($generated_task->accessory_id);
-            return view('generated-quest', ['generated_task' => $generated_task, 'task' => $task, 'location' => Location::findOrFail($generated_task->location_id), 'accessory' => $accessory]);
+            return view('generated-quest', ['generated_task' => $generated_task, 'task' => $task, 'location' => Location::findOrFail($generated_task->location_id), 'name' => $task->name, 'accessories' => $task->accessories]);
 
 
         } elseif ($generated_task = GeneratedTask::where('partner_id', $user->id)->whereNull('is_rejected')->first()) {
+            $task = Task::findOrFail($generated_task->task_id);
             if(isset($generated_task->partner_task_id)) {
-                $partner_task = PartnerTask::findOrFail($generated_task->partner_task_id);
+                // $partner_task = PartnerTask::findOrFail($generated_task->partner_task_id);
+                $partner_task = $task->partner_tasks->find($generated_task->partner_task_id);
             } else {
                 $partner_task = Task::findOrFail($generated_task->task_id);
             }
-            
-            $accessory = Accessory::find($generated_task->accessory_id);
-            return view('generated-quest', ['generated_task' => $generated_task, 'task' => $partner_task, 'location' => Location::findOrFail($generated_task->location_id), 'accessory' => $accessory, 'name' => Task::findOrFail($generated_task->task_id)->name]);
+            return view('generated-quest', ['generated_task' => $generated_task, 'task' => $partner_task, 'location' => Location::findOrFail($generated_task->location_id), 'name' => $task->name, 'accessories' => $task->accessories]);
 
             
         } else {

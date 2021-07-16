@@ -28,7 +28,6 @@ class CreateTasksTable extends Migration
 
             $table->boolean('is_partner_task');
             $table->text('description');
-            $table->boolean('is_accessories');
 
             $table->unsignedBigInteger('gender_id')->index();
             $table->foreign('gender_id')->references('id')->on('genders')->onDelete('cascade');

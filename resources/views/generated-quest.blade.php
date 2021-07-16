@@ -16,21 +16,21 @@
                 @csrf
                 <div class="form-box">
                     <h4>Назва</h4>
-                    @if (isset($task->name))
-                        <p>{{ $task->name }}</p>
-                    @else
-                        <p>{{ $name }}</p>
-                    @endif
+                    <p>{{ $name }}</p>
                     
                     <h4>Локація</h4>
                     <p>{{ $location->name }}</p>
-                    <h4>Час</h4>
-                    <p>{{ Carbon\Carbon::parse($generated_task->started_at)->locale('uk')->calendar() }}</p>
+                    @if (isset($generated_task->started_at)) 
+                        <h4>Час</h4>
+                        <p>{{ Carbon\Carbon::parse($generated_task->started_at)->locale('uk')->calendar() }}</p>
+                    @endif
                     <h4>Завдання</h4>
                     <p>{{ $task->description }}</p>
-                    @if (isset($accessory))
+                    @if ($accessories->isNotEmpty())
                         <h4>Аксесуари</h4>
-                        <p>{{ $accessory->name }}</p>
+                        @foreach ($accessories as $accessory)
+                            <p>{{ $accessory->name }}</p>
+                        @endforeach
                     @endif
                 </div>
 

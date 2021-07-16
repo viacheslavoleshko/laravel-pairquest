@@ -57,4 +57,9 @@ class Task extends Model
     {
         return $this->hasMany(Like::class);
     }
+
+    public function accessories()
+    {
+        return $this->belongsToMany(Accessory::class, 'task_accessory');
+    }
 }

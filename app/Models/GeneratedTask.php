@@ -31,9 +31,4 @@ class GeneratedTask extends Model
     {
         return $this->belongsTo(TaskCombination::class);
     }
-
-    public function accessory()
-    {
-        return $this->belongsTo(Accessory::class);
-    }
 }

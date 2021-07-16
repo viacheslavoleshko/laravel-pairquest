@@ -15,8 +15,8 @@ class GeneratedTaskController extends Controller
 {
     public function store(Request $request, $id)
     {
-        $user = User::with(['locations', 'accessories', 'preferences', 'generated_task'])->findOrFail($id);
-        $partner = User::with(['locations', 'accessories', 'preferences'])->where('email', $user->partner_email)->first();
+        $user = User::with(['locations', 'preferences', 'generated_task'])->findOrFail($id);
+        $partner = User::with(['locations', 'preferences'])->where('email', $user->partner_email)->first();
         $organisator = session('organisator');
         $final_user_level = session('final_user_level');
 
@@ -26,24 +26,22 @@ class GeneratedTaskController extends Controller
 
         if($intersect_preferences->isNotEmpty()) {
             $random_preference_from_intersect = $intersect_preferences->random();
-            
             try {
                 $task = Task::inRandomOrder()->with('partner_tasks')->where([
                     ['preference_id', $random_preference_from_intersect],
-                    ['user_level_id', $final_user_level],
-                    ['duration_id', $user->duration_id]
+                    ['duration_id', $user->duration_id],
+                    ['user_level_id', $final_user_level]
                 ])->firstOrFail(); // TODO додати фільтрацію по статі, лайкам
             } catch(ModelNotFoundException $e) {
+                dd($e->getMessage(), $random_preference_from_intersect, $user->duration_id, $final_user_level);
                 return view('errors.quest-error2');
             }
             
-            $accessory = $user->accessories->where('preference_id', $random_preference_from_intersect)->first(); 
+            $accessories = $task->accessories; 
+            // dd($task, $accessories);
             
             // dump($task->description, /*$task->partner_tasks->random()->description*/);
 
-            $validatedData = $request->validate([
-                'quest_start' => 'required',
-            ]);
 
             $generated_task = new GeneratedTask();
             if($organisator == 1) {
@@ -55,10 +53,7 @@ class GeneratedTaskController extends Controller
             }
             
             $generated_task->location_id = $user->locations->random()->id;
-            if(isset($accessory)) {
-                $generated_task->accessory_id = $accessory->id;
-            }
-            $generated_task->started_at = $validatedData['quest_start'];
+            $generated_task->started_at = $request->quest_start;
             $generated_task->task_id = $task->id;
             if($task->is_partner_task == 1) {
                 $generated_task->partner_task_id = $task->partner_tasks->random()->id;

@@ -16,12 +16,6 @@ class CreateAccessoriesTable extends Migration
         Schema::create('accessories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-
-            $table->unsignedBigInteger('user_id')->index()->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
-            $table->unsignedBigInteger('preference_id')->index()->nullable();
-            $table->foreign('preference_id')->references('id')->on('preferences')->onDelete('cascade');
         });
     }
 

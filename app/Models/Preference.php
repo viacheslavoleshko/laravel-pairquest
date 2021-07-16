@@ -17,11 +17,6 @@ class Preference extends Model
         return $this->belongsToMany(User::class, 'user_preference');
     }
 
-    public function accessory()
-    {
-        return $this->belongsTo(Accessory::class);
-    }
-
     public function tasks()
     {
         return $this->hasMany(Task::class);
