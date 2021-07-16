@@ -27,6 +27,28 @@
                     {{ $message }}
                 </div>
             @enderror
+
+
+            <div class="main-title">
+                <h1>
+                    Локації
+                </h1>
+            </div>
+            @foreach ($locations as $location)
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="{{ $location->id }}" id="flexCheckDefault" name="locations[]" {{ old('locations[]', Auth::user()->locations->contains('id', $location->id) ? 'checked' : '') }} />
+                    <label class="form-check-label" for="flexCheckDefault">
+                        {{ $location->name }}
+                    </label>
+                </div>
+            @endforeach
+            @error('locations')
+                <div class="alert alert-danger">
+                    {{ $message }}
+                </div>
+            @enderror
+
+
             <div class="main-title">
                 <h1>
                     Рівень користувача

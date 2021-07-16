@@ -60,7 +60,7 @@ class User extends \TCG\Voyager\Models\User
 
     public function locations()
     {
-        return $this->hasMany(Location::class);
+        return $this->belongsToMany(Location::class, 'user_location');
     }
 
     public function generated_task()
