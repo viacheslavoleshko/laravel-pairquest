@@ -24,6 +24,9 @@ class CreateGeneratedTasksTable extends Migration
             $table->unsignedBigInteger('location_id')->index();
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
 
+            $table->unsignedBigInteger('location_description_id')->index()->nullable();
+            $table->foreign('location_description_id')->references('id')->on('location_descriptions');
+
             $table->timestamp('started_at')->nullable();
 
             $table->unsignedBigInteger('task_id')->index();

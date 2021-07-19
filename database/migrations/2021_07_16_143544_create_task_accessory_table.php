@@ -16,7 +16,7 @@ class CreateTaskAccessoryTable extends Migration
         Schema::create('task_accessory', function (Blueprint $table) {
             $table->id();
             
-            $table->unsignedBigInteger('task_id')->index()->nullable();
+            $table->unsignedBigInteger('detailed_task_id')->index()->nullable();
             $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
 
             $table->unsignedBigInteger('accessory_id')->index()->nullable();

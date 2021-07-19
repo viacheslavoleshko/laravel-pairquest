@@ -25,7 +25,7 @@
                         <p>{{ Carbon\Carbon::parse($generated_task->started_at)->locale('uk')->calendar() }}</p>
                     @endif
                     <h4>Завдання</h4>
-                    <p>{{ $task->description }}</p>
+                    <p>{{ $location_description->description }} {{ $task->description }}</p>
                     @if ($accessories->isNotEmpty())
                         <h4>Аксесуари</h4>
                         @foreach ($accessories as $accessory)

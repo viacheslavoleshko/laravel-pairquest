@@ -24,11 +24,16 @@ class GeneratedTask extends Model
 
     public function task()
     {
-        return $this->belongsTo(Task::class);
+        return $this->belongsTo(DetailedTask::class);
     }
 
     public function task_combination()
     {
         return $this->belongsTo(TaskCombination::class);
+    }
+
+    public function location_description()
+    {
+        return $this->belongsTo(LocationDescription::class);
     }
 }

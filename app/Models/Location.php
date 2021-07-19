@@ -25,4 +25,9 @@ class Location extends Model
     {
         return $this->hasMany(GeneratedTask::class);
     }
+
+    public function location_descriptions()
+    {
+        return $this->hasMany(LocationDescription::class);
+    }
 }

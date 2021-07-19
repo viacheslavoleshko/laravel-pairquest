@@ -15,4 +15,14 @@ class LocationType extends Model
     {
         return $this->hasMany(Location::class);
     }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
+    public function detailed_tasks()
+    {
+        return $this->hasMany(DetailedTask::class);
+    }
 }

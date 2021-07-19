@@ -19,6 +19,6 @@ class Preference extends Model
 
     public function tasks()
     {
-        return $this->hasMany(Task::class);
+        return $this->hasMany(DetailedTask::class);
     }
 }

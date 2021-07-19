@@ -16,7 +16,7 @@ class CreateTaskCombinationsTable extends Migration
         Schema::create('task_combinations', function (Blueprint $table) {
             $table->id();
             
-            $table->unsignedBigInteger('task_id')->index();
+            $table->unsignedBigInteger('detialed_task_id')->index();
             $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
 
             $table->unsignedBigInteger('partner_task_id')->index();
