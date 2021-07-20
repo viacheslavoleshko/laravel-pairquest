@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLocationsDescriptionTable extends Migration
+class CreateRulesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class CreateLocationsDescriptionTable extends Migration
      */
     public function up()
     {
-        Schema::create('location_descriptions', function (Blueprint $table) {
+        Schema::create('rules', function (Blueprint $table) {
             $table->id();
             $table->text('description');
-            $table->text('partner_description');
-
-            $table->unsignedBigInteger('location_id')->index();
-            $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
         });
     }
 
@@ -30,6 +26,6 @@ class CreateLocationsDescriptionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('location_descriptions');
+        Schema::dropIfExists('rules');
     }
 }

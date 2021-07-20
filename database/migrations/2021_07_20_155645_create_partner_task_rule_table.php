@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTaskCombinationsTable extends Migration
+class CreatePartnerTaskRuleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateTaskCombinationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('task_combinations', function (Blueprint $table) {
+        Schema::create('partner_task_rule', function (Blueprint $table) {
             $table->id();
             
-            $table->unsignedBigInteger('detailed_task_id')->index();
-            $table->foreign('detailed_task_id')->references('id')->on('tasks')->onDelete('cascade');
-
             $table->unsignedBigInteger('partner_task_id')->index();
             $table->foreign('partner_task_id')->references('id')->on('partner_tasks')->onDelete('cascade');
+
+            $table->unsignedBigInteger('partner_rule_id')->index();
+            $table->foreign('partner_rule_id')->references('id')->on('partner_rules')->onDelete('cascade');
         });
     }
 
@@ -31,6 +31,6 @@ class CreateTaskCombinationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('task_combinations');
+        Schema::dropIfExists('partner_task_rule');
     }
 }

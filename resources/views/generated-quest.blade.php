@@ -15,18 +15,17 @@
             <form method="POST" action="{{ route('end-quest', ['generated_task' => $generated_task]) }}">
                 @csrf
                 <div class="form-box">
-                    <h4>Назва</h4>
-                    <p>{{ $name }}</p>
-                    
-                    <h4>Локація</h4>
-                    <p>{{ $location->name }}</p>
                     @if (isset($generated_task->started_at)) 
                         <h4>Час</h4>
                         <p>{{ Carbon\Carbon::parse($generated_task->started_at)->locale('uk')->calendar() }}</p>
                     @endif
                     <h4>Завдання</h4>
-                    <p>{{ $location_description->description }} {{ $task->description }}</p>
-                    @if ($accessories->isNotEmpty())
+                    <p>{{ $location_description }} {{ $task_description }} {{ $detailed_task->description }}</p>
+                    <h4>Правила</h4>
+                    <p>{{ $task_rule->description }}</p>)
+                    <h4>Ідея</h4>
+                    <p>{{ $detailed_task_notion->description }}</p>
+                    @if (isset($accessories))
                         <h4>Аксесуари</h4>
                         @foreach ($accessories as $accessory)
                             <p>{{ $accessory->name }}</p>

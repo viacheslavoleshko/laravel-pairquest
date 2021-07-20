@@ -28,6 +28,7 @@ class GeneratedTaskController extends Controller
         $intersect_preferences = $user_preferences->intersect($partner_preferences);
 
         $random_location_type = $user_locations_types->random();
+        $random_location_description = $user->locations->where('location_type_id', $random_location_type)->random()->location_descriptions->random();
 
         if($intersect_preferences->isNotEmpty()) {
             $random_preference_from_intersect = $intersect_preferences->random();
@@ -53,9 +54,9 @@ class GeneratedTaskController extends Controller
             // dd($task, $accessories);
             // dump($user->locations->where('location_type_id', $random_location_type)); // user locations from type
             // dump($user->locations->where('location_type_id', $random_location_type)->random()->location_descriptions); // descriptions from location
-            dump($user->locations->where('location_type_id', $random_location_type)->random()->location_descriptions->random()->description);
+            dump($random_location_description->description);
             dump($task->description);
-            dd($detailed_task->description);
+            dump($detailed_task->description);
 
 
             $generated_task = new GeneratedTask();
@@ -66,17 +67,16 @@ class GeneratedTaskController extends Controller
                 $generated_task->user_id = $partner->id;
                 $generated_task->partner_id = $user->id;
             }
-            $random_location_id = $user->locations->random()->id;
-            $generated_task->location_id = $random_location_id;
-            $generated_task->location_description_id = LocationDescription::inRandomOrder()->where('location_id', $random_location_id)->first()->id;
+            $generated_task->location_description_id = $random_location_description->id;
             $generated_task->started_at = $request->quest_start;
-            $generated_task->task_id = $detailed_task->id;
+            $generated_task->task_id = $task->id;
+            $generated_task->detailed_task_id = $detailed_task->id;
             if($detailed_task->is_partner_task == 1) {
                 $generated_task->partner_task_id = $detailed_task->partner_tasks->random()->id;
             }
             
 
-            dd($generated_task);
+            // dd($generated_task);
             $generated_task->save();
 
             return redirect()->route('quest');

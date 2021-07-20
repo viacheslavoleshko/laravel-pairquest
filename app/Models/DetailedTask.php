@@ -67,4 +67,9 @@ class DetailedTask extends Model
     {
         return $this->belongsToMany(Accessory::class, 'task_accessory');
     }
+
+    public function notions()
+    {
+        return $this->belongsToMany(Notion::class, 'detailed_task_notion');
+    }
 }

@@ -21,4 +21,13 @@ class Task extends Model
         return $this->belongsTo(Preference::class);
     }
 
+    public function generated_tasks()
+    {
+        return $this->hasMany(GeneratedTask::class);
+    }
+
+    public function rules()
+    {
+        return $this->belongsToMany(Rule::class, 'task_rule');
+    }
 }

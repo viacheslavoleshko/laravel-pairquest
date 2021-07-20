@@ -12,14 +12,11 @@
             </h1>
         </div>
         <div class="main__inner">
-            <form method="POST" action="{{ route('like', ['task' => $task->id]) }}">
+            <form method="POST" action="{{ route('like', ['detailed_task' => $detailed_task->id]) }}">
                 @csrf
                 <div class="form-box">
-                    <h4>Назва</h4>
-                    <p>{{ $task->name }}</p>
-
                     <h4>Завдання</h4>
-                    <p>{{ $task->description }}</p>
+                    <p>{{ $detailed_task->description }}</p>
                 </div>
 
                 <div class="form-btn">

@@ -25,4 +25,9 @@ class PartnerTask extends Model
     {
         return $this->belongsTo(Gender::class);
     }
+
+    public function partner_rules()
+    {
+        return $this->belongsToMany(PartnerRule::class, 'partner_task_rule');
+    }
 }
