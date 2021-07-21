@@ -10,6 +10,6 @@ class PartnerTasksExport implements FromView
 {
     public function view(): View
     {
-        return view('exports.partner-tasks', ['partner_tasks' => PartnerTask::with(['gender'])->get()]);
+        return view('exports.partner-tasks', ['partner_tasks' => PartnerTask::with('gender')->get()]);
     }
 }

@@ -18,8 +18,8 @@ class PartnerTasksImport implements ToModel, WithValidation, WithHeadingRow
     public function model(array $row)
     {
         return new PartnerTask([
-            'description'       => $row['description'],
-            'gender_id'         => Gender::where('name', 'like', $row['gender'])->firstOrFail()->id,
+            'description' => $row['description'],
+            'gender_id'   => Gender::where('name', 'like', $row['gender'])->firstOrFail()->id,
         ]);
     }
 

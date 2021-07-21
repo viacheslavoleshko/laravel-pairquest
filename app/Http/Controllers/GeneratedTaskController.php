@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use App\Models\DetailedTask;
+use App\Models\Task;
 use App\Models\User;
 use App\Models\Duration;
+use App\Models\DetailedTask;
 use Illuminate\Http\Request;
 use App\Models\GeneratedTask;
-use App\Models\LocationDescription;
-use App\Models\Task;
+use App\Mail\UserQuestGenerated;
+use App\Mail\PartnerQuestGenerated;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class GeneratedTaskController extends Controller
@@ -28,6 +30,7 @@ class GeneratedTaskController extends Controller
         $intersect_preferences = $user_preferences->intersect($partner_preferences);
 
         $random_location_type = $user_locations_types->random();
+        dump($random_location_type);
         $random_location_description = $user->locations->where('location_type_id', $random_location_type)->random()->location_descriptions->random();
 
         if($intersect_preferences->isNotEmpty()) {
@@ -49,14 +52,10 @@ class GeneratedTaskController extends Controller
                 dd($e->getMessage(), $random_location_type, $random_preference_from_intersect, $user->duration_id, $final_user_level);
                 return view('errors.quest-error2');
             }
-            
-            // $accessories = $task->accessories; 
-            // dd($task, $accessories);
-            // dump($user->locations->where('location_type_id', $random_location_type)); // user locations from type
-            // dump($user->locations->where('location_type_id', $random_location_type)->random()->location_descriptions); // descriptions from location
-            dump($random_location_description->description);
-            dump($task->description);
-            dump($detailed_task->description);
+
+            // dump($random_location_description->description);
+            // dump($task->description);
+            // dump($detailed_task->description);
 
 
             $generated_task = new GeneratedTask();
@@ -77,6 +76,8 @@ class GeneratedTaskController extends Controller
 
             // dd($generated_task);
             $generated_task->save();
+            Mail::to($user)->send(new UserQuestGenerated($generated_task));
+            Mail::to($partner)->send(new PartnerQuestGenerated($generated_task));
 
             return redirect()->route('quest');
         } else {

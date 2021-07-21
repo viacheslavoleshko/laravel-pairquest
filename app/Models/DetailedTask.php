@@ -10,16 +10,14 @@ class DetailedTask extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'description',
+        'custom_partner_task',
+        'location_type_id',
         'preference_id',
         'duration_id',
         'user_level_id',
-        'is_partner_task',
-        'description',
-        'is_accessories',
         'gender_id'
     ];
-
 
     public $timestamps = false;
 
@@ -28,7 +26,7 @@ class DetailedTask extends Model
         return $this->belongsTo(UserLevel::class);
     }
 
-    public function location_types()
+    public function location_type()
     {
         return $this->belongsTo(LocationType::class);
     }

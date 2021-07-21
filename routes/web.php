@@ -33,8 +33,14 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
     Route::post('/tasks-import', [ImportExportController::class, 'tasksImport'])->name('tasks-import');
     Route::get('/tasks-export', [ImportExportController::class, 'tasksExport'])->name('tasks-export');
+    Route::post('/detailed-tasks-import', [ImportExportController::class, 'detailedTasksImport'])->name('detailed-tasks-import');
+    Route::get('/detailed-tasks-export', [ImportExportController::class, 'detailedTasksExport'])->name('detailed-tasks-export');
     Route::post('/partner-tasks-import', [ImportExportController::class, 'partnerTasksImport'])->name('partner-tasks-import');
     Route::get('/partner-tasks-export', [ImportExportController::class, 'partnerTasksExport'])->name('partner-tasks-export');
+    Route::post('/accessories-import', [ImportExportController::class, 'accessoriesImport'])->name('accessories-import');
+    Route::get('/accessories-export', [ImportExportController::class, 'accessoriesExport'])->name('accessories-export');
+    Route::post('/location-descriptions-import', [ImportExportController::class, 'locationDescriptionsImport'])->name('location-descriptions-import');
+    Route::get('/location-descriptions-export', [ImportExportController::class, 'locationDescriptionsExport'])->name('location-descriptions-export');
 });
 
 Auth::routes();

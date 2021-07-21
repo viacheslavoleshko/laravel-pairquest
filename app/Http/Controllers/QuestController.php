@@ -32,7 +32,7 @@ class QuestController extends Controller
             $task = Task::findOrFail($generated_task->task_id);
             $task_description = $task->description;
             $task_rule = $task->rules->random();
-            return view('generated-quest', ['generated_task' => $generated_task, 'location_description' =>  $location_description, 'task_description' => $task_description, 'detailed_task' => $detailed_task, 'detailed_task_notion' => $detailed_task_notion, 'task_rule' => $task_rule, 'accessories' => $detailed_task->accessories]);
+            return view('generated-quest', ['generated_task' => $generated_task, 'location_description' =>  $location_description, 'task_description' => $task_description, 'detailed_task' => $detailed_task, 'detailed_task_notion' => $detailed_task_notion, 'task_rule' => $task_rule]);
 
 
         } elseif ($generated_task = GeneratedTask::where('partner_id', $user->id)->whereNull('is_rejected')->first()) {
@@ -59,13 +59,12 @@ class QuestController extends Controller
                 $generated_quest['detailed_task'] = $partner_task;
                 $generated_quest['task_rule'] = $task_rule;
             } else {
-                $partner_task = DetailedTask::findOrFail($generated_task->task_id);
+                $partner_task = DetailedTask::findOrFail($generated_task->detailed_task_id);
                 $task_rule = $task->rules->random();
                 
                 $generated_quest['detailed_task'] = $partner_task;
                 $generated_quest['task_rule'] = $task_rule;
             }
-            // return view('generated-quest', ['generated_task' => $generated_task, 'location_description' =>  $location_description, 'task_description' => $task_description, 'custom_detailed_task' => $custom_detailed_task, 'detailed_task' => $partner_task, 'detailed_task_notion' => $detailed_task_notion, 'task_rule' => $task_rule]);
             return view('generated-quest', $generated_quest);
 
             

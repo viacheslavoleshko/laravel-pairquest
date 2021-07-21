@@ -9,6 +9,12 @@ class LocationDescription extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'description',
+        'partner_description',
+        'location_id',
+    ];
+
     public $timestamps = false;
 
     public function location()

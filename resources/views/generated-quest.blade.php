@@ -23,7 +23,7 @@
                     <p>
                         {{ $location_description }} {{ $task_description }} 
                         @if(isset($custom_detailed_task))
-                            {{ $custom_detailed_task }}</p>
+                            {{ $custom_detailed_task }}
                         @else
                             {{ $detailed_task->description }}
                         @endif
@@ -32,9 +32,9 @@
                     <p>{{ $task_rule->description }}</p>
                     <h4>Ідея</h4>
                     <p>{{ $detailed_task_notion->description }}</p>
-                    @if (isset($accessories))
+                    @if ($detailed_task->accessories->isNotEmpty())
                         <h4>Аксесуари</h4>
-                        @foreach ($accessories as $accessory)
+                        @foreach ($detailed_task->accessories as $accessory)
                             <p>{{ $accessory->name }}</p>
                         @endforeach
                     @endif
