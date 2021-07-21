@@ -20,9 +20,16 @@
                         <p>{{ Carbon\Carbon::parse($generated_task->started_at)->locale('uk')->calendar() }}</p>
                     @endif
                     <h4>Завдання</h4>
-                    <p>{{ $location_description }} {{ $task_description }} {{ $detailed_task->description }}</p>
+                    <p>
+                        {{ $location_description }} {{ $task_description }} 
+                        @if(isset($custom_detailed_task))
+                            {{ $custom_detailed_task }}</p>
+                        @else
+                            {{ $detailed_task->description }}
+                        @endif
+                    </p>
                     <h4>Правила</h4>
-                    <p>{{ $task_rule->description }}</p>)
+                    <p>{{ $task_rule->description }}</p>
                     <h4>Ідея</h4>
                     <p>{{ $detailed_task_notion->description }}</p>
                     @if (isset($accessories))

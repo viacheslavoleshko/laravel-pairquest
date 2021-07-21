@@ -38,18 +38,35 @@ class QuestController extends Controller
         } elseif ($generated_task = GeneratedTask::where('partner_id', $user->id)->whereNull('is_rejected')->first()) {
             $detailed_task = DetailedTask::findOrFail($generated_task->detailed_task_id);
             $detailed_task_notion = $detailed_task->notions->random();
-            
             $location_description = LocationDescription::find($generated_task->location_description_id)->partner_description;
             $task = Task::findOrFail($generated_task->task_id);
             $task_description = $task->partner_description;
-            if(isset($generated_task->partner_task_id)) {
+            $generated_quest = [
+                'generated_task' => $generated_task,
+                'location_description' =>  $location_description,
+                'task_description' => $task_description,
+                'detailed_task_notion' => $detailed_task_notion,
+            ];
+            if(isset($detailed_task->custom_partner_task)) {
+                $custom_detailed_task = $detailed_task->custom_partner_task;
+                $task_rule = $task->rules->random(); // what rules take custom partner task?
+                
+                $generated_quest['custom_detailed_task'] = $custom_detailed_task;
+                $generated_quest['task_rule'] = $task_rule;
+            } elseif(isset($generated_task->partner_task_id)) {
                 $partner_task = $detailed_task->partner_tasks->find($generated_task->partner_task_id);
                 $task_rule = $partner_task->partner_rules->random();
+                $generated_quest['detailed_task'] = $partner_task;
+                $generated_quest['task_rule'] = $task_rule;
             } else {
                 $partner_task = DetailedTask::findOrFail($generated_task->task_id);
-                $task_rule = $partner_task->partner_rules->random();
+                $task_rule = $task->rules->random();
+                
+                $generated_quest['detailed_task'] = $partner_task;
+                $generated_quest['task_rule'] = $task_rule;
             }
-            return view('generated-quest', ['generated_task' => $generated_task, 'location_description' =>  $location_description, 'task_description' => $task_description, 'detailed_task' => $partner_task, 'detailed_task_notion' => $detailed_task_notion, 'task_rule' => $task_rule,]);
+            // return view('generated-quest', ['generated_task' => $generated_task, 'location_description' =>  $location_description, 'task_description' => $task_description, 'custom_detailed_task' => $custom_detailed_task, 'detailed_task' => $partner_task, 'detailed_task_notion' => $detailed_task_notion, 'task_rule' => $task_rule]);
+            return view('generated-quest', $generated_quest);
 
             
         } else {

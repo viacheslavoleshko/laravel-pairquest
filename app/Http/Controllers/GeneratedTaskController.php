@@ -71,10 +71,9 @@ class GeneratedTaskController extends Controller
             $generated_task->started_at = $request->quest_start;
             $generated_task->task_id = $task->id;
             $generated_task->detailed_task_id = $detailed_task->id;
-            if($detailed_task->is_partner_task == 1) {
+            if($detailed_task->partner_tasks->isNotEmpty()) {
                 $generated_task->partner_task_id = $detailed_task->partner_tasks->random()->id;
             }
-            
 
             // dd($generated_task);
             $generated_task->save();

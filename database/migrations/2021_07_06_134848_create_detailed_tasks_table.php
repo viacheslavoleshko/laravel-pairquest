@@ -15,7 +15,8 @@ class CreateDetailedTasksTable extends Migration
     {
         Schema::create('detailed_tasks', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->text('description');
+            $table->text('custom_partner_task');
 
             $table->unsignedBigInteger('location_type_id')->index();
             $table->foreign('location_type_id')->references('id')->on('location_types')->onDelete('cascade');
@@ -29,14 +30,10 @@ class CreateDetailedTasksTable extends Migration
             $table->unsignedBigInteger('user_level_id')->index();
             $table->foreign('user_level_id')->references('id')->on('user_levels')->onDelete('cascade');
 
-            $table->boolean('is_partner_task');
-            $table->text('description');
-
             $table->unsignedBigInteger('gender_id')->index();
             $table->foreign('gender_id')->references('id')->on('genders')->onDelete('cascade');
 
             $table->string('image')->nullable();
-
         });
     }
 
