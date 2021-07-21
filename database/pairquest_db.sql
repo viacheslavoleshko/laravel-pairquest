@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 20 2021 г., 16:03
+-- Время создания: Июл 21 2021 г., 17:44
 -- Версия сервера: 10.3.16-MariaDB
 -- Версия PHP: 7.3.7
 
@@ -40,7 +40,8 @@ CREATE TABLE `accessories` (
 INSERT INTO `accessories` (`id`, `name`) VALUES
 (9, 'Вино'),
 (10, 'Сукня'),
-(13, 'Фотоапарат');
+(13, 'Фотоапарат'),
+(22, 'Панамка');
 
 -- --------------------------------------------------------
 
@@ -115,38 +116,37 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (64, 12, 'location_type_id', 'text', 'Location Type Id', 1, 1, 1, 1, 1, 1, '{}', 3),
 (65, 12, 'location_belongsto_location_type_relationship', 'relationship', 'location_types', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\LocationType\",\"table\":\"location_types\",\"type\":\"belongsTo\",\"column\":\"location_type_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 4),
 (66, 14, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
-(67, 14, 'description', 'text', 'Description', 1, 1, 1, 1, 1, 1, '{}', 3),
+(67, 14, 'description', 'text', 'Description', 1, 1, 1, 1, 1, 1, '{}', 4),
 (68, 14, 'location_id', 'text', 'Location Id', 1, 1, 1, 1, 1, 1, '{}', 2),
-(69, 14, 'location_description_belongsto_location_relationship', 'relationship', 'locations', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Location\",\"table\":\"locations\",\"type\":\"belongsTo\",\"column\":\"location_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 4),
+(69, 14, 'location_description_belongsto_location_relationship', 'relationship', 'locations', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Location\",\"table\":\"locations\",\"type\":\"belongsTo\",\"column\":\"location_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 3),
 (70, 12, 'location_hasmany_location_description_relationship', 'relationship', 'location_descriptions', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\LocationDescription\",\"table\":\"location_descriptions\",\"type\":\"hasMany\",\"column\":\"location_id\",\"key\":\"id\",\"label\":\"description\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 5),
 (73, 15, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
 (74, 15, 'description', 'text', 'Description', 1, 1, 1, 1, 1, 1, '{}', 2),
 (76, 15, 'preference_belongstomany_user_relationship', 'relationship', 'users', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\User\",\"table\":\"users\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"email\",\"pivot_table\":\"user_preference\",\"pivot\":\"1\",\"taggable\":\"on\"}', 4),
 (77, 1, 'user_belongstomany_preference_relationship', 'relationship', 'preferences', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Preference\",\"table\":\"preferences\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"description\",\"pivot_table\":\"user_preference\",\"pivot\":\"1\",\"taggable\":\"on\"}', 19),
 (78, 16, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
-(79, 16, 'location_type_id', 'text', 'Location Type Id', 1, 1, 1, 1, 1, 1, '{}', 2),
-(80, 16, 'preference_id', 'text', 'Preference Id', 1, 1, 1, 1, 1, 1, '{}', 4),
-(81, 16, 'duration_id', 'text', 'Duration Id', 1, 1, 1, 1, 1, 1, '{}', 6),
-(82, 16, 'user_level_id', 'text', 'User Level Id', 1, 1, 1, 1, 1, 1, '{}', 8),
-(83, 16, 'is_partner_task', 'select_dropdown', 'Is Partner Task', 1, 1, 1, 1, 1, 1, '{\"options\":{\"0\":\"No\",\"1\":\"Yes\"}}', 12),
-(84, 16, 'description', 'text', 'Description', 1, 1, 1, 1, 1, 1, '{}', 13),
-(85, 16, 'gender_id', 'text', 'Gender Id', 1, 1, 1, 1, 1, 1, '{}', 10),
+(79, 16, 'location_type_id', 'text', 'Location Type Id', 1, 1, 1, 1, 1, 1, '{}', 4),
+(80, 16, 'preference_id', 'text', 'Preference Id', 1, 1, 1, 1, 1, 1, '{}', 6),
+(81, 16, 'duration_id', 'text', 'Duration Id', 1, 1, 1, 1, 1, 1, '{}', 8),
+(82, 16, 'user_level_id', 'text', 'User Level Id', 1, 1, 1, 1, 1, 1, '{}', 10),
+(84, 16, 'description', 'text', 'Description', 1, 1, 1, 1, 1, 1, '{}', 2),
+(85, 16, 'gender_id', 'text', 'Gender Id', 1, 1, 1, 1, 1, 1, '{}', 12),
 (86, 16, 'image', 'image', 'Image', 0, 1, 1, 1, 1, 1, '{}', 14),
-(87, 16, 'detailed_task_belongsto_user_level_relationship', 'relationship', 'user_levels', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\UserLevel\",\"table\":\"user_levels\",\"type\":\"belongsTo\",\"column\":\"user_level_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 9),
-(88, 16, 'detailed_task_belongsto_location_type_relationship', 'relationship', 'location_types', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\LocationType\",\"table\":\"location_types\",\"type\":\"belongsTo\",\"column\":\"location_type_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 3),
-(89, 16, 'detailed_task_belongsto_preference_relationship', 'relationship', 'preferences', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Preference\",\"table\":\"preferences\",\"type\":\"belongsTo\",\"column\":\"preference_id\",\"key\":\"id\",\"label\":\"description\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 5),
-(90, 16, 'detailed_task_belongsto_duration_relationship', 'relationship', 'durations', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Duration\",\"table\":\"durations\",\"type\":\"belongsTo\",\"column\":\"duration_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 7),
-(91, 16, 'detailed_task_belongsto_gender_relationship', 'relationship', 'genders', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Gender\",\"table\":\"genders\",\"type\":\"belongsTo\",\"column\":\"gender_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 11),
+(87, 16, 'detailed_task_belongsto_user_level_relationship', 'relationship', 'user_levels', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\UserLevel\",\"table\":\"user_levels\",\"type\":\"belongsTo\",\"column\":\"user_level_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 11),
+(88, 16, 'detailed_task_belongsto_location_type_relationship', 'relationship', 'location_types', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\LocationType\",\"table\":\"location_types\",\"type\":\"belongsTo\",\"column\":\"location_type_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 5),
+(89, 16, 'detailed_task_belongsto_preference_relationship', 'relationship', 'preferences', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Preference\",\"table\":\"preferences\",\"type\":\"belongsTo\",\"column\":\"preference_id\",\"key\":\"id\",\"label\":\"description\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 7),
+(90, 16, 'detailed_task_belongsto_duration_relationship', 'relationship', 'durations', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Duration\",\"table\":\"durations\",\"type\":\"belongsTo\",\"column\":\"duration_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 9),
+(91, 16, 'detailed_task_belongsto_gender_relationship', 'relationship', 'genders', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Gender\",\"table\":\"genders\",\"type\":\"belongsTo\",\"column\":\"gender_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 13),
 (93, 15, 'preference_hasmany_detailed_task_relationship', 'relationship', 'detailed_tasks', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\DetailedTask\",\"table\":\"detailed_tasks\",\"type\":\"hasMany\",\"column\":\"preference_id\",\"key\":\"id\",\"label\":\"description\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":null}', 5),
 (94, 10, 'accessory_belongstomany_detailed_task_relationship', 'relationship', 'detailed_tasks', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\DetailedTask\",\"table\":\"detailed_tasks\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"description\",\"pivot_table\":\"task_accessory\",\"pivot\":\"1\",\"taggable\":\"on\"}', 3),
 (95, 16, 'detailed_task_belongstomany_partner_task_relationship', 'relationship', 'partner_tasks', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\PartnerTask\",\"table\":\"partner_tasks\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"description\",\"pivot_table\":\"task_combinations\",\"pivot\":\"1\",\"taggable\":\"on\"}', 15),
 (96, 16, 'detailed_task_belongstomany_accessory_relationship', 'relationship', 'accessories', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Accessory\",\"table\":\"accessories\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"task_accessory\",\"pivot\":\"1\",\"taggable\":\"on\"}', 16),
 (97, 18, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
-(98, 18, 'description', 'text', 'Description', 1, 1, 1, 1, 1, 1, '{}', 6),
-(99, 18, 'location_type_id', 'text', 'Location Type Id', 1, 1, 1, 1, 1, 1, '{}', 2),
-(100, 18, 'preference_id', 'text', 'Preference Id', 1, 1, 1, 1, 1, 1, '{}', 4),
-(101, 18, 'task_belongsto_location_type_relationship', 'relationship', 'location_types', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\LocationType\",\"table\":\"location_types\",\"type\":\"belongsTo\",\"column\":\"location_type_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 3),
-(102, 18, 'task_belongsto_preference_relationship', 'relationship', 'preferences', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Preference\",\"table\":\"preferences\",\"type\":\"belongsTo\",\"column\":\"preference_id\",\"key\":\"id\",\"label\":\"description\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 5),
+(98, 18, 'description', 'text', 'Description', 1, 1, 1, 1, 1, 1, '{}', 2),
+(99, 18, 'location_type_id', 'text', 'Location Type Id', 1, 1, 1, 1, 1, 1, '{}', 4),
+(100, 18, 'preference_id', 'text', 'Preference Id', 1, 1, 1, 1, 1, 1, '{}', 6),
+(101, 18, 'task_belongsto_location_type_relationship', 'relationship', 'location_types', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\LocationType\",\"table\":\"location_types\",\"type\":\"belongsTo\",\"column\":\"location_type_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 5),
+(102, 18, 'task_belongsto_preference_relationship', 'relationship', 'preferences', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Preference\",\"table\":\"preferences\",\"type\":\"belongsTo\",\"column\":\"preference_id\",\"key\":\"id\",\"label\":\"description\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 7),
 (103, 19, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
 (104, 19, 'description', 'text', 'Description', 1, 1, 1, 1, 1, 1, '{}', 2),
 (105, 19, 'rule_belongstomany_task_relationship', 'relationship', 'tasks', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Task\",\"table\":\"tasks\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"description\",\"pivot_table\":\"task_rule\",\"pivot\":\"1\",\"taggable\":\"on\"}', 3),
@@ -154,12 +154,14 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (107, 20, 'description', 'text', 'Description', 1, 1, 1, 1, 1, 1, '{}', 2),
 (108, 20, 'notion_belongstomany_detailed_task_relationship', 'relationship', 'detailed_tasks', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\DetailedTask\",\"table\":\"detailed_tasks\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"description\",\"pivot_table\":\"detailed_task_notion\",\"pivot\":\"1\",\"taggable\":\"on\"}', 3),
 (109, 16, 'detailed_task_belongstomany_notion_relationship', 'relationship', 'notions', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Notion\",\"table\":\"notions\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"description\",\"pivot_table\":\"detailed_task_notion\",\"pivot\":\"1\",\"taggable\":\"on\"}', 17),
-(110, 18, 'task_belongstomany_rule_relationship', 'relationship', 'rules', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Rule\",\"table\":\"rules\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"description\",\"pivot_table\":\"task_rule\",\"pivot\":\"1\",\"taggable\":\"on\"}', 7),
-(111, 18, 'partner_description', 'text', 'Partner Description', 1, 1, 1, 1, 1, 1, '{}', 5),
+(110, 18, 'task_belongstomany_rule_relationship', 'relationship', 'rules', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Rule\",\"table\":\"rules\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"description\",\"pivot_table\":\"task_rule\",\"pivot\":\"1\",\"taggable\":\"on\"}', 8),
+(111, 18, 'partner_description', 'text', 'Partner Description', 1, 1, 1, 1, 1, 1, '{}', 3),
 (112, 8, 'partner_task_belongstomany_partner_rule_relationship', 'relationship', 'partner_rules', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\PartnerRule\",\"table\":\"partner_rules\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"description\",\"pivot_table\":\"partner_task_rule\",\"pivot\":\"1\",\"taggable\":\"on\"}', 6),
 (113, 22, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
 (114, 22, 'description', 'text', 'Description', 1, 1, 1, 1, 1, 1, '{}', 2),
-(115, 22, 'partner_rule_belongstomany_partner_task_relationship', 'relationship', 'partner_tasks', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\PartnerTask\",\"table\":\"partner_tasks\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"description\",\"pivot_table\":\"partner_task_rule\",\"pivot\":\"1\",\"taggable\":\"on\"}', 3);
+(115, 22, 'partner_rule_belongstomany_partner_task_relationship', 'relationship', 'partner_tasks', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\PartnerTask\",\"table\":\"partner_tasks\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"description\",\"pivot_table\":\"partner_task_rule\",\"pivot\":\"1\",\"taggable\":\"on\"}', 3),
+(116, 16, 'custom_partner_task', 'text', 'Custom Partner Task', 0, 1, 1, 1, 1, 1, '{}', 3),
+(117, 14, 'partner_description', 'text', 'Partner Description', 1, 1, 1, 1, 1, 1, '{}', 5);
 
 -- --------------------------------------------------------
 
@@ -200,10 +202,10 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (11, 'location_types', 'location-types', 'Location Type', 'Location Types', NULL, 'App\\Models\\LocationType', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-16 14:33:02', '2021-07-16 14:42:10'),
 (12, 'locations', 'locations', 'Location', 'Locations', NULL, 'App\\Models\\Location', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-16 14:35:43', '2021-07-19 10:06:02'),
 (13, 'locations_description', 'locations-description', 'Locations Description', 'Locations Descriptions', NULL, 'App\\Models\\LocationDescription', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-19 09:56:23', '2021-07-19 09:57:27'),
-(14, 'location_descriptions', 'location-descriptions', 'Location Description', 'Location Descriptions', NULL, 'App\\Models\\LocationDescription', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-19 10:04:06', '2021-07-19 10:04:42'),
+(14, 'location_descriptions', 'location-descriptions', 'Location Description', 'Location Descriptions', NULL, 'App\\Models\\LocationDescription', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-19 10:04:06', '2021-07-21 09:30:27'),
 (15, 'preferences', 'preferences', 'Preference', 'Preferences', NULL, 'App\\Models\\Preference', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-19 13:10:12', '2021-07-19 14:18:55'),
-(16, 'detailed_tasks', 'detailed-tasks', 'Detailed Task', 'Detailed Tasks', NULL, 'App\\Models\\DetailedTask', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-19 13:40:33', '2021-07-20 13:11:13'),
-(18, 'tasks', 'tasks', 'Task', 'Tasks', NULL, 'App\\Models\\Task', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-19 15:27:51', '2021-07-20 13:12:02'),
+(16, 'detailed_tasks', 'detailed-tasks', 'Detailed Task', 'Detailed Tasks', NULL, 'App\\Models\\DetailedTask', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-19 13:40:33', '2021-07-21 07:54:32'),
+(18, 'tasks', 'tasks', 'Task', 'Tasks', NULL, 'App\\Models\\Task', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-19 15:27:51', '2021-07-21 07:35:38'),
 (19, 'rules', 'rules', 'Rule', 'Rules', NULL, 'App\\Models\\Rule', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2021-07-20 12:15:10', '2021-07-20 12:15:10'),
 (20, 'notions', 'notions', 'Notion', 'Notions', NULL, 'App\\Models\\Notion', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2021-07-20 12:16:00', '2021-07-20 12:16:00'),
 (22, 'partner_rules', 'partner-rules', 'Partner Rule', 'Partner Rules', NULL, 'App\\Models\\PartnerRule', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2021-07-20 13:23:40', '2021-07-20 13:23:40');
@@ -216,12 +218,12 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 
 CREATE TABLE `detailed_tasks` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `custom_partner_task` text COLLATE utf8mb4_unicode_ci DEFAULT 'NULL',
   `location_type_id` bigint(20) UNSIGNED NOT NULL,
   `preference_id` bigint(20) UNSIGNED NOT NULL,
   `duration_id` bigint(20) UNSIGNED NOT NULL,
   `user_level_id` bigint(20) UNSIGNED NOT NULL,
-  `is_partner_task` tinyint(1) NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `gender_id` bigint(20) UNSIGNED NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -230,11 +232,12 @@ CREATE TABLE `detailed_tasks` (
 -- Дамп данных таблицы `detailed_tasks`
 --
 
-INSERT INTO `detailed_tasks` (`id`, `location_type_id`, `preference_id`, `duration_id`, `user_level_id`, `is_partner_task`, `description`, `gender_id`, `image`) VALUES
-(18, 3, 1, 1, 1, 1, 'Ходити на рука ви будете найпростішим способом, просто беріть і йдіть на тих руках до біса.', 1, NULL),
-(19, 3, 1, 1, 3, 1, 'Завязуєте очі і йдете на руках по канату між двома багатоповерхівками жонглюючи ногами пушечними ядрами. А з землі у вас будуть стріляти великокалібреного кулемету.', 1, NULL),
-(20, 1, 13, 1, 1, 1, 'Берете два яйця і смажите яєшню. До яєшні можна додати бекончику.', 2, NULL),
-(21, 1, 13, 1, 3, 1, 'Їдете на ферму алігаторів, ниряєте в озеро відбираєте в алігатора яйця. Якщо вам не відкусили руки, ноги чи голову то частуєте свого коханого яєшнею. Смачного!', 2, NULL);
+INSERT INTO `detailed_tasks` (`id`, `description`, `custom_partner_task`, `location_type_id`, `preference_id`, `duration_id`, `user_level_id`, `gender_id`, `image`) VALUES
+(18, 'Ходити на рука ви будете найпростішим способом, просто беріть і йдіть на тих руках до біса.', NULL, 3, 1, 1, 1, 1, NULL),
+(19, 'Завязуєте очі і йдете на руках по канату між двома багатоповерхівками жонглюючи ногами пушечними ядрами. А з землі у вас будуть стріляти великокалібреного кулемету.', NULL, 3, 1, 1, 3, 1, NULL),
+(20, 'Берете два яйця і смажите яєшню. До яєшні можна додати бекончику.', NULL, 1, 13, 1, 1, 2, NULL),
+(21, 'Їдете на ферму алігаторів, ниряєте в озеро відбираєте в алігатора яйця. Якщо вам не відкусили руки, ноги чи голову то частуєте свого коханого яєшнею. Смачного!', NULL, 1, 13, 1, 3, 2, NULL),
+(22, 'Копаєте яму на задньому дворі і лягаєте туди, притворяєтесь мертвим.', 'Сходіть на задній двір, там вас чекає сюрприз.', 2, 1, 2, 3, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -342,7 +345,15 @@ CREATE TABLE `generated_tasks` (
 INSERT INTO `generated_tasks` (`id`, `user_id`, `partner_id`, `location_description_id`, `started_at`, `task_id`, `detailed_task_id`, `partner_task_id`, `is_rejected`, `created_at`, `updated_at`) VALUES
 (47, 14, 3, 4, NULL, 1, 18, NULL, 1, '2021-07-20 08:14:56', '2021-07-20 08:23:34'),
 (48, 14, 3, 4, '2021-07-23 09:30:00', 1, 18, NULL, 1, '2021-07-20 08:23:53', '2021-07-20 09:23:09'),
-(49, 14, 3, 2, '2021-07-22 09:23:00', 2, 20, 37, NULL, '2021-07-20 09:23:20', '2021-07-20 09:23:20');
+(49, 14, 3, 2, '2021-07-22 09:23:00', 2, 20, 37, 1, '2021-07-20 09:23:20', '2021-07-21 14:40:28'),
+(50, 14, 3, 4, '2021-07-22 14:41:00', 1, 18, 36, 1, '2021-07-21 14:41:25', '2021-07-21 14:42:48'),
+(51, 14, 3, 3, '2021-07-22 14:43:00', 1, 18, 32, NULL, '2021-07-21 14:43:16', '2021-07-21 14:43:16'),
+(52, 19, 14, 3, NULL, 1, 18, 32, 1, '2021-07-21 15:18:04', '2021-07-21 15:18:24'),
+(53, 19, 14, 4, NULL, 1, 18, 32, 1, '2021-07-21 15:18:30', '2021-07-21 15:19:05'),
+(54, 19, 14, 1, NULL, 2, 20, 34, 1, '2021-07-21 15:19:32', '2021-07-21 15:19:40'),
+(55, 19, 14, 4, NULL, 1, 18, 36, 1, '2021-07-21 15:25:38', '2021-07-21 15:25:54'),
+(56, 19, 14, 4, NULL, 1, 18, 36, 1, '2021-07-21 15:26:18', '2021-07-21 15:26:30'),
+(57, 19, 14, 4, NULL, 1, 18, 36, 1, '2021-07-21 15:26:56', '2021-07-21 15:27:02');
 
 -- --------------------------------------------------------
 
@@ -386,7 +397,8 @@ INSERT INTO `locations` (`id`, `name`, `location_type_id`) VALUES
 (3, 'Парк', 3),
 (8, 'Сіновал', 2),
 (13, 'Ліс', 2),
-(14, 'Міст', 3);
+(14, 'Міст', 3),
+(15, 'Готель', 1);
 
 -- --------------------------------------------------------
 
@@ -409,7 +421,9 @@ INSERT INTO `location_descriptions` (`id`, `description`, `partner_description`,
 (1, 'Cтвори затишну атмосферу у себе вдома, зроби тьмяне світло ароматичні свічки.', 'Сьогоді все відбудеться вдома.', 2),
 (2, 'Зроби у невеличку перестановку у своєму домі, включи романтичну музику. Приготуйся гарно провести час.', 'Зручно влаштовуйся на своєму улюбленому кріслі.', 2),
 (3, 'Знайди затишне місце у парку, де можна провести час.', 'Зустрінься зі своєю парою у парку.', 3),
-(4, 'Знайди місце в парку звідки відкривається гарний вид на місто.', 'Приходь у ваш улюблений парк у місті.', 3);
+(4, 'Знайди місце в парку звідки відкривається гарний вид на місто.', 'Приходь у ваш улюблений парк у місті.', 3),
+(5, 'Зніми номер у затишному готелі.  Приготуйся гарно провести час.', 'Сьогодні романтична зустріч в готелі.', 15),
+(6, 'Арендуй кучу сіна у фермера.', 'Приходть на ферму, буде цікаво :)', 8);
 
 -- --------------------------------------------------------
 
@@ -633,7 +647,8 @@ INSERT INTO `partner_tasks` (`id`, `description`, `gender_id`) VALUES
 (34, 'Купіть два яйца і м\'ясо у магазині.', 1),
 (35, 'Вам потрібно звозити свою кохану на ферму алігаторів. Буде цікаво!', 2),
 (36, 'Допоможіть партнеру зрозуміти сенс його задачі.', 2),
-(37, 'Замаринуйте м\'ясо, та приготуйтеся смачно попоїсти.', 1);
+(37, 'Замаринуйте м\'ясо, та приготуйтеся смачно попоїсти.', 1),
+(38, 'Сходіть на задній двір, там вас чекає сюрприз.', 2);
 
 -- --------------------------------------------------------
 
@@ -1011,7 +1026,8 @@ CREATE TABLE `tasks` (
 
 INSERT INTO `tasks` (`id`, `description`, `partner_description`, `location_type_id`, `preference_id`) VALUES
 (1, 'Сьогодні ви будете займатися хотьбою на руках, перший раз в житті спробуєте цей дивовижний пересування, відомий людству з давніх давен.', 'Сьогодні буде дуже весело.', 3, 1),
-(2, 'Сьогодні ви будете готувати яєшню.', 'Сьогодні ви смачно поїсте.', 1, 13);
+(2, 'Сьогодні ви будете готувати яєшню.', 'Сьогодні ви смачно поїсте.', 1, 13),
+(3, 'Сьогодні ви будете готувати торт.', 'Сьогодні ви скуштуєте щось солоденьке.', 1, 13);
 
 -- --------------------------------------------------------
 
@@ -1054,7 +1070,8 @@ INSERT INTO `task_combinations` (`id`, `detailed_task_id`, `partner_task_id`) VA
 (16, 20, 34),
 (17, 21, 35),
 (18, 18, 36),
-(19, 20, 37);
+(19, 20, 37),
+(20, 22, 38);
 
 -- --------------------------------------------------------
 
@@ -1123,7 +1140,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`, `partner_email`, `gender_id`, `duration_id`) VALUES
 (1, 1, 'admin', 'admin@admin.com', 'users/default.png', NULL, '$2y$10$vALnBdtdRR7MYVorxGGEi.NwolxJ3R3/vqYPV1xdq2SyFdeBHjDre', NULL, '{\"locale\":\"en\"}', '2021-07-06 08:30:05', '2021-07-12 11:52:52', NULL, NULL, NULL),
 (3, 2, 'John', 'john@laravel.test', 'users/default.png', NULL, '$2y$10$Vh0l/JzwtwBnCDcquRcOr.zfMsVUA57ebiHe2zL6X90e9CzPdjATO', NULL, NULL, '2021-07-07 05:56:24', '2021-07-16 13:18:17', 'vyacheslav.oleshko.work@gmail.com', 1, 2),
-(14, 2, 'Viacheslav', 'vyacheslav.oleshko.work@gmail.com', 'users/default.png', NULL, '$2y$10$McRMdlbXwnsrCQseuaM8yuck9Sa6kARczRgd/prCEi2QG9Z3RigC.', NULL, NULL, '2021-07-07 11:46:32', '2021-07-19 13:29:20', 'john@laravel.test', 1, 1);
+(14, 2, 'Viacheslav', 'vyacheslav.oleshko.work@gmail.com', 'users/default.png', NULL, '$2y$10$McRMdlbXwnsrCQseuaM8yuck9Sa6kARczRgd/prCEi2QG9Z3RigC.', NULL, NULL, '2021-07-07 11:46:32', '2021-07-19 13:29:20', 'john@laravel.test', 1, 1),
+(19, 2, 'Girl', 'girl@laravel.test', 'users/default.png', NULL, '$2y$10$XOW2AkhBgL2DEoFDo1zyeun6PYSkXPqkBU0ahWJiBFFEuGgkkhxmO', NULL, NULL, '2021-07-21 15:16:20', '2021-07-21 15:17:58', 'vyacheslav.oleshko.work@gmail.com', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -1166,7 +1184,9 @@ INSERT INTO `user_level_stack` (`id`, `user_id`, `user_level_id`) VALUES
 (23, 14, 2),
 (24, 3, 1),
 (25, 3, 2),
-(26, 14, 3);
+(26, 14, 3),
+(27, 19, 1),
+(28, 19, 3);
 
 -- --------------------------------------------------------
 
@@ -1189,7 +1209,11 @@ INSERT INTO `user_location` (`id`, `user_id`, `location_id`) VALUES
 (6, 3, 2),
 (7, 3, 3),
 (8, 14, 1),
-(11, 14, 3);
+(11, 14, 3),
+(13, 19, 2),
+(14, 19, 3),
+(15, 19, 8),
+(16, 19, 15);
 
 -- --------------------------------------------------------
 
@@ -1213,7 +1237,9 @@ INSERT INTO `user_preference` (`id`, `user_id`, `preference_id`) VALUES
 (74, 3, 1),
 (101, 14, 1),
 (102, 3, 13),
-(103, 14, 13);
+(103, 14, 13),
+(104, 19, 1),
+(105, 19, 13);
 
 -- --------------------------------------------------------
 
@@ -1518,13 +1544,13 @@ ALTER TABLE `user_roles`
 -- AUTO_INCREMENT для таблицы `accessories`
 --
 ALTER TABLE `accessories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT для таблицы `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
 -- AUTO_INCREMENT для таблицы `data_types`
@@ -1536,7 +1562,7 @@ ALTER TABLE `data_types`
 -- AUTO_INCREMENT для таблицы `detailed_tasks`
 --
 ALTER TABLE `detailed_tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT для таблицы `detailed_task_notion`
@@ -1566,7 +1592,7 @@ ALTER TABLE `genders`
 -- AUTO_INCREMENT для таблицы `generated_tasks`
 --
 ALTER TABLE `generated_tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT для таблицы `likes`
@@ -1578,13 +1604,13 @@ ALTER TABLE `likes`
 -- AUTO_INCREMENT для таблицы `locations`
 --
 ALTER TABLE `locations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT для таблицы `location_descriptions`
 --
 ALTER TABLE `location_descriptions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `location_types`
@@ -1626,7 +1652,7 @@ ALTER TABLE `partner_rules`
 -- AUTO_INCREMENT для таблицы `partner_tasks`
 --
 ALTER TABLE `partner_tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT для таблицы `partner_task_rule`
@@ -1668,7 +1694,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT для таблицы `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `task_accessory`
@@ -1680,7 +1706,7 @@ ALTER TABLE `task_accessory`
 -- AUTO_INCREMENT для таблицы `task_combinations`
 --
 ALTER TABLE `task_combinations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT для таблицы `task_rule`
@@ -1698,7 +1724,7 @@ ALTER TABLE `translations`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT для таблицы `user_levels`
@@ -1710,19 +1736,19 @@ ALTER TABLE `user_levels`
 -- AUTO_INCREMENT для таблицы `user_level_stack`
 --
 ALTER TABLE `user_level_stack`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT для таблицы `user_location`
 --
 ALTER TABLE `user_location`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT для таблицы `user_preference`
 --
 ALTER TABLE `user_preference`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
