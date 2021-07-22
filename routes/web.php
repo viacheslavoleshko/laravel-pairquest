@@ -1,15 +1,16 @@
 <?php
 
-use App\Http\Controllers\AccessoryController;
-use App\Http\Controllers\GeneratedTaskController;
-use App\Http\Controllers\ImportExportController;
-use App\Http\Controllers\LikeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LocationController;
-use App\Http\Controllers\PartnerController;
-use App\Http\Controllers\PreferenceController;
+use App\Http\Controllers\LikeController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\QuestController;
+use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\AccessoryController;
+use App\Http\Controllers\PreferenceController;
+use App\Http\Controllers\ImportExportController;
+use App\Http\Controllers\GeneratedTaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,3 +63,5 @@ Route::post('/end-quest/{generated_task}', [QuestController::class, 'finish'])->
 Route::post('/like/{detailed_task}', [LikeController::class, 'store'])->name('like');
 
 Route::post('/generator/{user}', [GeneratedTaskController::class, 'store'])->name('generator');
+
+Route::resource('posts', PostController::class)->only(['index', 'show']);
