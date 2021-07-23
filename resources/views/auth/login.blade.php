@@ -5,40 +5,40 @@
 @endsection
 
 @section('content')
-    <div class="main">
-        <div class="main-title">
-            <h1>
-                Login
-            </h1>
-        </div>
-        <div class="main__inner">
-            <form method="POST" action="{{ route('login') }}">
-                @csrf
-                <div class="form-outline mb-4">
-                    <input type="email" id="form2Example1" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus/>
-                    <label class="form-label" for="form2Example1">Email </label>
-                    
+    <!-- form -->
+    <div class="form-wrapper single-page newsman-block">
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
+            <div class="form-wrapper__inner">
+
+                <div class="form-wrapper__inner-logo">
+                    <img src="/img/main-logo.svg" alt="">
+                </div>
+                <div class="form-wrapper__inner-title block-title-medium block-title text-semibold">
+                    Логін
+                </div>
+                <div class="form-wrapper__content">
+                    <input class="input-text @error('email') is-invalid @enderror" type="email" placeholder="Email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                     @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                </div>
-                
-
-                <div class="form-outline mb-4">
-                    <input type="password" id="form2Example2"  class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password"/>
-                    <label class="form-label" for="form2Example2">Password</label>
-                    
+                    <input class="input-text @error('password') is-invalid @enderror" type="password" placeholder="Password" name="password" required autocomplete="current-password">
                     @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
-                <a class="reg-link" href="{{ route('register') }}">Зареєструватися</a>
-                <button type="submit" class="btn btn-success mb-4 btn-centr">Login</button>
-            </form>
-        </div>
+                <div class="form-wrapper__inner-text">
+                    <a href="{{ route('register') }}">Зареєструватися</a>
+                </div>
+                <div class="form-wrapper__button">
+                    <button type="submit">Логін</button>
+                </div>
+
+            </div>
+        </form>
     </div>
 @endsection

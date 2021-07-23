@@ -5,63 +5,64 @@
 @endsection
 
 @section('content')
-    <div class="main">
-        <div class="main-title">
-            <h1>
-                Registration
-            </h1>
-        </div>
-        <div class="main__inner">
-            <form method="POST" action="{{ route('register') }}">
-                @csrf
-                <div class="form-outline mb-4">
-                    <input type="email" id="form2Example1" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus/>
-                    <label class="form-label" for="form2Example1">Email</label>
+    <!-- form -->
+    <div class="form-wrapper single-page newsman-block">
+        <form method="POST" action="{{ route('register') }}">
+            @csrf
+            <div class="form-wrapper__inner">
 
+                <div class="form-wrapper__inner-logo">
+                    <img src="/img/main-logo.svg" alt="">
+                </div>
+                <div class="form-wrapper__inner-title block-title-medium block-title text-semibold">
+                    Реєстрація
+                </div>
+                <div class="form-wrapper__content">
+                    <input class="input-text @error('email') is-invalid @enderror" type="email" placeholder="Email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                     @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                </div>
-
-                <div class="form-outline mb-4">
-                    <input type="password" id="form2Example2" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" />
-                    <label class="form-label" for="form2Example2">Password</label>
-
+                    <input class="input-text @error('telegram_user_id') is-invalid @enderror" type="text" placeholder="Telegram Login" name="telegram_user_id" value="{{ old('telegram_user_id') }}" required autocomplete="telegram_user_id">
+                    @error('telegram_user_id')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    <input class="input-text @error('password') is-invalid @enderror" type="password" placeholder="Password" name="password" required autocomplete="current-password">
                     @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                </div>
-                <div class="form-outline mb-4">
-                    <input type="text" id="form2Example3" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" />
-                    <label class="form-label" for="form2Example3">Nickname</label>
-
+                    <input class="input-text @error('name') is-invalid @enderror" type="text" placeholder="Nickname" name="name" value="{{ old('name') }}" required autocomplete="name">
                     @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                </div>
-                <div class="form-outline mb-4">
-                    <select class="form-select @error('gender') is-invalid @enderror" name="gender" value="{{ old('gender') }}" required autocomplete="gender" aria-label="Default select example">
-                        <option selected disabled>Select gender</option>
+                    <select class="input-text select-content @error('gender') is-invalid @enderror" name="gender" value="{{ old('gender') }}" required autocomplete="gender">
+                        <option selected disabled>Виберіть стать</option>
                         @foreach ($genders as $gender)
                             <option value="{{ $gender->id }}">{{ $gender->name }}</option>
                         @endforeach
                     </select>
-
                     @error('gender')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
+                    
                 </div>
-                <a class="reg-link" href="{{ route('login') }}">Вхід</a>
-                <button type="submit" class="btn btn-success mb-4 btn-centr">create account</button>
-            </form>
-        </div>
+                <div class="form-wrapper__inner-text">
+                    <a href="{{ route('login') }}">Вхід</a>
+                </div>
+                <div class="form-wrapper__button">
+                    <button type="submit">Зареєструватися</button>
+                </div>
+
+            </div>
+        </form>
     </div>
 @endsection

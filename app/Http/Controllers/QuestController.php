@@ -24,61 +24,68 @@ class QuestController extends Controller
     public function index()
     {
         $user = User::findOrFail(Auth::user()->id);
-        if($generated_task = GeneratedTask::where('user_id', $user->id)->whereNull('is_rejected')->first()) {
-            $detailed_task = DetailedTask::findOrFail($generated_task->detailed_task_id);
-            $detailed_task_notion = $detailed_task->notions->random();
-            
-            $location_description = LocationDescription::find($generated_task->location_description_id)->description;
-            $task = Task::findOrFail($generated_task->task_id);
-            $task_description = $task->description;
-            $task_rule = $task->rules->random();
-            return view('generated-quest', ['generated_task' => $generated_task, 'location_description' =>  $location_description, 'task_description' => $task_description, 'detailed_task' => $detailed_task, 'detailed_task_notion' => $detailed_task_notion, 'task_rule' => $task_rule]);
 
-
-        } elseif ($generated_task = GeneratedTask::where('partner_id', $user->id)->whereNull('is_rejected')->first()) {
-            $detailed_task = DetailedTask::findOrFail($generated_task->detailed_task_id);
-            $detailed_task_notion = $detailed_task->notions->random();
-            $location_description = LocationDescription::find($generated_task->location_description_id)->partner_description;
-            $task = Task::findOrFail($generated_task->task_id);
-            $task_description = $task->partner_description;
-            $generated_quest = [
-                'generated_task' => $generated_task,
-                'location_description' =>  $location_description,
-                'task_description' => $task_description,
-                'detailed_task_notion' => $detailed_task_notion,
-            ];
-            if(isset($detailed_task->custom_partner_task)) {
-                $custom_detailed_task = $detailed_task->custom_partner_task;
-                $task_rule = $task->rules->random(); // what rules take custom partner task?
+        if(isset($user->partner_email) && isset($user->user_levels)) {
+            if($generated_task = GeneratedTask::where('user_id', $user->id)->whereNull('is_rejected')->first()) {
+                $detailed_task = DetailedTask::findOrFail($generated_task->detailed_task_id);
+                $detailed_task_notion = $detailed_task->notions->random();
                 
-                $generated_quest['custom_detailed_task'] = $custom_detailed_task;
-                $generated_quest['task_rule'] = $task_rule;
-            } elseif(isset($generated_task->partner_task_id)) {
-                $partner_task = $detailed_task->partner_tasks->find($generated_task->partner_task_id);
-                $task_rule = $partner_task->partner_rules->random();
-                $generated_quest['detailed_task'] = $partner_task;
-                $generated_quest['task_rule'] = $task_rule;
-            } else {
-                $partner_task = DetailedTask::findOrFail($generated_task->detailed_task_id);
+                $location_description = LocationDescription::find($generated_task->location_description_id)->description;
+                $task = Task::findOrFail($generated_task->task_id);
+                $task_description = $task->description;
                 $task_rule = $task->rules->random();
+                return view('generated-quest', ['generated_task' => $generated_task, 'location_description' =>  $location_description, 'task_description' => $task_description, 'detailed_task' => $detailed_task, 'detailed_task_notion' => $detailed_task_notion, 'task_rule' => $task_rule]);
+    
+    
+            } elseif ($generated_task = GeneratedTask::where('partner_id', $user->id)->whereNull('is_rejected')->first()) {
+                $detailed_task = DetailedTask::findOrFail($generated_task->detailed_task_id);
+                $detailed_task_notion = $detailed_task->notions->random();
+                $location_description = LocationDescription::find($generated_task->location_description_id)->partner_description;
+                $task = Task::findOrFail($generated_task->task_id);
+                $task_description = $task->partner_description;
+                $generated_quest = [
+                    'generated_task' => $generated_task,
+                    'location_description' =>  $location_description,
+                    'task_description' => $task_description,
+                    'detailed_task_notion' => $detailed_task_notion,
+                ];
+                if(isset($detailed_task->custom_partner_task)) {
+                    $custom_detailed_task = $detailed_task->custom_partner_task;
+                    $task_rule = $task->rules->random(); // what rules take custom partner task?
+                    
+                    $generated_quest['custom_detailed_task'] = $custom_detailed_task;
+                    $generated_quest['task_rule'] = $task_rule;
+                } elseif(isset($generated_task->partner_task_id)) {
+                    $partner_task = $detailed_task->partner_tasks->find($generated_task->partner_task_id);
+                    $task_rule = $partner_task->partner_rules->random();
+                    $generated_quest['detailed_task'] = $partner_task;
+                    $generated_quest['task_rule'] = $task_rule;
+                } else {
+                    $partner_task = DetailedTask::findOrFail($generated_task->detailed_task_id);
+                    $task_rule = $task->rules->random();
+                    
+                    $generated_quest['detailed_task'] = $partner_task;
+                    $generated_quest['task_rule'] = $task_rule;
+                }
+                return view('generated-quest', $generated_quest);
+    
                 
-                $generated_quest['detailed_task'] = $partner_task;
-                $generated_quest['task_rule'] = $task_rule;
+            } else {
+                $partner = User::with('user_levels')->where('email', $user->partner_email)->first();
+    
+                $user_level_stack = $user->user_levels->pluck('id', 'name');
+                $partner_level_stack = $partner->user_levels->pluck('id', 'name');
+                $intersect_level_stack = $user_level_stack->intersect($partner_level_stack);
+                if($intersect_level_stack->isEmpty()) {
+                    return view('errors.quest-error');
+                }
+    
+                return view('quest', ['durations' => Duration::all(), 'user_levels' => $intersect_level_stack]);
             }
-            return view('generated-quest', $generated_quest);
-
-            
+        } elseif (isset($user->partner_email) && is_null($user->user_levels)) {
+            return redirect()->route('prefs');
         } else {
-            $partner = User::with('user_levels')->where('email', $user->partner_email)->first();
-
-            $user_level_stack = $user->user_levels->pluck('id', 'name');
-            $partner_level_stack = $partner->user_levels->pluck('id', 'name');
-            $intersect_level_stack = $user_level_stack->intersect($partner_level_stack);
-            if($intersect_level_stack->isEmpty()) {
-                return view('errors.quest-error');
-            }
-
-            return view('quest', ['durations' => Duration::all(), 'user_levels' => $intersect_level_stack]);
+            return view('partner');
         }
     }
 

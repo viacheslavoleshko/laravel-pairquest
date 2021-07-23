@@ -5,73 +5,81 @@
 @endsection
 
 @section('content')
-<div class="main">
-    <div class="main-title">
-        <h1>
-            Вподобання
-        </h1>
-    </div>
-    <div class="main__inner">
+    @include('includes._navbar')
+    <div class="form-wrapper single-page more-page newsman-block">
         <form method="POST" action="{{ route('prefs.store', ['user' => Auth::user()->id]) }}">
             @csrf
-            @foreach ($preferences as $key => $preference)
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="preferences[]" value="{{ $preference->id }}" id="flexCheckDefault" {{ old('preferences[]', Auth::user()->preferences->contains('id', $preference->id) ? 'checked' : '') }} />
-                    <label class="form-check-label" for="flexCheckDefault">
-                        {{ $preference->description }}
-                    </label>
+            <div class="form-wrapper__inner">
+                <div class="form-wrapper__inner-title block-title-medium block-title text-semibold">
+                    Вподобання
                 </div>
-            @endforeach
-            @error('preferences')
-                <div class="alert alert-danger">
-                    {{ $message }}
+                <div class="form-wrapper__content">
+                    <div class="form-wrapper__content-checkbox-wrapper">
+                        @foreach ($preferences as $key => $preference)
+                            <div class="form-wrapper__content-checkbox-inner">
+                                <input id="preferences-{{$key}}" class="categories-radio" type="checkbox" name="preferences[]" value="{{ $preference->id }}" id="flexCheckDefault" {{ old('preferences[]', Auth::user()->preferences->contains('id', $preference->id) ? 'checked' : '') }} >
+                                <label class="fpreferences-{{$key}}" for="flexCheckDefault">
+                                    {{ $preference->description }}
+                                </label>
+                            </div>
+                        @endforeach
+                        @error('preferences')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
                 </div>
-            @enderror
 
-
-            <div class="main-title">
-                <h1>
+                <div class="form-wrapper__inner-title block-title-medium block-title text-semibold">
                     Локації
-                </h1>
-            </div>
-            @foreach ($locations as $location)
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="{{ $location->id }}" id="flexCheckDefault" name="locations[]" {{ old('locations[]', Auth::user()->locations->contains('id', $location->id) ? 'checked' : '') }} />
-                    <label class="form-check-label" for="flexCheckDefault">
-                        {{ $location->name }}
-                    </label>
                 </div>
-            @endforeach
-            @error('locations')
-                <div class="alert alert-danger">
-                    {{ $message }}
+                <div class="form-wrapper__content">
+                    <div class="form-wrapper__content-checkbox-wrapper">
+                        @foreach ($locations as $key => $location)
+                            <div class="form-wrapper__content-checkbox-inner">
+                                <input id="locations-{{$key}}" class="categories-radio" type="checkbox" name="locations[]" value="{{ $location->id }}" id="flexCheckDefault" {{ old('locations[]', Auth::user()->locations->contains('id', $location->id) ? 'checked' : '') }} >
+                                <label class="locations-{{$key}}" for="flexCheckDefault">
+                                    {{ $location->name }}
+                                </label>
+                            </div>
+                        @endforeach
+                        @error('locations')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
                 </div>
-            @enderror
 
-
-            <div class="main-title">
-                <h1>
+                <div class="form-wrapper__inner-title block-title-medium block-title text-semibold">
                     Рівень користувача
-                </h1>
-            </div>
-            @foreach ($user_levels as $user_level)
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="{{ $user_level->id }}" id="flexCheckDefault" name="user_levels[]" {{ old('user_levels[]', Auth::user()->user_levels->contains('id', $user_level->id) ? 'checked' : '') }} />
-                    <label class="form-check-label" for="flexCheckDefault">
-                        {{ $user_level->name }}
-                    </label>
                 </div>
-            @endforeach
-            @error('user_levels')
-                <div class="alert alert-danger">
-                    {{ $message }}
+                <div class="form-wrapper__content">
+                    <div class="form-wrapper__content-checkbox-wrapper">
+                        @foreach ($user_levels as $key => $user_level)
+                            <div class="form-wrapper__content-checkbox-inner">
+                                <input id="level-{{$key}}" class="categories-radio" type="checkbox" value="{{ $user_level->id }}" name="user_levels[]" {{ old('user_levels[]', Auth::user()->user_levels->contains('id', $user_level->id) ? 'checked' : '') }} >
+                                <label for="level-{{$key}}">
+                                    {{ $user_level->name }}
+                                </label>
+                            </div>
+                        @endforeach
+                        @error('user_levels')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
                 </div>
-            @enderror
+                <div class="form-wrapper__button">
 
-            <button type="submit" class="btn btn-success mb-4 btn-centr">Далі</button>
+                    <button type="submit">Далі</button>
+                </div>
+
+            </div>
         </form>
     </div>
-</div>
 @endsection
 
 @section('javascript')

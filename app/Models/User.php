@@ -22,6 +22,7 @@ class User extends \TCG\Voyager\Models\User
         'password',
         'gender_id',
         'user_level_id',
+        'telegram_user_id',
     ];
 
     /**
@@ -71,5 +72,15 @@ class User extends \TCG\Voyager\Models\User
     public function likes()
     {
         return $this->hasMany(Like::class);
+    }
+
+    /**
+     * Route notifications for the Telegram channel.
+     *
+     * @return int
+     */
+    public function routeNotificationForTelegram()
+    {
+        return $this->telegram_user_id;
     }
 }

@@ -23,18 +23,18 @@ class PartnerController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        $user = User::findOrFail(Auth::user()->id);
+    // public function index()
+    // {
+    //     $user = User::findOrFail(Auth::user()->id);
 
-        if(isset($user->partner_email) && isset($user->user_levels)) {
-            return redirect()->route('quest');
-        } elseif (isset($user->partner_email) && is_null($user->user_levels)) {
-            return redirect()->route('prefs');
-        } else {
-            return view('partner');
-        }
-    }
+    //     if(isset($user->partner_email) && isset($user->user_levels)) {
+    //         return redirect()->route('quest');
+    //     } elseif (isset($user->partner_email) && is_null($user->user_levels)) {
+    //         return redirect()->route('prefs');
+    //     } else {
+    //         return view('partner');
+    //     }
+    // }
 
     public function update(Request $request, $id)
     {

@@ -5,40 +5,36 @@
 @endsection
 
 @section('content')
-<div class="main">
-    <div class="main-title">
-        @if ($errors->has('partner_email'))
-            <h1>
-                Вашої пари не знайдено
-            </h1>
-            <p>
-                Перевірте введений емейл
-            </p>
-        @else
-            <h1>
-                Введи емейл своєї пари
-            </h1>
-            <p>
-                Перед додаванням партнера, він має бути зареєстрованим в системі.
-            </p>
-        @endif
-    </div>
-    <div class="main__inner">
-        <form method="POST" action="{{ route('partner.store', ['user' => Auth::user()->id]) }}">
-            @csrf
-            <div class="form-outline mb-4">
-                <input type="email" id="form2Example1" class="form-control @error('partner_email') is-invalid @enderror" name="partner_email" value="{{ old('partner_email') }}" required autocomplete="partner_email" autofocus />
-                <label class="form-label" for="form2Example1">Email</label>
+    <div class="form-wrapper single-page newsman-block">
+        <form>
+            <div class="form-wrapper single-page newsman-block">
+                <form>
+                    <div class="form-wrapper__inner">
+                        <div class="form-wrapper__inner-title block-title-medium block-title text-semibold">
+                            @if ($errors->has('partner_email'))
+                                    Вашої пари не знайдено
+                                    <p>Перевірте введений емейл</p>
+                            @else
+                                    Введи емейл своєї пари
+                                    <p>Перед додаванням партнера, він має бути зареєстрованим в системі.
+                            @endif
+                        </div>
+                        <div class="form-wrapper__content">
+                            <input class="input-text @error('partner_email') is-invalid @enderror" type="email" placeholder="Email" name="partner_email" value="{{ old('partner_email') }}" required autocomplete="partner_email" autofocus>
+                            @error('partner_email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-wrapper__button">
+                            <a href="{{ route('prefs') }}">Пропустити</a>
+                            <button type="submit">Зберегти</button>
+                        </div>
 
-                @error('partner_email')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+                    </div>
+                </form>
             </div>
-            <a class="reg-link" href="{{ route('prefs') }}">Пропустити</a>
-            <button type="submit" class="btn btn-success mb-4 btn-centr">Ввести</button>
         </form>
     </div>
-</div>
 @endsection

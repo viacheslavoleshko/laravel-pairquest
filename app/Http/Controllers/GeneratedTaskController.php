@@ -9,10 +9,14 @@ use App\Models\Duration;
 use App\Models\DetailedTask;
 use Illuminate\Http\Request;
 use App\Models\GeneratedTask;
+use App\Notifications\Telegram;
 use App\Mail\UserQuestGenerated;
 use App\Mail\PartnerQuestGenerated;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use App\Notifications\PartnerTelegram;
+use App\Notifications\TelegramNotification;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class GeneratedTaskController extends Controller
@@ -76,8 +80,10 @@ class GeneratedTaskController extends Controller
 
             // dd($generated_task);
             $generated_task->save();
-            Mail::to($user)->send(new UserQuestGenerated($generated_task));
-            Mail::to($partner)->send(new PartnerQuestGenerated($generated_task));
+            Mail::to(User::find($generated_task->user_id))->send(new UserQuestGenerated($generated_task));
+            Mail::to(User::find($generated_task->partner_id))->send(new PartnerQuestGenerated($generated_task));
+            Notification::send(User::find($generated_task->user_id), new Telegram($generated_task));
+            Notification::send(User::find($generated_task->partner_id), new PartnerTelegram($generated_task));
 
             return redirect()->route('quest');
         } else {

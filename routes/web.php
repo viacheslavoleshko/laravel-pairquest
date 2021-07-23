@@ -50,7 +50,9 @@ Route::get('/offline', function () {
     return view('vendor/laravelpwa/offline');
     });
 
-Route::get('/', [PartnerController::class, 'index'])->name('partner');
+Route::get('/', [PostController::class, 'index'])->name('posts.index');
+
+// Route::get('/partner', [PartnerController::class, 'index'])->name('partner');
 Route::post('/partner/{user}', [PartnerController::class, 'update'])->name('partner.store');
 
 Route::get('/prefs', [PreferenceController::class, 'index'])->name('prefs');
