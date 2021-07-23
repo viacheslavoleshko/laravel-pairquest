@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 21 2021 г., 17:44
+-- Время создания: Июл 23 2021 г., 17:58
 -- Версия сервера: 10.3.16-MariaDB
 -- Версия PHP: 7.3.7
 
@@ -42,6 +42,28 @@ INSERT INTO `accessories` (`id`, `name`) VALUES
 (10, 'Сукня'),
 (13, 'Фотоапарат'),
 (22, 'Панамка');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`) VALUES
+(1, 'voluptas'),
+(2, 'consequuntur'),
+(3, 'assumenda'),
+(4, 'dolore'),
+(5, 'nam');
 
 -- --------------------------------------------------------
 
@@ -161,7 +183,18 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (114, 22, 'description', 'text', 'Description', 1, 1, 1, 1, 1, 1, '{}', 2),
 (115, 22, 'partner_rule_belongstomany_partner_task_relationship', 'relationship', 'partner_tasks', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\PartnerTask\",\"table\":\"partner_tasks\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"description\",\"pivot_table\":\"partner_task_rule\",\"pivot\":\"1\",\"taggable\":\"on\"}', 3),
 (116, 16, 'custom_partner_task', 'text', 'Custom Partner Task', 0, 1, 1, 1, 1, 1, '{}', 3),
-(117, 14, 'partner_description', 'text', 'Partner Description', 1, 1, 1, 1, 1, 1, '{}', 5);
+(117, 14, 'partner_description', 'text', 'Partner Description', 1, 1, 1, 1, 1, 1, '{}', 5),
+(118, 23, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(119, 23, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{}', 2),
+(120, 24, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(121, 24, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, '{}', 3),
+(122, 24, 'content', 'text', 'Content', 1, 1, 1, 1, 1, 1, '{}', 4),
+(123, 24, 'image', 'image', 'Image', 0, 1, 1, 1, 1, 1, '{}', 5),
+(124, 24, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 6),
+(125, 24, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 7),
+(126, 24, 'category_id', 'text', 'Category Id', 1, 1, 1, 1, 1, 1, '{}', 2),
+(127, 24, 'post_belongsto_category_relationship', 'relationship', 'categories', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Category\",\"table\":\"categories\",\"type\":\"belongsTo\",\"column\":\"category_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 8),
+(128, 23, 'category_hasmany_post_relationship', 'relationship', 'posts', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Post\",\"table\":\"posts\",\"type\":\"hasMany\",\"column\":\"category_id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 3);
 
 -- --------------------------------------------------------
 
@@ -208,7 +241,9 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (18, 'tasks', 'tasks', 'Task', 'Tasks', NULL, 'App\\Models\\Task', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-19 15:27:51', '2021-07-21 07:35:38'),
 (19, 'rules', 'rules', 'Rule', 'Rules', NULL, 'App\\Models\\Rule', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2021-07-20 12:15:10', '2021-07-20 12:15:10'),
 (20, 'notions', 'notions', 'Notion', 'Notions', NULL, 'App\\Models\\Notion', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2021-07-20 12:16:00', '2021-07-20 12:16:00'),
-(22, 'partner_rules', 'partner-rules', 'Partner Rule', 'Partner Rules', NULL, 'App\\Models\\PartnerRule', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2021-07-20 13:23:40', '2021-07-20 13:23:40');
+(22, 'partner_rules', 'partner-rules', 'Partner Rule', 'Partner Rules', NULL, 'App\\Models\\PartnerRule', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2021-07-20 13:23:40', '2021-07-20 13:23:40'),
+(23, 'categories', 'categories', 'Category', 'Categories', NULL, 'App\\Models\\Category', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-22 09:44:30', '2021-07-22 09:46:39'),
+(24, 'posts', 'posts', 'Post', 'Posts', NULL, 'App\\Models\\Post', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-22 09:44:47', '2021-07-22 09:45:49');
 
 -- --------------------------------------------------------
 
@@ -347,13 +382,25 @@ INSERT INTO `generated_tasks` (`id`, `user_id`, `partner_id`, `location_descript
 (48, 14, 3, 4, '2021-07-23 09:30:00', 1, 18, NULL, 1, '2021-07-20 08:23:53', '2021-07-20 09:23:09'),
 (49, 14, 3, 2, '2021-07-22 09:23:00', 2, 20, 37, 1, '2021-07-20 09:23:20', '2021-07-21 14:40:28'),
 (50, 14, 3, 4, '2021-07-22 14:41:00', 1, 18, 36, 1, '2021-07-21 14:41:25', '2021-07-21 14:42:48'),
-(51, 14, 3, 3, '2021-07-22 14:43:00', 1, 18, 32, NULL, '2021-07-21 14:43:16', '2021-07-21 14:43:16'),
+(51, 14, 3, 3, '2021-07-22 14:43:00', 1, 18, 32, 1, '2021-07-21 14:43:16', '2021-07-23 10:03:55'),
 (52, 19, 14, 3, NULL, 1, 18, 32, 1, '2021-07-21 15:18:04', '2021-07-21 15:18:24'),
 (53, 19, 14, 4, NULL, 1, 18, 32, 1, '2021-07-21 15:18:30', '2021-07-21 15:19:05'),
 (54, 19, 14, 1, NULL, 2, 20, 34, 1, '2021-07-21 15:19:32', '2021-07-21 15:19:40'),
 (55, 19, 14, 4, NULL, 1, 18, 36, 1, '2021-07-21 15:25:38', '2021-07-21 15:25:54'),
 (56, 19, 14, 4, NULL, 1, 18, 36, 1, '2021-07-21 15:26:18', '2021-07-21 15:26:30'),
-(57, 19, 14, 4, NULL, 1, 18, 36, 1, '2021-07-21 15:26:56', '2021-07-21 15:27:02');
+(57, 19, 14, 4, NULL, 1, 18, 36, 1, '2021-07-21 15:26:56', '2021-07-21 15:27:02'),
+(58, 14, 3, 3, '2021-07-24 13:03:00', 1, 18, 32, 1, '2021-07-23 13:04:03', '2021-07-23 13:06:23'),
+(59, 14, 3, 1, NULL, 3, 20, 34, 1, '2021-07-23 13:09:31', '2021-07-23 13:10:56'),
+(60, 14, 3, 2, NULL, 3, 20, 37, 1, '2021-07-23 13:11:13', '2021-07-23 13:21:51'),
+(61, 14, 3, 3, NULL, 1, 18, 32, 1, '2021-07-23 13:22:00', '2021-07-23 13:52:02'),
+(62, 14, 3, 1, NULL, 3, 20, 37, 1, '2021-07-23 13:52:29', '2021-07-23 13:54:30'),
+(63, 14, 3, 3, '2021-07-24 13:54:00', 1, 18, 32, 1, '2021-07-23 13:54:39', '2021-07-23 13:55:15'),
+(64, 14, 3, 3, '2021-07-24 13:55:00', 1, 18, 32, 1, '2021-07-23 13:55:25', '2021-07-23 13:57:13'),
+(65, 14, 3, 3, '2021-07-24 13:57:00', 1, 18, 36, 1, '2021-07-23 13:57:23', '2021-07-23 14:13:57'),
+(66, 14, 3, 4, '2021-07-25 14:15:00', 1, 18, 36, 1, '2021-07-23 14:15:16', '2021-07-23 14:16:03'),
+(67, 3, 14, 1, NULL, 3, 20, 34, 1, '2021-07-23 14:16:14', '2021-07-23 14:23:25'),
+(68, 3, 14, 3, '2021-07-24 14:23:00', 1, 18, 32, 1, '2021-07-23 14:23:49', '2021-07-23 14:27:36'),
+(69, 3, 14, 3, '2021-07-24 15:51:00', 1, 18, 32, 1, '2021-07-23 15:51:55', '2021-07-23 15:54:34');
 
 -- --------------------------------------------------------
 
@@ -494,32 +541,36 @@ CREATE TABLE `menu_items` (
 
 INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class`, `color`, `parent_id`, `order`, `created_at`, `updated_at`, `route`, `parameters`) VALUES
 (1, 1, 'Dashboard', '', '_self', 'voyager-boat', NULL, NULL, 1, '2021-07-06 08:28:43', '2021-07-06 08:28:43', 'voyager.dashboard', NULL),
-(2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 7, '2021-07-06 08:28:43', '2021-07-19 13:48:37', 'voyager.media.index', NULL),
+(2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 9, '2021-07-06 08:28:43', '2021-07-22 09:50:24', 'voyager.media.index', NULL),
 (3, 1, 'Users', '', '_self', 'voyager-person', NULL, 16, 1, '2021-07-06 08:28:43', '2021-07-06 15:05:41', 'voyager.users.index', NULL),
 (4, 1, 'Roles', '', '_self', 'voyager-lock', NULL, 16, 2, '2021-07-06 08:28:44', '2021-07-06 15:05:42', 'voyager.roles.index', NULL),
-(5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 6, '2021-07-06 08:28:44', '2021-07-19 13:48:37', NULL, NULL),
+(5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 8, '2021-07-06 08:28:44', '2021-07-22 09:50:24', NULL, NULL),
 (6, 1, 'Menu Builder', '', '_self', 'voyager-list', NULL, 5, 1, '2021-07-06 08:28:44', '2021-07-06 09:18:28', 'voyager.menus.index', NULL),
 (7, 1, 'Database', '', '_self', 'voyager-data', NULL, 5, 2, '2021-07-06 08:28:44', '2021-07-06 09:18:28', 'voyager.database.index', NULL),
 (8, 1, 'Compass', '', '_self', 'voyager-compass', NULL, 5, 3, '2021-07-06 08:28:44', '2021-07-06 09:18:28', 'voyager.compass.index', NULL),
 (9, 1, 'BREAD', '', '_self', 'voyager-bread', NULL, 5, 4, '2021-07-06 08:28:44', '2021-07-06 09:18:28', 'voyager.bread.index', NULL),
-(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 8, '2021-07-06 08:28:44', '2021-07-19 13:48:37', 'voyager.settings.index', NULL),
+(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 10, '2021-07-06 08:28:44', '2021-07-22 09:50:25', 'voyager.settings.index', NULL),
 (11, 1, 'Hooks', '', '_self', 'voyager-hook', NULL, 5, 5, '2021-07-06 08:28:48', '2021-07-06 09:18:28', 'voyager.hooks', NULL),
 (12, 1, 'Genders', '', '_self', 'voyager-paw', '#000000', 16, 3, '2021-07-06 09:15:55', '2021-07-06 15:05:42', 'voyager.genders.index', 'null'),
 (13, 1, 'User Levels', '', '_self', 'voyager-double-up', '#000000', 16, 4, '2021-07-06 13:01:18', '2021-07-06 15:05:43', 'voyager.user-levels.index', 'null'),
-(15, 1, 'Partner Tasks', '', '_self', 'voyager-list-add', '#000000', 26, 3, '2021-07-06 13:27:51', '2021-07-19 15:30:47', 'voyager.partner-tasks.index', 'null'),
+(15, 1, 'Partner Tasks', '', '_self', 'voyager-list-add', '#000000', 32, 2, '2021-07-06 13:27:51', '2021-07-22 09:43:00', 'voyager.partner-tasks.index', 'null'),
 (16, 1, 'User Info', '', '_self', 'voyager-people', '#000000', NULL, 2, '2021-07-06 15:05:32', '2021-07-06 15:05:40', NULL, ''),
-(18, 1, 'Accessories', '', '_self', 'voyager-trophy', '#000000', NULL, 5, '2021-07-16 11:59:29', '2021-07-19 13:48:52', 'voyager.accessories.index', 'null'),
-(19, 1, 'Location Types', '', '_self', NULL, NULL, 21, 3, '2021-07-16 14:33:02', '2021-07-19 10:06:16', 'voyager.location-types.index', NULL),
-(20, 1, 'Locations', '', '_self', NULL, NULL, 21, 1, '2021-07-16 14:35:43', '2021-07-16 14:44:06', 'voyager.locations.index', NULL),
-(21, 1, 'Locations Info', '', '_self', 'voyager-location', '#000000', NULL, 4, '2021-07-16 14:43:45', '2021-07-19 13:48:52', NULL, ''),
-(23, 1, 'Location Descriptions', '', '_self', NULL, NULL, 21, 2, '2021-07-19 10:04:06', '2021-07-19 10:06:16', 'voyager.location-descriptions.index', NULL),
+(18, 1, 'Accessories', '', '_self', 'voyager-trophy', '#000000', NULL, 7, '2021-07-16 11:59:29', '2021-07-22 09:50:24', 'voyager.accessories.index', 'null'),
+(19, 1, 'Location Types', '', '_self', 'voyager-location', '#000000', 21, 3, '2021-07-16 14:33:02', '2021-07-22 09:52:26', 'voyager.location-types.index', 'null'),
+(20, 1, 'Locations', '', '_self', 'voyager-location', '#000000', 21, 1, '2021-07-16 14:35:43', '2021-07-22 09:52:11', 'voyager.locations.index', 'null'),
+(21, 1, 'Locations Info', '', '_self', 'voyager-location', '#000000', NULL, 5, '2021-07-16 14:43:45', '2021-07-22 09:42:42', NULL, ''),
+(23, 1, 'Location Descriptions', '', '_self', 'voyager-location', '#000000', 21, 2, '2021-07-19 10:04:06', '2021-07-22 09:52:19', 'voyager.location-descriptions.index', 'null'),
 (24, 1, 'Preferences', '', '_self', 'voyager-params', '#000000', 16, 5, '2021-07-19 13:10:12', '2021-07-19 15:32:17', 'voyager.preferences.index', 'null'),
-(25, 1, 'Detailed Tasks', '', '_self', 'voyager-list', '#000000', 26, 2, '2021-07-19 13:40:34', '2021-07-19 15:30:56', 'voyager.detailed-tasks.index', 'null'),
-(26, 1, 'Tasks Info', '', '_self', 'voyager-window-list', '#000000', NULL, 3, '2021-07-19 13:48:23', '2021-07-19 13:48:52', NULL, ''),
-(27, 1, 'Tasks', '', '_self', 'voyager-star', '#000000', 26, 1, '2021-07-19 15:27:51', '2021-07-19 15:32:06', 'voyager.tasks.index', 'null'),
-(28, 1, 'Rules', '', '_self', NULL, NULL, NULL, 9, '2021-07-20 12:15:11', '2021-07-20 12:15:11', 'voyager.rules.index', NULL),
-(29, 1, 'Notions', '', '_self', NULL, NULL, NULL, 10, '2021-07-20 12:16:00', '2021-07-20 12:16:00', 'voyager.notions.index', NULL),
-(30, 1, 'Partner Rules', '', '_self', NULL, NULL, NULL, 11, '2021-07-20 13:23:40', '2021-07-20 13:23:40', 'voyager.partner-rules.index', NULL);
+(25, 1, 'Detailed Tasks', '', '_self', 'voyager-list', '#000000', 32, 1, '2021-07-19 13:40:34', '2021-07-22 09:42:49', 'voyager.detailed-tasks.index', 'null'),
+(26, 1, 'Tasks Info', '', '_blank', 'voyager-window-list', '#000000', NULL, 3, '2021-07-19 13:48:23', '2021-07-22 09:41:20', NULL, ''),
+(27, 1, 'Tasks', '', '_self', 'voyager-star', '#000000', 26, 1, '2021-07-19 15:27:51', '2021-07-22 09:41:58', 'voyager.tasks.index', 'null'),
+(28, 1, 'Rules', '', '_self', 'voyager-info-circled', '#000000', 26, 2, '2021-07-20 12:15:11', '2021-07-22 09:41:59', 'voyager.rules.index', 'null'),
+(29, 1, 'Notions', '', '_self', 'voyager-lightbulb', '#000000', 32, 3, '2021-07-20 12:16:00', '2021-07-22 09:43:00', 'voyager.notions.index', 'null'),
+(30, 1, 'Partner Rules', '', '_self', 'voyager-info-circled', '#000000', 26, 3, '2021-07-20 13:23:40', '2021-07-22 09:42:00', 'voyager.partner-rules.index', 'null'),
+(32, 1, 'Detailed Tasks Info', '', '_self', 'voyager-documentation', '#000000', NULL, 4, '2021-07-22 09:42:35', '2021-07-22 09:44:10', NULL, ''),
+(33, 1, 'Categories', '', '_self', 'voyager-categories', '#000000', 35, 2, '2021-07-22 09:44:30', '2021-07-22 09:50:21', 'voyager.categories.index', 'null'),
+(34, 1, 'Posts', '', '_self', 'voyager-news', '#000000', 35, 1, '2021-07-22 09:44:48', '2021-07-22 09:50:19', 'voyager.posts.index', 'null'),
+(35, 1, 'News Info', '', '_self', 'voyager-documentation', '#000000', NULL, 6, '2021-07-22 09:50:14', '2021-07-22 09:51:16', NULL, '');
 
 -- --------------------------------------------------------
 
@@ -585,7 +636,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (54, '2021_07_20_144635_create_task_rule_table', 14),
 (55, '2021_07_20_144648_create_detailed_task_notion_table', 14),
 (56, '2021_07_20_155545_create_partner_rules_table', 15),
-(57, '2021_07_20_155645_create_partner_task_rule_table', 15);
+(57, '2021_07_20_155645_create_partner_task_rule_table', 15),
+(58, '2021_07_22_113828_create_categories_table', 16),
+(59, '2021_07_22_114905_create_posts_table', 16);
 
 -- --------------------------------------------------------
 
@@ -669,7 +722,8 @@ CREATE TABLE `partner_task_rule` (
 INSERT INTO `partner_task_rule` (`id`, `partner_task_id`, `partner_rule_id`) VALUES
 (1, 34, 1),
 (3, 35, 1),
-(4, 37, 1);
+(4, 37, 1),
+(5, 32, 1);
 
 -- --------------------------------------------------------
 
@@ -797,7 +851,17 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (98, 'read_partner_rules', 'partner_rules', '2021-07-20 13:23:40', '2021-07-20 13:23:40'),
 (99, 'edit_partner_rules', 'partner_rules', '2021-07-20 13:23:40', '2021-07-20 13:23:40'),
 (100, 'add_partner_rules', 'partner_rules', '2021-07-20 13:23:40', '2021-07-20 13:23:40'),
-(101, 'delete_partner_rules', 'partner_rules', '2021-07-20 13:23:40', '2021-07-20 13:23:40');
+(101, 'delete_partner_rules', 'partner_rules', '2021-07-20 13:23:40', '2021-07-20 13:23:40'),
+(102, 'browse_categories', 'categories', '2021-07-22 09:44:30', '2021-07-22 09:44:30'),
+(103, 'read_categories', 'categories', '2021-07-22 09:44:30', '2021-07-22 09:44:30'),
+(104, 'edit_categories', 'categories', '2021-07-22 09:44:30', '2021-07-22 09:44:30'),
+(105, 'add_categories', 'categories', '2021-07-22 09:44:30', '2021-07-22 09:44:30'),
+(106, 'delete_categories', 'categories', '2021-07-22 09:44:30', '2021-07-22 09:44:30'),
+(107, 'browse_posts', 'posts', '2021-07-22 09:44:47', '2021-07-22 09:44:47'),
+(108, 'read_posts', 'posts', '2021-07-22 09:44:47', '2021-07-22 09:44:47'),
+(109, 'edit_posts', 'posts', '2021-07-22 09:44:47', '2021-07-22 09:44:47'),
+(110, 'add_posts', 'posts', '2021-07-22 09:44:47', '2021-07-22 09:44:47'),
+(111, 'delete_posts', 'posts', '2021-07-22 09:44:47', '2021-07-22 09:44:47');
 
 -- --------------------------------------------------------
 
@@ -910,7 +974,59 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (98, 1),
 (99, 1),
 (100, 1),
-(101, 1);
+(101, 1),
+(102, 1),
+(103, 1),
+(104, 1),
+(105, 1),
+(106, 1),
+(107, 1),
+(108, 1),
+(109, 1),
+(110, 1),
+(111, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `posts`
+--
+
+CREATE TABLE `posts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `category_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `posts`
+--
+
+INSERT INTO `posts` (`id`, `title`, `content`, `image`, `created_at`, `updated_at`, `category_id`) VALUES
+(1, 'Omnis beatae mollitia quo excepturi aut est doloribus.', 'Tempore enim deleniti quam earum. Aliquam porro nemo tempore quae laudantium totam. Distinctio atque eum quia qui excepturi. Provident neque adipisci sint impedit similique aliquid. Sunt sunt accusantium esse occaecati labore cupiditate dicta.\n\nAccusamus corporis quaerat aperiam iste. Deserunt dignissimos sit eaque fuga architecto. Sed sed animi aut. Ea quis totam odit expedita sit.\n\nSed at quo quas. At optio repudiandae ducimus ratione eos.\n\nQuos facere facere consequatur necessitatibus enim aperiam. Nihil animi ipsam et ab non voluptatum. Magnam qui occaecati repellat atque aut asperiores voluptatem. Tempora praesentium temporibus quisquam consequatur fuga beatae.\n\nConsectetur quod cumque ipsa assumenda. Corrupti rem dolores magni qui ullam et nesciunt. Ipsa voluptatem voluptatibus modi fugiat itaque corporis est. Iure voluptatum necessitatibus quaerat in quas quia maxime. Quia blanditiis aut repudiandae adipisci minus aut.\n\nAssumenda possimus aut eveniet placeat et est. Dolor excepturi aut nam eos. Aliquid voluptatem quos illo autem atque voluptas atque ut. Reiciendis rerum dicta voluptas molestiae blanditiis rerum.\n\nAut vero maxime sit adipisci. Delectus itaque totam sunt reprehenderit eligendi nisi. Aliquam voluptas nisi optio corrupti voluptates maxime aspernatur. Expedita error ratione voluptatem.\n\nNeque consequatur fuga voluptas voluptatibus reprehenderit sint debitis. Et voluptatem eum rerum distinctio est repudiandae. Dolorem placeat sit quia eos labore.\n\nRepellendus dolor saepe mollitia voluptatem. Vel enim dolores quo eos molestiae quidem amet. Et eum et voluptatum quis maiores.\n\nAut quia voluptas et vitae est quos voluptatem. Nobis optio tempore cupiditate sunt blanditiis. Sit sit facere nesciunt ad sint aspernatur. Nam dicta veritatis velit possimus natus.', NULL, '2021-05-11 19:45:37', '2021-07-22 09:26:42', 2),
+(2, 'Sunt voluptates qui earum minima.', 'Provident unde magni vel praesentium adipisci natus velit. Fuga saepe ut beatae suscipit quas saepe sunt. Optio dolores soluta voluptate laboriosam ab. Reiciendis dolorem tempore perferendis quia numquam enim quae.\n\nOmnis itaque itaque natus amet sequi sed. Et earum tenetur commodi dolor nobis. Sunt est recusandae ad eos dignissimos et. Magnam qui et ad nisi illo necessitatibus. Et ipsam id praesentium dolor et.\n\nSint labore est suscipit molestiae qui eum. Consequatur occaecati atque mollitia tempore aut aut. Rerum nostrum tempore repudiandae sit minus nobis similique.\n\nConsequatur aut consequatur rem dolorem et earum aspernatur. Reprehenderit possimus perspiciatis rem. Facilis enim pariatur est ipsa deserunt necessitatibus.\n\nEt inventore animi veritatis aperiam molestias autem quod omnis. Vel iure dolor quisquam iste occaecati placeat. Atque qui voluptas dignissimos iste ipsa sapiente distinctio.\n\nDoloremque sed laudantium voluptate vero aut. Excepturi iusto itaque magni in. Eligendi tempore voluptatem iste corrupti saepe consequatur asperiores illo.\n\nExcepturi necessitatibus facilis laudantium voluptas aliquid. Nulla at sed adipisci non. Consequatur qui nihil tempora. Voluptas aut voluptas voluptatem quia in ea placeat. Suscipit deleniti est reprehenderit non.\n\nQui iure expedita expedita soluta soluta rerum eaque. Ut nihil reprehenderit id officiis non ad. A quos voluptatibus dolores quaerat velit sit molestiae sed. Sit ipsa qui qui labore. Modi provident vel optio fugit cumque laborum laboriosam et.\n\nAutem suscipit unde expedita explicabo ut nisi. Est tempora doloremque odit fuga sequi consectetur sapiente. Ut fugit exercitationem et quis.\n\nEsse vel asperiores ipsa totam aut dolorem. Distinctio accusamus natus illum aut esse et. Voluptatem a quaerat quos aliquam quasi doloribus. Error architecto ullam voluptatem et rem et aliquid.', NULL, '2021-05-15 22:16:30', '2021-07-22 09:26:42', 1),
+(3, 'Et rerum aspernatur officiis architecto repellendus suscipit tenetur rerum.', 'Vitae et eaque praesentium veritatis vitae molestias quasi aut. Esse totam impedit est saepe qui et. Enim quia accusantium hic praesentium. Harum et numquam sint nobis doloribus nostrum.\n\nAsperiores quasi harum quis quis. Quidem eius sed harum. Iste voluptas delectus amet eius.\n\nQuaerat aut reprehenderit accusantium ea adipisci. Temporibus nihil quibusdam non ut. Quo assumenda veritatis possimus aut. Voluptatum inventore quam dolore illum.\n\nSoluta aut eveniet est rerum qui modi ut. Eveniet totam exercitationem consequatur optio. Magnam sed ut omnis autem voluptas sint et. Architecto nostrum labore ut aliquam dignissimos.\n\nEt labore qui est amet qui dolor. Eum dolor illo eaque necessitatibus numquam ut. Commodi velit exercitationem nemo eligendi cumque debitis aut.\n\nUt aliquid aut ratione et. Aliquam expedita velit hic aspernatur occaecati porro. Nihil consequatur rerum dolor delectus suscipit iusto quia.\n\nCommodi inventore aperiam reiciendis laboriosam tempora fugiat. Autem ipsum repellat rerum. Suscipit maiores sed tempora nesciunt.\n\nSed animi ut id doloremque qui assumenda cum. Porro sit officiis libero harum praesentium tenetur. Et accusamus vitae sint in minima et.\n\nSit sit consequatur repellat hic voluptatem autem quia. Consequatur suscipit qui ducimus praesentium. Voluptas in minus minus consequuntur voluptas necessitatibus.\n\nOptio officiis fuga soluta quos. Ipsam dolor aut aperiam numquam consequatur impedit veniam. Qui natus et tenetur delectus aut porro reprehenderit. Iure pariatur quaerat dolore et totam. Aliquid non qui et et dolorem.', NULL, '2021-05-31 13:22:40', '2021-07-22 09:26:42', 2),
+(4, 'Qui minus autem harum sunt.', 'Itaque consequatur cum aut. Dolores quia laudantium laudantium qui eum quo. Quae molestiae non molestiae maiores reprehenderit.\n\nRerum dolorem beatae cum est. Dignissimos sapiente architecto eos sapiente. Animi quia voluptatem distinctio unde voluptas. Ipsam consequatur optio perspiciatis sed aspernatur voluptas.\n\nNulla incidunt qui doloribus soluta sed magnam asperiores adipisci. Est voluptatum natus accusamus magni. Iste eum iste voluptatum deserunt qui mollitia voluptatem.\n\nQui exercitationem ut natus aut doloribus ad. Adipisci sit maxime in rerum optio id fugit ut. Corrupti consequatur accusantium temporibus laborum quam culpa. Omnis ea molestias modi veritatis.\n\nIn veritatis quibusdam mollitia nostrum qui architecto et tenetur. Consectetur repudiandae odit porro pariatur.\n\nNon labore corrupti ut doloremque magni. Sequi beatae vero doloremque. Aut nam nostrum et id et. Quisquam consequuntur nulla in labore aliquid.\n\nOmnis id modi quia accusantium. Qui pariatur sit aliquam possimus quia inventore voluptate. Provident repudiandae et cum sit.\n\nUt vel quo officia labore velit. Atque amet error iste consequatur debitis ducimus nam. Quia quibusdam dolor molestias nisi tenetur quis laborum. Accusantium libero omnis vitae aut numquam quos placeat.\n\nHarum dolores sit eligendi occaecati voluptatem. Nam mollitia ut ut voluptas doloremque cumque expedita. Mollitia maiores minima magnam consequuntur.\n\nIn nobis dolor amet magnam quis molestiae. Harum alias corporis debitis perferendis nostrum impedit recusandae. Repellat qui omnis exercitationem omnis quia. Sed optio voluptas autem nobis recusandae excepturi pariatur. Dolor accusantium tenetur mollitia quam ut laborum sit.', NULL, '2021-05-20 08:50:52', '2021-07-22 09:26:42', 1),
+(5, 'Alias rerum voluptatem et optio.', 'Ut quae harum labore consectetur laboriosam autem eligendi. Consectetur voluptatibus molestias qui iusto labore eum excepturi repudiandae. Nihil et corrupti ut ex. Consequatur omnis est enim optio.\n\nNatus perferendis qui autem. Sequi nobis dolores earum consequatur impedit perferendis. Soluta error non error qui dignissimos cum aut. Quisquam fuga alias placeat distinctio.\n\nNon ducimus illo perferendis voluptatibus id a doloremque eligendi. Eaque unde et id quasi maiores et natus. Quis quis ullam vel rerum.\n\nOfficiis sunt eius aut dolore. Commodi magni ullam et. Ut est error eius omnis accusamus.\n\nQuia repudiandae provident aut voluptatem tenetur. Eum ea nihil dolor aut. Dolore eos qui qui asperiores necessitatibus. Laborum est veritatis ut id ut recusandae.\n\nDolorem omnis rem quo velit itaque est nemo. Eveniet quaerat nostrum nihil et beatae temporibus iste. Culpa error deserunt sequi dolores laboriosam qui. Consequatur corrupti et illo quos.\n\nEt vel sed repellat et eum ullam. Amet repellendus voluptas deleniti corporis dolores beatae. Voluptatem dolor minus culpa quia voluptatem omnis. Iure laudantium odio magni quibusdam non iste. Deserunt id tempore odio corporis fuga assumenda.\n\nEt et et non in eos totam. Sint soluta molestias officiis a harum debitis nihil. Harum voluptatem et dolores. Officia rem numquam tenetur asperiores. Dolor laboriosam accusantium labore officiis nulla.\n\nIncidunt suscipit ipsa repellendus soluta. Iure et et et tempore neque rem incidunt. Quos dolorum facere architecto cum aut voluptatibus.\n\nEnim adipisci facilis sint numquam doloribus voluptatem. Quo explicabo soluta illo magni dolor incidunt dolores fugit. Est nisi inventore velit similique nesciunt architecto illo. Commodi ad quam deserunt vitae iusto doloremque.', NULL, '2021-06-19 23:28:19', '2021-07-22 09:26:42', 2),
+(6, 'Sunt sed architecto a impedit quis et.', 'Eum voluptates quisquam expedita dolorem quis. Optio qui iure amet blanditiis nulla aut odit. Et minus occaecati tempore possimus repudiandae aut in. Nesciunt vel voluptates adipisci fugiat saepe.\n\nVoluptatum aliquid corrupti vel qui minus animi. Sed ut recusandae ratione autem autem vel recusandae. Voluptas cumque illum ipsum et excepturi possimus aut ullam. Alias delectus aut optio et.\n\nConsequatur enim quasi aut qui et. Est inventore non repellendus saepe. Ut vel molestiae et veritatis voluptas qui.\n\nVeritatis repellendus assumenda sed numquam maxime in. Corrupti dolor cum mollitia dolorem rerum neque quo. Est voluptatem ipsam eligendi distinctio amet et ea voluptas. Sint pariatur quos et ut sed. Consequatur eveniet nisi aut nam suscipit.\n\nNon debitis numquam quos odit quia natus corporis hic. Velit ducimus nostrum ea quod. Saepe nam nulla tempore sed praesentium. Dolore aliquid adipisci quia voluptates tempora enim aliquam.\n\nDucimus vel laborum qui minima suscipit. Repudiandae aut mollitia fuga. Et sunt hic numquam ipsum recusandae officia ut.\n\nVoluptatem enim sunt repudiandae similique nostrum cum unde et. Sint et saepe enim veniam accusantium itaque consequuntur. Sapiente quia doloremque sint.\n\nAperiam non dolore dolorem perspiciatis. Impedit sint quos et. Ab laborum expedita architecto ullam temporibus.\n\nQuaerat fugiat possimus eos architecto. Vitae ducimus voluptates eum. Quia rerum nostrum vel quia expedita.\n\nHarum qui maiores officia suscipit odit illum. Accusamus laudantium ut et temporibus. Autem sit vel assumenda. Optio delectus officia enim non iure aperiam.', NULL, '2021-07-10 04:12:20', '2021-07-22 09:26:42', 2),
+(7, 'Sit debitis similique sint expedita nihil tempore.', 'Aliquid dicta ipsam ut libero quis eum. Aut ex soluta quas aut. Molestiae non similique dicta distinctio suscipit inventore atque.\n\nQuia nisi cum ea qui animi. Debitis id quaerat ipsa consectetur asperiores. Dolor natus numquam earum sint sequi.\n\nUt earum nihil et ut praesentium totam. Officia numquam animi aut soluta. Ut expedita illo magnam quo consequatur est ut. Aut nulla quisquam quos delectus excepturi quae.\n\nAut sed nulla non omnis reiciendis et sed. Ut sit cumque consequatur qui in quia. Dolorem quo labore consequatur sed quia. Facilis ea expedita et ea dolorum.\n\nDolores qui numquam doloribus nihil tempora ipsa. Perspiciatis eligendi ea exercitationem maxime aut aspernatur aspernatur. Sit nemo ad qui pariatur aut.\n\nEius et numquam aliquam laboriosam labore ut praesentium eum. Numquam eum accusantium facere autem commodi sapiente enim. Ducimus id quia est velit. Porro quis cumque exercitationem quae et laudantium rem.\n\nPlaceat qui aperiam ipsa eveniet voluptatem laborum. Maxime vel numquam non doloribus aut id qui. Dignissimos repellat distinctio rerum quas sint dolores nisi. Praesentium beatae mollitia officia quod iusto.\n\nEt quisquam esse ut qui reiciendis quo. Dolorem et exercitationem voluptate fuga. Minima eum ipsa voluptatem enim maxime et molestias.\n\nPossimus et enim incidunt voluptatem quis quia. Et eveniet harum magni cum ullam.\n\nEt deleniti voluptatem voluptatem porro fuga dolor est. Quia illum quis voluptate quia aut qui quae. Aut assumenda earum ab saepe repellendus. Omnis unde qui reiciendis corporis omnis optio.', NULL, '2021-05-11 09:05:02', '2021-07-22 09:26:43', 2),
+(8, 'Et ipsa id quam eligendi quia dolore.', 'Quisquam beatae vel molestiae repellendus facilis. Iste aperiam velit explicabo repudiandae. Et quo quisquam quia ullam neque maxime eveniet.\n\nQuidem quasi laudantium laborum autem totam assumenda. Blanditiis et animi aut eos. Aut labore et molestiae qui accusamus tempore. Modi quos voluptatum aut laborum voluptatibus eum.\n\nQuas iure cumque molestiae omnis harum aut. Incidunt porro necessitatibus consequatur dolorem totam. Mollitia enim corrupti quibusdam sed.\n\nMollitia aliquam ratione vel perferendis sit eius. Magnam ex consequatur perferendis quas sint dolorem aut natus. Delectus mollitia voluptas quisquam.\n\nSit praesentium repellat qui voluptas dolore. Perspiciatis possimus dignissimos sit eos. Explicabo fugit tenetur enim facilis et quaerat est.\n\nQuaerat repudiandae quasi aut ratione qui tempore. Ut voluptas quo qui est provident. Rerum ut suscipit necessitatibus sit ratione blanditiis.\n\nAutem qui dolorem qui et dolorem consequatur. Nobis doloribus repudiandae esse ut fugit aut. Dolores odit doloribus nemo animi.\n\nOfficia recusandae alias tempora molestiae necessitatibus quas quia fugit. Sequi qui totam voluptatem harum minus natus. Ut tenetur quos soluta error. Explicabo nesciunt quam minima tempora architecto iure quia.\n\nSint odio illo pariatur iste. Rerum quos voluptatem quisquam et praesentium libero. Veritatis ad est recusandae aut est aliquid. Repellendus et beatae quis ducimus.\n\nSunt qui ut dolor reiciendis magni. Ea sunt nesciunt quisquam. Necessitatibus quis aperiam ipsam ea quia aut blanditiis suscipit.', NULL, '2021-05-03 23:15:17', '2021-07-22 09:26:43', 2),
+(9, 'Nemo aperiam dignissimos itaque quod commodi.', 'Commodi id omnis sunt. Quibusdam ullam non ipsa est distinctio esse quia iure. Nihil et ducimus occaecati qui ratione ipsa.\n\nAlias quisquam aliquam amet molestiae ut placeat. Rerum quibusdam dignissimos voluptas libero et voluptatem odit.\n\nAdipisci sint voluptatum voluptatum nemo tempora. Et molestias dignissimos non voluptas esse. Nulla voluptatem et rerum.\n\nNecessitatibus nihil incidunt reiciendis. Ut et ea voluptas sed nemo iusto et. Ipsum ex quos ut iusto voluptates. Fuga dolorum voluptatem vero adipisci qui explicabo accusantium.\n\nEt ipsum possimus sequi eaque praesentium ut cumque. Et aut aliquam dolorem nihil est dolores quis. Possimus architecto doloremque eos ut in voluptatem libero. Adipisci fuga non voluptas blanditiis quaerat. Debitis asperiores quam minima voluptatem incidunt perspiciatis.\n\nQui fugiat totam quis iusto hic accusantium. A eum voluptas facere error molestiae. Magni sit qui sit et quas libero. Iure ipsam reiciendis nam pariatur dolor eligendi.\n\nQui dolores nihil voluptas dolor. Impedit eum qui saepe et ad voluptate dicta suscipit. Hic consequatur sunt rerum et.\n\nRepellendus quo id praesentium nisi voluptas. Et aperiam culpa sed eaque voluptatum voluptas voluptatem. Quis distinctio cupiditate quis qui perspiciatis fuga perspiciatis. Enim ut autem et quasi necessitatibus.\n\nMaiores velit consectetur perferendis explicabo aut aut. Suscipit facilis quia qui placeat sequi harum. Sed numquam qui ipsa incidunt quis. Esse non unde exercitationem possimus iste magnam.\n\nEsse iusto voluptas voluptatibus corrupti. Perferendis praesentium aut ut maiores quo beatae. Expedita modi omnis quas dolor.', NULL, '2021-05-25 09:29:51', '2021-07-22 09:26:43', 5),
+(10, 'Ea est voluptas fugit voluptates sit voluptatum.', 'Eveniet enim porro qui et exercitationem ratione omnis. Et tempore et error sint officia. Incidunt enim libero asperiores. A et qui nihil quaerat quia quidem. Impedit earum cum quis alias excepturi iste quia.\n\nEa aliquam laudantium quia quisquam mollitia quo. Doloribus esse neque nisi facere quis impedit omnis qui. Et ipsa eaque sapiente exercitationem quasi est.\n\nDelectus aut minus in ipsum nulla quae minima. Est voluptas similique aut molestias.\n\nRecusandae ullam nihil eum architecto dolor nobis. Possimus qui quia qui tenetur aut qui. Dolorum quia enim in laudantium nam odit. Ducimus nobis dignissimos quia.\n\nSit occaecati suscipit cum enim vero sunt. Repudiandae rem aut id maxime. Consequatur sapiente blanditiis vel vel sint odit labore.\n\nSuscipit sed laboriosam ea quidem sint eveniet eos. Ipsam dignissimos aut iure placeat consequatur quia sint debitis. Reiciendis est sed quae et quia rerum.\n\nMagni sit dolores mollitia sint nemo. Sed qui id blanditiis ipsum. Aut sit asperiores nihil culpa.\n\nUt voluptatum magni rerum sint in voluptatem quisquam tempora. Omnis culpa aut facere aspernatur quod sit sit.\n\nLaboriosam quo deleniti aut sed voluptatibus eligendi. Quidem sapiente vel vel nisi animi quae fugit. Reprehenderit maxime voluptas laborum non vel aut voluptatem. At dolor modi deleniti quas qui. Ipsum omnis porro ea amet dolorum.\n\nQui ipsa accusantium consequatur veritatis rerum. Rerum doloremque fugit odit omnis repellendus molestiae aut. Eveniet cupiditate aut iusto dolores atque minima necessitatibus.', NULL, '2021-06-24 08:55:45', '2021-07-22 09:26:43', 4),
+(11, 'Id iure voluptatum nesciunt nihil qui sint laboriosam.', 'Ab exercitationem eius in sed rerum rerum. Quo aperiam assumenda voluptas dignissimos laboriosam dolores. Id provident maiores ab aut dicta. Debitis cum enim aut alias nam.\n\nMaxime expedita facilis ipsum. Nostrum dolor dolor sed necessitatibus. Vel assumenda hic et quos eos ad.\n\nOptio reprehenderit quo recusandae eligendi est. Et dolorem commodi architecto qui placeat id distinctio. Nam aliquid exercitationem aliquam eveniet. Tempore et aut voluptates ut et accusamus.\n\nPraesentium ab velit tenetur quidem corrupti et similique quo. Nisi molestiae fugit facilis eligendi mollitia nobis et. Aliquid nam ullam et eum. Corporis ut doloremque id qui amet.\n\nSint facere saepe recusandae enim aut alias nobis. Expedita sapiente cupiditate qui minus eveniet rerum odit.\n\nDignissimos ratione adipisci neque qui sit animi voluptatum. Ipsa cupiditate modi laboriosam facere et veritatis. Ullam similique eum occaecati pariatur.\n\nNon natus aut quia quia voluptatem eveniet voluptas. Quia numquam nihil odit nisi. Esse perferendis sequi molestias dicta aut debitis veritatis.\n\nSint dolorem quia consequatur et. Quia repellendus dolore quae unde fugiat. Ut at ducimus repellendus nam cupiditate.\n\nLibero dicta dolorum tempore est eius animi omnis. Saepe id tenetur sint ut consequatur. Minima temporibus occaecati sit reprehenderit. Aliquam molestias temporibus occaecati.\n\nConsequatur omnis temporibus fugit et vitae. Voluptas doloremque laboriosam ut nihil. Minima quam sed libero maxime nam.', NULL, '2021-05-13 22:05:47', '2021-07-22 09:26:43', 5),
+(12, 'Tenetur aut blanditiis reprehenderit pariatur harum ducimus.', 'Dicta ut rerum inventore. Animi ipsum pariatur aliquid et repellendus unde similique non. Asperiores corrupti praesentium velit consectetur ratione. Eum sed reiciendis dolorum ullam.\n\nSimilique est quia qui voluptas debitis dolores. Sed ex voluptatem tenetur in dignissimos incidunt culpa.\n\nQuis fugiat id reprehenderit nam ut. Ipsum et qui dolor saepe temporibus dolores illo nihil. Sit aut quasi est vel explicabo necessitatibus perferendis.\n\nIn dolorem minima quaerat provident voluptatibus autem. Eligendi voluptatem accusantium iste nisi consequatur cum. Consequatur rerum libero molestiae nihil id aut expedita. A dolorem et quis provident ut vero. Expedita enim et velit non voluptas.\n\nEum cumque dicta a dolorem eveniet. Consequatur explicabo quidem quidem consequatur corrupti vel sunt.\n\nQui enim et earum. Quo fuga incidunt quidem quo. Facere et magnam fuga quaerat earum aut.\n\nLaudantium inventore eum sunt praesentium facere ullam laborum. Debitis sequi voluptas rerum et aperiam quos. Omnis doloribus doloribus sit omnis et corporis.\n\nAdipisci qui incidunt sed distinctio dolore et. Magnam amet quos ratione quisquam dolor quae. Quis ea sed qui eos architecto voluptas est perspiciatis.\n\nOdit vel necessitatibus illo et aut est consequuntur. Iure est voluptas explicabo officiis ipsa est earum quia. Possimus doloremque adipisci nam quisquam pariatur cumque est. Voluptatibus magnam harum voluptatem at voluptatibus. Nisi minus sapiente sint odit ex.\n\nQui voluptatem perferendis dignissimos et non autem. Dicta vel ratione vitae eos vitae. Amet quam voluptas eos atque. Repellendus esse nemo quidem ipsum vel aut a.', NULL, '2021-07-15 21:55:17', '2021-07-22 09:26:43', 2),
+(13, 'Unde ut eaque sequi accusamus quos sequi.', 'Autem vitae explicabo quia non blanditiis iusto nemo. Dolores est delectus sit odio laborum. Ea dolores voluptatum rerum quasi consequatur incidunt. Asperiores ad vel deserunt consequuntur et tenetur.\n\nDolor harum repudiandae et reprehenderit sequi possimus. Vel provident est consequatur consequatur. Ipsa exercitationem ratione et mollitia aliquid molestiae.\n\nRerum fugiat hic voluptatem. Quo ut autem assumenda. Enim qui debitis ea sed. Necessitatibus omnis similique quaerat qui deserunt rerum quidem.\n\nExplicabo mollitia exercitationem omnis in necessitatibus accusantium aut. Nihil harum deserunt qui. Voluptatem et eaque voluptate corporis perspiciatis tempore.\n\nUnde quo nulla adipisci recusandae nihil sed. Explicabo voluptas minus nesciunt est pariatur. Illum ratione aliquam hic ipsum minima necessitatibus saepe.\n\nOmnis inventore autem recusandae mollitia in impedit qui dolorem. Possimus saepe reprehenderit illum numquam quasi corporis. Atque et qui blanditiis quod quia doloremque.\n\nInventore aut perferendis inventore dolores maiores. Et facere inventore omnis fuga voluptatem. Quasi reiciendis atque commodi optio. Ut expedita cum aut ipsa mollitia esse quia.\n\nArchitecto rerum eaque maxime blanditiis. Cum occaecati aliquid aut maiores unde inventore. Molestias aut amet atque ea incidunt eum. Error ea officiis eum.\n\nQui doloribus nihil et. Dolorum harum deserunt praesentium. Eum ut quae cum vitae architecto magni. Corporis dolor maxime aspernatur. Aut sunt quo ea.\n\nVoluptas tempora in perspiciatis sapiente. Iste voluptas sit sed aut. Aut qui natus assumenda aut.', NULL, '2021-06-21 17:41:19', '2021-07-22 09:26:43', 4),
+(14, 'Minima aut laudantium est iure nemo sit natus.', 'Aut quae est praesentium blanditiis alias consequuntur. Quia sunt quia hic quisquam. Et similique sed totam sapiente veniam. Voluptas et illo dolorem.\n\nDolore quis fuga et cupiditate. Aperiam sed ipsum dolores corrupti eos animi maxime. Repellendus delectus consequatur qui omnis cupiditate assumenda et.\n\nAut ea laboriosam sapiente aut commodi sit delectus. Sequi ex quis qui alias et. Iste non dolorem iure beatae.\n\nEst aut in et rerum. Sed sapiente corrupti quia quia dolorem. Aut eveniet facilis eius mollitia voluptatem qui.\n\nAccusamus debitis ut esse laboriosam. Sint inventore quia voluptatem et similique minus. Qui saepe voluptas sint ea. Blanditiis vel dicta quia et aut. Qui velit voluptate et qui omnis id praesentium.\n\nVelit possimus quo est tenetur. Facilis iure ab reiciendis iste ipsa deleniti. Ipsa maxime suscipit molestias debitis quia natus nisi. Ducimus quia eum ea.\n\nQui fuga eum praesentium ex et quia. Eum voluptatem quia qui et dolores consectetur officiis eveniet. Sit perferendis non et perspiciatis tempora exercitationem itaque recusandae. Consequuntur ab possimus officiis ut commodi enim.\n\nIpsa debitis eveniet similique voluptas hic cumque libero. Totam perspiciatis dignissimos dignissimos ut omnis quo nesciunt. Quaerat voluptates corporis omnis quo fugit architecto. Placeat rerum qui pariatur.\n\nMinima nihil facere consequatur temporibus animi. Ratione quo neque alias quia dolor dolores et. Voluptatibus non et inventore ad eos qui. Ea et est et asperiores officiis.\n\nQuibusdam culpa sed ut praesentium. Consequuntur temporibus et perspiciatis eveniet distinctio est quos quia. Facilis est earum repellendus quasi non. Animi quaerat totam unde est aut magnam qui.', NULL, '2021-04-27 17:49:29', '2021-07-22 09:26:43', 3),
+(15, 'Magni molestias adipisci suscipit eum.', 'Sint illum occaecati natus ut dolores tenetur numquam. Velit mollitia corporis est beatae necessitatibus consequatur. Cupiditate aperiam voluptas doloribus minima porro debitis.\n\nVoluptatem nam qui doloremque qui provident est consequatur magnam. Dignissimos pariatur culpa sunt quas blanditiis et.\n\nNostrum quia accusantium beatae beatae eaque. Amet a unde eveniet sed suscipit ut. Qui officia voluptas et aut. Autem qui ea corporis vel.\n\nSed qui temporibus rerum ut. Saepe natus corrupti aut dolorum modi. Consequuntur consectetur repudiandae enim. Similique nisi voluptates odio quaerat.\n\nNeque officiis sint rerum maxime. Doloribus ut dolorum qui aliquam rerum et delectus eum. Id ratione id sit quo.\n\nQuam cumque minima vel et eaque. Iste et soluta ex molestias dolorem.\n\nPlaceat quaerat tempore recusandae fugiat rerum. Qui et illo officiis et et dolorum. Asperiores odio quia asperiores qui.\n\nQuaerat quos placeat harum natus nihil suscipit est. Et et architecto itaque id deserunt quam. Ut culpa eligendi nostrum tenetur cumque.\n\nCorrupti dolore temporibus amet deserunt. Accusantium sint qui corporis fugit dolore.\n\nEst enim quod ea non et. Expedita maiores et ut eius iure mollitia. Placeat et dolorum architecto quos quia a et. Natus voluptatem id aut.', NULL, '2021-06-08 14:38:04', '2021-07-22 09:26:43', 4),
+(16, 'Omnis qui temporibus aut aut dolore quaerat ut.', 'Est ab facere magni. Magni id iste placeat est unde tempora ab. Sed ullam tempora inventore amet aut.\n\nVoluptatum consectetur et et. Nobis quibusdam ducimus aut. Quia dolorem et voluptas in.\n\nFuga placeat perferendis earum inventore accusantium quos consequatur quo. Maiores est adipisci dignissimos voluptate fuga debitis deserunt. Aut aperiam praesentium autem et quo expedita sed.\n\nSunt illo consequuntur rem sed. Voluptas provident fugit nihil ut. Placeat mollitia harum qui consequatur dolores.\n\nAt possimus ea expedita accusamus consequatur. Voluptas eveniet inventore quo eum sunt animi. Incidunt et vero labore aliquam sapiente aliquid est. Libero suscipit eos soluta et assumenda.\n\nUt tenetur pariatur ipsam voluptatem. Id incidunt a rem quod consequatur amet.\n\nNeque in qui est maxime ipsum. Molestiae est rem aut et omnis omnis.\n\nCumque nesciunt esse et voluptatibus iure. Repellendus blanditiis minus quidem sit qui aperiam corporis eum. Iusto optio sapiente ducimus ut voluptatem eos aut. At similique saepe sit iure minus.\n\nReprehenderit nihil atque sit perspiciatis quas aperiam. Molestiae illum aperiam quas doloribus recusandae et voluptates. Et aut qui a quia et.\n\nNulla dolor officia dolorem voluptas assumenda consequuntur neque iure. Quis non illum dicta qui. Sit sapiente maiores eum.', NULL, '2021-05-25 12:48:32', '2021-07-22 09:26:43', 1),
+(17, 'Asperiores quaerat in at id.', 'Nam enim et placeat non vero. Vero molestiae saepe aut in. Et laborum ratione ea facere ex autem eveniet officia. Earum dolores tempore at ut.\n\nOptio excepturi qui possimus quos esse hic enim et. Quidem perferendis doloribus aut qui non quas.\n\nEt deleniti vel mollitia quis ut. Eum cupiditate enim illum voluptatem inventore quia et.\n\nCumque sit vel libero ea. Autem adipisci explicabo doloremque et temporibus. Incidunt vero qui accusamus.\n\nNulla ut inventore ut unde distinctio repellat reiciendis ut. A quo odio voluptatibus et. Aut nemo suscipit sit quia ut recusandae.\n\nExpedita quia qui optio amet. Nostrum qui possimus neque ab voluptatem est est laborum. Qui sed quaerat et fugit eaque vero sed. Odio aliquid quae natus at rerum eum.\n\nNostrum necessitatibus dolore molestias et velit sit. Sunt non quidem culpa omnis. Cumque quod praesentium repellendus amet doloremque rem blanditiis.\n\nAliquam accusantium excepturi eum voluptatum architecto laudantium. Reprehenderit dolores a autem fugiat. Eos molestiae laborum aliquam quod saepe eum dignissimos. Sed nesciunt optio aut cum voluptatem eius eligendi.\n\nQuasi voluptatem sit maiores impedit ullam saepe quae totam. Quo ut natus repellat ducimus quisquam quam. Ratione pariatur laborum iste et.\n\nAmet corporis atque assumenda cupiditate est est sequi qui. Atque quia suscipit explicabo debitis commodi rem. Qui eum delectus dolore. Earum odio fugit numquam.', NULL, '2021-07-01 00:43:15', '2021-07-22 09:26:43', 2),
+(18, 'Nesciunt nostrum voluptas velit temporibus sunt.', 'Qui inventore dolore aliquam impedit laboriosam neque corporis. Sint impedit officia recusandae molestiae sint omnis. Illum quia omnis ipsam sunt fugit aut. Deleniti quo accusantium qui tempore laudantium id.\n\nAccusantium aspernatur non et fuga ut mollitia. Adipisci doloribus velit rerum deserunt. Debitis id reiciendis necessitatibus vitae tempora in consequatur.\n\nEa eveniet doloremque repudiandae in minus et. Cumque et qui eum ut quis dolorem ut. Error omnis quo voluptatem totam nisi sequi excepturi.\n\nSimilique architecto autem dignissimos. Sint velit exercitationem repudiandae. Est cupiditate non consequuntur suscipit et ut. Adipisci optio aspernatur est vel qui reprehenderit vel.\n\nVoluptates quisquam earum et et et. Qui fuga officiis repudiandae corrupti ut sed minima. Dolorem soluta vitae et recusandae aspernatur dolores dolorum. Quae ratione qui officia quia aut vel non. Repellat rerum cumque molestiae sed magni quibusdam quia quo.\n\nAut sit quo aspernatur tenetur voluptatum inventore. Eum et et ut pariatur optio recusandae. Et totam qui eaque. Dolores voluptatem corporis libero sed velit autem.\n\nFuga soluta quia veniam placeat et. Voluptas cumque atque voluptatem fuga. Et non iusto asperiores repellendus est eos.\n\nId reprehenderit ea eius commodi et officia. Voluptatibus laboriosam fuga enim molestiae ea et odio ipsum. Porro corporis totam sed et. Hic alias est ut saepe ad debitis.\n\nPerferendis nemo consectetur quia eius quis sint quidem et. Et aut sit in placeat nostrum amet voluptatem. Velit dicta qui autem. Reiciendis nemo dolores consectetur facilis hic in.\n\nMollitia qui quo quibusdam est qui et veritatis eaque. Doloremque quo in aut soluta. Voluptates at itaque et accusamus qui aut. Deserunt officiis nulla qui voluptas.', NULL, '2021-05-08 00:52:58', '2021-07-22 09:26:43', 3),
+(19, 'Assumenda nostrum nobis architecto reprehenderit.', 'Sit ducimus vel dolores tempora delectus alias corrupti et. Omnis reiciendis nulla nulla repudiandae. Possimus et doloribus voluptatibus ad qui alias. Consequuntur error magni quod blanditiis atque dicta aut id.\n\nEt illo quia aut officia optio voluptas magni et. Deserunt quae ut et dolorum aut perspiciatis. Reprehenderit mollitia aut tenetur harum. Officiis aperiam tenetur amet.\n\nArchitecto sint iusto quasi voluptatem aperiam cumque natus officiis. In consequatur voluptas quam repudiandae mollitia. At eius aliquid optio vel.\n\nQuia voluptatem a quis eaque. At eaque quia quaerat delectus sunt quia qui voluptatibus. Nostrum ad aut reprehenderit consequatur non eligendi praesentium dolores. Voluptatem iste voluptates eaque vel accusamus autem quae et.\n\nAliquid dolores rerum dignissimos qui. Consequatur et temporibus qui blanditiis exercitationem veritatis molestias. Modi dolorem quasi voluptate sed quo illo.\n\nAb repudiandae est magni aperiam. Dolores occaecati voluptas unde est maiores. Nisi aut unde qui enim qui.\n\nDelectus quia velit consequuntur aut nihil nihil voluptas architecto. Sint perspiciatis sit molestiae et impedit. Ut id voluptates corrupti aut laborum vitae. Nulla et laboriosam et incidunt laborum voluptatem nisi.\n\nQuia aspernatur aut voluptate et eaque voluptatum ad. Debitis rerum aperiam minima repellendus assumenda est autem.\n\nAliquam dolor sapiente dolor. Amet laudantium mollitia rerum harum.\n\nIpsum esse dolore vel voluptas quia ea. Voluptatem ipsa libero ut et rem natus suscipit. Quidem in quaerat numquam cupiditate sit accusantium similique. Quas optio error qui aut reiciendis.', NULL, '2021-07-18 05:26:05', '2021-07-22 09:26:43', 3),
+(20, 'Ea aut vero rem unde.', 'Et sed soluta rem id possimus nemo eos. Sed porro placeat illum inventore a nostrum quia. Nemo ex accusamus ut quisquam consectetur atque.\n\nAccusamus eos corrupti hic nihil iure. Quasi iure et aut quidem sed fugit voluptas nulla. Suscipit iusto et consectetur veritatis. Odit excepturi possimus eveniet unde ea ipsum itaque.\n\nSint amet quisquam esse et laboriosam voluptatem sunt. Deleniti debitis consequatur qui odio soluta deserunt nam. Nihil in praesentium suscipit rerum eveniet minus dolor odio. Odit aut architecto perspiciatis sed asperiores.\n\nAlias voluptatem fugiat qui facilis quis asperiores. Minus ut sunt quis aut. Magni at sapiente sequi quaerat eum nihil deleniti.\n\nOfficia enim vel animi pariatur. Consequatur velit voluptatem voluptas facere quidem sed non. Debitis aut placeat ut. Quo enim ut recusandae omnis rerum.\n\nEa repellendus quisquam soluta culpa sint. Quia molestiae et rerum delectus.\n\nMinima consequuntur provident velit. Quidem non nam consequatur consequuntur recusandae recusandae maxime et. Tempore voluptatem perspiciatis perferendis molestiae et facilis eligendi.\n\nNecessitatibus illo delectus quia minima saepe. Voluptas sit saepe recusandae unde itaque. Et laborum ad eos est inventore voluptatum harum. Atque similique vel reiciendis similique aut.\n\nQuo esse consequuntur ipsum quaerat nesciunt. Dolor amet sit accusantium qui omnis ratione voluptatibus. Esse dolorum laboriosam dolores nulla nihil asperiores tenetur.\n\nIn in repudiandae quidem. Inventore molestiae sed ipsa neque rem totam excepturi. Quod fuga quibusdam eveniet reiciendis dicta quia dolorem. Autem hic culpa cumque voluptate dicta odit qui.', NULL, '2021-05-16 02:24:05', '2021-07-22 09:26:43', 4);
 
 -- --------------------------------------------------------
 
@@ -1091,7 +1207,8 @@ CREATE TABLE `task_rule` (
 
 INSERT INTO `task_rule` (`id`, `task_id`, `rule_id`) VALUES
 (1, 2, 1),
-(2, 1, 1);
+(2, 1, 1),
+(3, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -1121,6 +1238,7 @@ CREATE TABLE `users` (
   `role_id` bigint(20) UNSIGNED DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `telegram_user_id` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'users/default.png',
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1137,11 +1255,11 @@ CREATE TABLE `users` (
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`, `partner_email`, `gender_id`, `duration_id`) VALUES
-(1, 1, 'admin', 'admin@admin.com', 'users/default.png', NULL, '$2y$10$vALnBdtdRR7MYVorxGGEi.NwolxJ3R3/vqYPV1xdq2SyFdeBHjDre', NULL, '{\"locale\":\"en\"}', '2021-07-06 08:30:05', '2021-07-12 11:52:52', NULL, NULL, NULL),
-(3, 2, 'John', 'john@laravel.test', 'users/default.png', NULL, '$2y$10$Vh0l/JzwtwBnCDcquRcOr.zfMsVUA57ebiHe2zL6X90e9CzPdjATO', NULL, NULL, '2021-07-07 05:56:24', '2021-07-16 13:18:17', 'vyacheslav.oleshko.work@gmail.com', 1, 2),
-(14, 2, 'Viacheslav', 'vyacheslav.oleshko.work@gmail.com', 'users/default.png', NULL, '$2y$10$McRMdlbXwnsrCQseuaM8yuck9Sa6kARczRgd/prCEi2QG9Z3RigC.', NULL, NULL, '2021-07-07 11:46:32', '2021-07-19 13:29:20', 'john@laravel.test', 1, 1),
-(19, 2, 'Girl', 'girl@laravel.test', 'users/default.png', NULL, '$2y$10$XOW2AkhBgL2DEoFDo1zyeun6PYSkXPqkBU0ahWJiBFFEuGgkkhxmO', NULL, NULL, '2021-07-21 15:16:20', '2021-07-21 15:17:58', 'vyacheslav.oleshko.work@gmail.com', 2, 1);
+INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `telegram_user_id`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`, `partner_email`, `gender_id`, `duration_id`) VALUES
+(1, 1, 'admin', 'admin@admin.com', NULL, 'users/default.png', NULL, '$2y$10$vALnBdtdRR7MYVorxGGEi.NwolxJ3R3/vqYPV1xdq2SyFdeBHjDre', NULL, '{\"locale\":\"en\"}', '2021-07-06 08:30:05', '2021-07-12 11:52:52', NULL, NULL, NULL),
+(3, 2, 'John', 'john@laravel.test', '378686094', 'users/default.png', NULL, '$2y$10$Vh0l/JzwtwBnCDcquRcOr.zfMsVUA57ebiHe2zL6X90e9CzPdjATO', NULL, NULL, '2021-07-07 05:56:24', '2021-07-16 13:18:17', 'vyacheslav.oleshko.work@gmail.com', 1, 2),
+(14, 2, 'Viacheslav', 'vyacheslav.oleshko.work@gmail.com', '378686094', 'users/default.png', NULL, '$2y$10$McRMdlbXwnsrCQseuaM8yuck9Sa6kARczRgd/prCEi2QG9Z3RigC.', NULL, NULL, '2021-07-07 11:46:32', '2021-07-19 13:29:20', 'john@laravel.test', 1, 1),
+(19, 2, 'Girl', 'girl@laravel.test', NULL, 'users/default.png', NULL, '$2y$10$XOW2AkhBgL2DEoFDo1zyeun6PYSkXPqkBU0ahWJiBFFEuGgkkhxmO', NULL, NULL, '2021-07-21 15:16:20', '2021-07-21 15:17:58', 'vyacheslav.oleshko.work@gmail.com', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -1260,6 +1378,12 @@ CREATE TABLE `user_roles` (
 -- Индексы таблицы `accessories`
 --
 ALTER TABLE `accessories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `categories`
+--
+ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1423,6 +1547,13 @@ ALTER TABLE `permission_role`
   ADD KEY `permission_role_role_id_index` (`role_id`);
 
 --
+-- Индексы таблицы `posts`
+--
+ALTER TABLE `posts`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `posts_category_id_index` (`category_id`);
+
+--
 -- Индексы таблицы `preferences`
 --
 ALTER TABLE `preferences`
@@ -1547,16 +1678,22 @@ ALTER TABLE `accessories`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
+-- AUTO_INCREMENT для таблицы `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT для таблицы `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
 
 --
 -- AUTO_INCREMENT для таблицы `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT для таблицы `detailed_tasks`
@@ -1592,7 +1729,7 @@ ALTER TABLE `genders`
 -- AUTO_INCREMENT для таблицы `generated_tasks`
 --
 ALTER TABLE `generated_tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT для таблицы `likes`
@@ -1628,13 +1765,13 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT для таблицы `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT для таблицы `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT для таблицы `notions`
@@ -1658,13 +1795,19 @@ ALTER TABLE `partner_tasks`
 -- AUTO_INCREMENT для таблицы `partner_task_rule`
 --
 ALTER TABLE `partner_task_rule`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+
+--
+-- AUTO_INCREMENT для таблицы `posts`
+--
+ALTER TABLE `posts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT для таблицы `preferences`
@@ -1712,7 +1855,7 @@ ALTER TABLE `task_combinations`
 -- AUTO_INCREMENT для таблицы `task_rule`
 --
 ALTER TABLE `task_rule`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `translations`
@@ -1724,7 +1867,7 @@ ALTER TABLE `translations`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT для таблицы `user_levels`
@@ -1831,6 +1974,12 @@ ALTER TABLE `partner_task_rule`
 ALTER TABLE `permission_role`
   ADD CONSTRAINT `permission_role_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `permission_role_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `posts`
+--
+ALTER TABLE `posts`
+  ADD CONSTRAINT `posts_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `tasks`
