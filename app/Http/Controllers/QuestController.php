@@ -30,23 +30,25 @@ class QuestController extends Controller
                 $detailed_task = DetailedTask::findOrFail($generated_task->detailed_task_id);
                 $detailed_task_notion = $detailed_task->notions->random();
                 
-                $location_description = LocationDescription::find($generated_task->location_description_id)->description;
+                $location_description = LocationDescription::find($generated_task->location_description_id);
                 $task = Task::findOrFail($generated_task->task_id);
                 $task_description = $task->description;
                 $task_rule = $task->rules->random();
-                return view('generated-quest', ['generated_task' => $generated_task, 'location_description' =>  $location_description, 'task_description' => $task_description, 'detailed_task' => $detailed_task, 'detailed_task_notion' => $detailed_task_notion, 'task_rule' => $task_rule]);
+                return view('generated-quest', ['generated_task' => $generated_task, 'location_description' =>  $location_description->description, 'location_description_image' => $location_description->image, 'task_description' => $task_description, 'task_image' => $task->image,  'detailed_task' => $detailed_task, 'detailed_task_notion' => $detailed_task_notion, 'task_rule' => $task_rule]);
     
     
             } elseif ($generated_task = GeneratedTask::where('partner_id', $user->id)->whereNull('is_rejected')->first()) {
                 $detailed_task = DetailedTask::findOrFail($generated_task->detailed_task_id);
                 $detailed_task_notion = $detailed_task->notions->random();
-                $location_description = LocationDescription::find($generated_task->location_description_id)->partner_description;
+                $location_description = LocationDescription::find($generated_task->location_description_id);
                 $task = Task::findOrFail($generated_task->task_id);
                 $task_description = $task->partner_description;
                 $generated_quest = [
                     'generated_task' => $generated_task,
-                    'location_description' =>  $location_description,
+                    'location_description' =>  $location_description->partner_description,
+                    'location_description_image' =>  $location_description->image,
                     'task_description' => $task_description,
+                    'task_image' => $task->image,
                     'detailed_task_notion' => $detailed_task_notion,
                 ];
                 if(isset($detailed_task->custom_partner_task)) {

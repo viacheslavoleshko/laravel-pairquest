@@ -21,6 +21,11 @@
                             <option value="{{ $user_level }}">{{ $key }}</option>
                         @endforeach
                     </select>
+                    @error('user_level')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
 
                 <div class="form-wrapper__button">

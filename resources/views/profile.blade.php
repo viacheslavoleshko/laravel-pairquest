@@ -73,7 +73,7 @@
                     </div>
                 @endif
                 <div class="form-wrapper__button">
-                    <button>Змінити</button>
+                    <button type="submit">Змінити</button>
 
                 </div>
 

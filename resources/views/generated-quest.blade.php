@@ -17,9 +17,9 @@
 
                     <div class="post-grid">
                         <div class="post-grid-img newsman-object-fit">
-                            <img src="/img/22.jpg" alt="g1">
-                            <img src="/img/22.2.jpg" alt="g1">
-                            <img src="/img/22.3.jpg" alt="g1">
+                            <img src="{{ Storage::url($location_description_image) }}" alt="g1">
+                            <img src="{{ Storage::url($task_image) }}" alt="g2">
+                            <img src="{{ Storage::url($detailed_task->image) }}" alt="g3">
                         </div>
                     </div>
                     @if (isset($generated_task->started_at)) 

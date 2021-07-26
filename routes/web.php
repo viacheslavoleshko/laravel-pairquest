@@ -6,8 +6,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\QuestController;
 use App\Http\Controllers\PartnerController;
-use App\Http\Controllers\LocationController;
-use App\Http\Controllers\AccessoryController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\PreferenceController;
 use App\Http\Controllers\ImportExportController;
 use App\Http\Controllers\GeneratedTaskController;
@@ -23,13 +22,6 @@ use App\Http\Controllers\ProfileController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-
-
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
@@ -55,6 +47,9 @@ Route::get('/', [PostController::class, 'index'])->name('posts.index');
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::post('/profile/{user}', [ProfileController::class, 'update'])->name('profile.update');
+
+Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');
+Route::post('/feedback/{user}', [FeedbackController::class, 'store'])->name('feedback.store');
 
 Route::post('/partner/{user}', [PartnerController::class, 'update'])->name('partner.store');
 

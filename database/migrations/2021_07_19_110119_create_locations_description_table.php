@@ -20,6 +20,8 @@ class CreateLocationsDescriptionTable extends Migration
 
             $table->unsignedBigInteger('location_id')->index();
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
+            
+            $table->string('image')->nullable();
         });
     }
 

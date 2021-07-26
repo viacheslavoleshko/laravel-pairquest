@@ -37,7 +37,7 @@ class ProfileController extends Controller
         ]);
 
         if (!Hash::check($validatedData['current_password'], $user->password)) {
-            return back()->withErrors(['password'=>'Password not match']);
+            return back()->withErrors(['current_password' => 'Password not match']);
         }
 
         $user->name = $validatedData['name'];

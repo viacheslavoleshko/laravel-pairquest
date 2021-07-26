@@ -23,6 +23,8 @@ class CreateTasksTable extends Migration
 
             $table->unsignedBigInteger('preference_id')->index();
             $table->foreign('preference_id')->references('id')->on('preferences')->onDelete('cascade');
+
+            $table->string('image')->nullable();
         });
     }
 

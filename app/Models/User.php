@@ -74,6 +74,11 @@ class User extends \TCG\Voyager\Models\User
         return $this->hasMany(Like::class);
     }
 
+    public function feedbacks()
+    {
+        return $this->hasMany(Feedback::class);
+    }
+
     /**
      * Route notifications for the Telegram channel.
      *
