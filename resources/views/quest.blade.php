@@ -12,11 +12,7 @@
                     Створити новий квест
                 </div>
                 <div class="form-wrapper__content">
-                    @foreach ($durations as $duration)
-                        <button type="submit" name="duration" value="{{ $duration->id }}">{{ $duration->name }}</button>
-                    @endforeach
                     <select class="input-text select-content select-content-quest @error('user_level') is-invalid @enderror" name="user_level" required autocomplete="user_level">
-                        <option selected disabled>Рівень користувача</option>
                         @foreach ($user_levels as $key => $user_level)
                             <option value="{{ $user_level }}">{{ $key }}</option>
                         @endforeach
@@ -26,6 +22,9 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
+                    @foreach ($durations as $duration)
+                        <button type="submit" name="duration" value="{{ $duration->id }}">{{ $duration->name }}</button>
+                    @endforeach
                 </div>
 
                 <div class="form-wrapper__button">

@@ -24,7 +24,7 @@
                                 @endif
                             </div>
                             <div class="form-wrapper__content">
-                                <input class="input-text" type="email" placeholder="Email">
+                                <input class="input-text" type="email" placeholder="Partner Email" name="partner_email" value="{{ Auth::user()->partner_email }}" required autocomplete="partner_email">
                                 @error('partner_email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -38,10 +38,6 @@
                         </div>
                     </form>
                 </div>
-                <div class="row">
-                    <button class="col display-inline-block button button-outline button-round padding-left padding-right">Edit Profile</button>
-                </div>
-
             </div>
         </div>
     </div>

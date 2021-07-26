@@ -45,6 +45,32 @@
                             @endif
                         </div>
                     </div>
+                    @if (isset($detailed_task->accessories) && $detailed_task->accessories->isNotEmpty()) 
+                        <div class="form-wrapper__content-info">
+                            <div class="form-wrapper__content-title">
+                                Аксесуари
+                            </div>
+                        </div>
+                        <div class="list-friends">
+                            @foreach ($detailed_task->accessories as $accessory)
+                                <div class="display-flex align-items-center justify-content-space-between">
+                                    <div class="post-author display-flex align-items-center">
+                                        <div class="post-author-img bg-color-orange newsman-object-fit">
+                                            <img src="{{ Storage::url($accessory->image) }}" alt="user3">
+                                        </div>
+                                        <div class="post-author-infos margin-left-half">
+                                            <span class="post-author-name display-block text-semibold"><a href="#">{{ $accessory->name }}</a></span>
+                                            <span class="post-author-extra">{{ $accessory->description }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="newsman-badge">
+                                        <a href="{{ $accessory->url }}" class="badge color-yellow text-color-black">Купити</a>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+
                     <div class="form-wrapper__content-info">
                         <div class="form-wrapper__content-title">
                             Правила
@@ -61,32 +87,6 @@
                             {{ $detailed_task_notion->description }}
                         </div>
                     </div>
-                    @if (isset($detailed_task->accessories) && $detailed_task->accessories->isNotEmpty()) 
-                        <div class="form-wrapper__content-info">
-                            <div class="form-wrapper__content-title">
-                                Аксесуари
-                            </div>
-                        </div>
-
-                        <div class="list-friends">
-                            @foreach ($detailed_task->accessories as $accessory)
-                                <div class="display-flex align-items-center justify-content-space-between">
-                                    <div class="post-author display-flex align-items-center">
-                                        <div class="post-author-img bg-color-orange newsman-object-fit">
-                                            <img src="./img/user3.png" alt="user3">
-                                        </div>
-                                        <div class="post-author-infos margin-left-half">
-                                            <span class="post-author-name display-block text-semibold"><a href="/profile/">{{ $accessory->name }}</a></span>
-                                            <span class="post-author-extra">San francisco</span>
-                                        </div>
-                                    </div>
-                                    <div class="newsman-badge">
-                                        <a href="#" class="badge color-yellow text-color-black">Купити</a>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                    @endif    
                 </div>
 
                 <div class="form-wrapper__button">

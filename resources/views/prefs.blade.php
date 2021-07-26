@@ -15,8 +15,8 @@
                     <div class="form-wrapper__content-checkbox-wrapper">
                         @foreach ($preferences as $key => $preference)
                             <div class="form-wrapper__content-checkbox-inner">
-                                <input id="preferences-{{$key}}" class="categories-radio" type="checkbox" name="preferences[]" value="{{ $preference->id }}" id="flexCheckDefault" {{ old('preferences[]', Auth::user()->preferences->contains('id', $preference->id) ? 'checked' : '') }} >
-                                <label class="fpreferences-{{$key}}" for="flexCheckDefault">
+                                <input id="preferences-{{$key}}" class="categories-radio" type="checkbox" name="preferences[]" value="{{ $preference->id }}" {{ old('preferences[]', Auth::user()->preferences->contains('id', $preference->id) ? 'checked' : '') }} >
+                                <label class="fpreferences-{{$key}}" for="preferences-{{$key}}">
                                     {{ $preference->description }}
                                 </label>
                             </div>
@@ -36,8 +36,8 @@
                     <div class="form-wrapper__content-checkbox-wrapper">
                         @foreach ($locations as $key => $location)
                             <div class="form-wrapper__content-checkbox-inner">
-                                <input id="locations-{{$key}}" class="categories-radio" type="checkbox" name="locations[]" value="{{ $location->id }}" id="flexCheckDefault" {{ old('locations[]', Auth::user()->locations->contains('id', $location->id) ? 'checked' : '') }} >
-                                <label class="locations-{{$key}}" for="flexCheckDefault">
+                                <input id="locations-{{$key}}" class="categories-radio" type="checkbox" name="locations[]" value="{{ $location->id }}" {{ old('locations[]', Auth::user()->locations->contains('id', $location->id) ? 'checked' : '') }} >
+                                <label class="locations-{{$key}}" for="locations-{{$key}}">
                                     {{ $location->name }}
                                 </label>
                             </div>

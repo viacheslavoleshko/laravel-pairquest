@@ -8,11 +8,8 @@
     <div class="newsman-block no-border">
         <div class="newsman-block-title display-flex align-items-center justify-content-space-between">
             <div>
-                <div class="block-title-medium no-margin block-title text-semibold">World News TV</div>
+                <div class="block-title-medium no-margin block-title text-semibold">Новини</div>
                 <div class="newsman-opacity block-title no-margin newsman-block-subtitle">Read trending news</div>
-            </div>
-            <div class="newsman-badge">
-                <a href="#" class="badge bg-color-white text-color-black">SEE ALL</a>
             </div>
         </div>
         <div class="newsman-block-content">

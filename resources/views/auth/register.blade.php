@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('title')
-    <title>Registration</title>
-@endsection
+@section('title', 'Registration')
 
 @section('content')
     <!-- form -->

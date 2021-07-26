@@ -34,7 +34,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::find($id);
-        return view('posts.show', ['post' => $post]);
+        $post = Post::with('category')->find($id);
+        return view('posts.show', ['post' => $post, 'posts' => Post::inRandomOrder()->with('category')->where('category_id', $post->category->id)->take(3)->get()]);
     }
 }
