@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('title')
-    <title>News</title>
-@endsection
+@section('title', 'News')
 
 @section('content')
     @include('includes._navbar')

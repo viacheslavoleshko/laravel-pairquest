@@ -30,7 +30,7 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                    <input class="input-text @error('password') is-invalid @enderror" type="password" placeholder="Password" name="password" required autocomplete="current-password">
+                    <input class="input-text @error('password') is-invalid @enderror" type="password" placeholder="Password" name="password" required autocomplete="password">
                     @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

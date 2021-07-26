@@ -12,17 +12,12 @@ class LikeController extends Controller
     public function store(Request $request, $id)
     {
         $user = User::with('locations')->findOrFail(Auth::user()->id);
-        if($request->is_like == 1) {
-            $like = Like::firstOrCreate(
+            $like = Like::updateOrCreate(
                 ['task_id' => $id, 'user_id' => $user->id], 
-                ['is_like' => 1]
+                ['is_like' => $request->is_like]
             );
-        } elseif($request->is_like == 0) {
-            $like = Like::firstOrCreate(
-                ['task_id' => $id, 'user_id' => $user->id], 
-                ['is_like' => 0]
-            );
-        }
+            $like->save();
+
         return redirect()->route('quest');
     }
 }

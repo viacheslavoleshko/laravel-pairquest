@@ -6,6 +6,6 @@
             <i class="icon icon-back"></i>
             </a>
         </div>
-        <div class="title title-navbar-transparent">Single</div>
+        <div class="title title-navbar-transparent">@yield('title')</div>
     </div>
 </div>

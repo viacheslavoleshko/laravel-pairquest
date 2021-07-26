@@ -80,8 +80,8 @@ class GeneratedTaskController extends Controller
 
             // dd($generated_task);
             $generated_task->save();
-            Mail::to(User::find($generated_task->user_id))->send(new UserQuestGenerated($generated_task));
-            Mail::to(User::find($generated_task->partner_id))->send(new PartnerQuestGenerated($generated_task));
+            // Mail::to(User::find($generated_task->user_id))->send(new UserQuestGenerated($generated_task));
+            // Mail::to(User::find($generated_task->partner_id))->send(new PartnerQuestGenerated($generated_task));
             Notification::send(User::find($generated_task->user_id), new Telegram($generated_task));
             Notification::send(User::find($generated_task->partner_id), new PartnerTelegram($generated_task));
 

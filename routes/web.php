@@ -11,6 +11,7 @@ use App\Http\Controllers\AccessoryController;
 use App\Http\Controllers\PreferenceController;
 use App\Http\Controllers\ImportExportController;
 use App\Http\Controllers\GeneratedTaskController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +53,9 @@ Route::get('/offline', function () {
 
 Route::get('/', [PostController::class, 'index'])->name('posts.index');
 
-// Route::get('/partner', [PartnerController::class, 'index'])->name('partner');
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+Route::post('/profile/{user}', [ProfileController::class, 'update'])->name('profile.update');
+
 Route::post('/partner/{user}', [PartnerController::class, 'update'])->name('partner.store');
 
 Route::get('/prefs', [PreferenceController::class, 'index'])->name('prefs');

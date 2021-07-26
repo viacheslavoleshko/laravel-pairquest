@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
-@section('title')
-    <title>Enjoy your Quest</title>
-@endsection
+@section('title', 'Enjoy your Quest')
+
 
 @section('content')
     @include('includes._navbar')

@@ -1,14 +1,13 @@
 @extends('layouts.app')
 
-@section('title')
-    <title>Partner Email</title>
-@endsection
+@section('title', 'Partner Email')
 
 @section('content')
     <div class="form-wrapper single-page newsman-block">
         <form>
             <div class="form-wrapper single-page newsman-block">
-                <form>
+                <form method="POST" action="{{ route('partner.store', ['user' => Auth::user()->id]) }}">
+                    @csrf
                     <div class="form-wrapper__inner">
                         <div class="form-wrapper__inner-title block-title-medium block-title text-semibold">
                             @if ($errors->has('partner_email'))

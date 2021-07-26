@@ -8,7 +8,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#000000">
     <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
-    @yield('title')
+    <title>@yield('title')</title>
+    
     <link rel="stylesheet" href="/css/framework7.bundle.min.css">
     <link rel="stylesheet" href="/css/app.css">
     <link rel="apple-touch-icon" href="/img/f7-icon-square.png">
@@ -43,7 +44,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                             <span class="tabbar-label">Discover</span>
                         </a>
-                        <a class="link {{ Route::currentRouteNamed('posts.*') ? 'tab-link-active' : '' }}" href="{{ route('posts.index') }}">
+                        <a class="link {{ Route::currentRouteNamed('profile') ? 'tab-link-active' : '' }}" href="{{ route('profile') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                             <span class="tabbar-label">Profile</span>
                         </a>

@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
-@section('title')
-    <title>Posts</title>
-@endsection
+@section('title', $post->title)
+
 
 @section('content')
     <!-- Navbar -->

@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('title')
-    <title>Preferences</title>
-@endsection
+@section('title', 'Preferences')
 
 @section('content')
     @include('includes._navbar')
