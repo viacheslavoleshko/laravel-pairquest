@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 23 2021 г., 17:58
+-- Время создания: Июл 26 2021 г., 11:19
 -- Версия сервера: 10.3.16-MariaDB
 -- Версия PHP: 7.3.7
 
@@ -400,7 +400,18 @@ INSERT INTO `generated_tasks` (`id`, `user_id`, `partner_id`, `location_descript
 (66, 14, 3, 4, '2021-07-25 14:15:00', 1, 18, 36, 1, '2021-07-23 14:15:16', '2021-07-23 14:16:03'),
 (67, 3, 14, 1, NULL, 3, 20, 34, 1, '2021-07-23 14:16:14', '2021-07-23 14:23:25'),
 (68, 3, 14, 3, '2021-07-24 14:23:00', 1, 18, 32, 1, '2021-07-23 14:23:49', '2021-07-23 14:27:36'),
-(69, 3, 14, 3, '2021-07-24 15:51:00', 1, 18, 32, 1, '2021-07-23 15:51:55', '2021-07-23 15:54:34');
+(69, 3, 14, 3, '2021-07-24 15:51:00', 1, 18, 32, 1, '2021-07-23 15:51:55', '2021-07-23 15:54:34'),
+(70, 3, 14, 4, '2021-07-24 07:19:00', 1, 18, 36, 0, '2021-07-26 07:19:24', '2021-07-26 07:24:09'),
+(71, 14, 3, 2, NULL, 3, 20, 37, 0, '2021-07-26 07:25:46', '2021-07-26 07:26:51'),
+(72, 14, 3, 4, NULL, 1, 18, 36, 0, '2021-07-26 07:27:30', '2021-07-26 07:27:38'),
+(73, 14, 3, 4, NULL, 1, 18, 32, 0, '2021-07-26 07:30:34', '2021-07-26 07:30:41'),
+(74, 3, 14, 3, NULL, 1, 18, 36, 0, '2021-07-26 07:31:17', '2021-07-26 07:31:51'),
+(75, 14, 3, 3, NULL, 1, 18, 36, 0, '2021-07-26 07:32:09', '2021-07-26 07:32:16'),
+(76, 14, 3, 4, NULL, 1, 18, 32, 0, '2021-07-26 07:34:25', '2021-07-26 07:34:32'),
+(77, 14, 3, 2, NULL, 3, 20, 37, 0, '2021-07-26 07:36:08', '2021-07-26 07:36:12'),
+(78, 14, 3, 3, NULL, 1, 18, 36, 0, '2021-07-26 07:38:58', '2021-07-26 07:44:12'),
+(79, 3, 14, 4, NULL, 1, 18, 36, 0, '2021-07-26 07:51:56', '2021-07-26 07:52:02'),
+(80, 3, 14, 2, NULL, 2, 20, 37, 0, '2021-07-26 07:52:23', '2021-07-26 07:52:30');
 
 -- --------------------------------------------------------
 
@@ -420,7 +431,8 @@ CREATE TABLE `likes` (
 --
 
 INSERT INTO `likes` (`id`, `task_id`, `user_id`, `is_like`) VALUES
-(10, 18, 14, 0);
+(10, 18, 14, 1),
+(11, 20, 14, 1);
 
 -- --------------------------------------------------------
 
@@ -723,7 +735,8 @@ INSERT INTO `partner_task_rule` (`id`, `partner_task_id`, `partner_rule_id`) VAL
 (1, 34, 1),
 (3, 35, 1),
 (4, 37, 1),
-(5, 32, 1);
+(5, 32, 1),
+(6, 36, 1);
 
 -- --------------------------------------------------------
 
@@ -1258,7 +1271,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `telegram_user_id`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`, `partner_email`, `gender_id`, `duration_id`) VALUES
 (1, 1, 'admin', 'admin@admin.com', NULL, 'users/default.png', NULL, '$2y$10$vALnBdtdRR7MYVorxGGEi.NwolxJ3R3/vqYPV1xdq2SyFdeBHjDre', NULL, '{\"locale\":\"en\"}', '2021-07-06 08:30:05', '2021-07-12 11:52:52', NULL, NULL, NULL),
 (3, 2, 'John', 'john@laravel.test', '378686094', 'users/default.png', NULL, '$2y$10$Vh0l/JzwtwBnCDcquRcOr.zfMsVUA57ebiHe2zL6X90e9CzPdjATO', NULL, NULL, '2021-07-07 05:56:24', '2021-07-16 13:18:17', 'vyacheslav.oleshko.work@gmail.com', 1, 2),
-(14, 2, 'Viacheslav', 'vyacheslav.oleshko.work@gmail.com', '378686094', 'users/default.png', NULL, '$2y$10$McRMdlbXwnsrCQseuaM8yuck9Sa6kARczRgd/prCEi2QG9Z3RigC.', NULL, NULL, '2021-07-07 11:46:32', '2021-07-19 13:29:20', 'john@laravel.test', 1, 1),
+(14, 2, 'Viacheslav', 'vyacheslav.oleshko.work@gmail.com', '378686094', 'users/default.png', NULL, '$2y$10$McRMdlbXwnsrCQseuaM8yuck9Sa6kARczRgd/prCEi2QG9Z3RigC.', NULL, NULL, '2021-07-07 11:46:32', '2021-07-26 09:11:04', 'john@laravel.test', 1, 1),
 (19, 2, 'Girl', 'girl@laravel.test', NULL, 'users/default.png', NULL, '$2y$10$XOW2AkhBgL2DEoFDo1zyeun6PYSkXPqkBU0ahWJiBFFEuGgkkhxmO', NULL, NULL, '2021-07-21 15:16:20', '2021-07-21 15:17:58', 'vyacheslav.oleshko.work@gmail.com', 2, 1);
 
 -- --------------------------------------------------------
@@ -1729,13 +1742,13 @@ ALTER TABLE `genders`
 -- AUTO_INCREMENT для таблицы `generated_tasks`
 --
 ALTER TABLE `generated_tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT для таблицы `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT для таблицы `locations`
@@ -1795,7 +1808,7 @@ ALTER TABLE `partner_tasks`
 -- AUTO_INCREMENT для таблицы `partner_task_rule`
 --
 ALTER TABLE `partner_task_rule`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `permissions`
