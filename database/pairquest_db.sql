@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 26 2021 г., 11:19
+-- Время создания: Июл 26 2021 г., 15:48
 -- Версия сервера: 10.3.16-MariaDB
 -- Версия PHP: 7.3.7
 
@@ -127,7 +127,7 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (49, 8, 'gender_id', 'text', 'Gender Id', 1, 1, 1, 1, 1, 1, '{}', 2),
 (50, 8, 'partner_task_belongsto_gender_relationship', 'relationship', 'Gender', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Gender\",\"table\":\"genders\",\"type\":\"belongsTo\",\"column\":\"gender_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 3),
 (51, 8, 'partner_task_belongstomany_task_relationship', 'relationship', 'Main task', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\DetailedTask\",\"table\":\"detailed_tasks\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"description\",\"pivot_table\":\"task_combinations\",\"pivot\":\"1\",\"taggable\":\"on\"}', 5),
-(54, 8, 'description', 'text', 'Description', 1, 1, 1, 1, 1, 1, '{}', 3),
+(54, 8, 'description', 'text', 'Description', 1, 1, 1, 1, 1, 1, '{}', 4),
 (55, 10, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
 (56, 10, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{}', 2),
 (59, 11, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
@@ -194,7 +194,21 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (125, 24, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 7),
 (126, 24, 'category_id', 'text', 'Category Id', 1, 1, 1, 1, 1, 1, '{}', 2),
 (127, 24, 'post_belongsto_category_relationship', 'relationship', 'categories', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Category\",\"table\":\"categories\",\"type\":\"belongsTo\",\"column\":\"category_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 8),
-(128, 23, 'category_hasmany_post_relationship', 'relationship', 'posts', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Post\",\"table\":\"posts\",\"type\":\"hasMany\",\"column\":\"category_id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 3);
+(128, 23, 'category_hasmany_post_relationship', 'relationship', 'posts', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Post\",\"table\":\"posts\",\"type\":\"hasMany\",\"column\":\"category_id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 3),
+(129, 14, 'image', 'image', 'Image', 0, 1, 1, 1, 1, 1, '{}', 6),
+(130, 18, 'image', 'image', 'Image', 0, 1, 1, 1, 1, 1, '{}', 9),
+(131, 8, 'image', 'image', 'Image', 0, 1, 1, 1, 1, 1, '{}', 7),
+(132, 26, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(133, 26, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{}', 2),
+(134, 26, 'feedback_type_hasmany_feedback_relationship', 'relationship', 'feedback', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Feedback\",\"table\":\"feedback\",\"type\":\"hasMany\",\"column\":\"type_id\",\"key\":\"id\",\"label\":\"feedback\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":null}', 3),
+(135, 27, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(136, 27, 'user_id', 'text', 'User Id', 1, 1, 1, 1, 1, 1, '{}', 2),
+(137, 27, 'type_id', 'text', 'Type Id', 1, 1, 1, 1, 1, 1, '{}', 3),
+(138, 27, 'feedback', 'text', 'Feedback', 1, 1, 1, 1, 1, 1, '{}', 4),
+(139, 27, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 5),
+(140, 27, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 6),
+(141, 27, 'feedback_belongsto_user_relationship', 'relationship', 'users', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\User\",\"table\":\"users\",\"type\":\"belongsTo\",\"column\":\"user_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 7),
+(142, 27, 'feedback_belongsto_feedback_type_relationship', 'relationship', 'feedback_types', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\FeedbackType\",\"table\":\"feedback_types\",\"type\":\"belongsTo\",\"column\":\"type_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 8);
 
 -- --------------------------------------------------------
 
@@ -230,20 +244,22 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, 'TCG\\Voyager\\Http\\Controllers\\VoyagerRoleController', '', 1, 0, NULL, '2021-07-06 08:28:42', '2021-07-06 08:28:42'),
 (4, 'genders', 'genders', 'Gender', 'Genders', NULL, 'App\\Models\\Gender', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-06 09:15:55', '2021-07-07 05:36:12'),
 (6, 'user_levels', 'user-levels', 'User Level', 'User Levels', NULL, 'App\\Models\\UserLevel', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2021-07-06 13:01:18', '2021-07-06 13:01:18'),
-(8, 'partner_tasks', 'partner-tasks', 'Partner Task', 'Partner Tasks', NULL, 'App\\Models\\PartnerTask', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-06 13:27:51', '2021-07-20 13:21:06'),
+(8, 'partner_tasks', 'partner-tasks', 'Partner Task', 'Partner Tasks', NULL, 'App\\Models\\PartnerTask', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-06 13:27:51', '2021-07-26 10:03:23'),
 (10, 'accessories', 'accessories', 'Accessory', 'Accessories', NULL, 'App\\Models\\Accessory', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-16 11:59:29', '2021-07-16 12:01:22'),
 (11, 'location_types', 'location-types', 'Location Type', 'Location Types', NULL, 'App\\Models\\LocationType', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-16 14:33:02', '2021-07-16 14:42:10'),
 (12, 'locations', 'locations', 'Location', 'Locations', NULL, 'App\\Models\\Location', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-16 14:35:43', '2021-07-19 10:06:02'),
 (13, 'locations_description', 'locations-description', 'Locations Description', 'Locations Descriptions', NULL, 'App\\Models\\LocationDescription', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-19 09:56:23', '2021-07-19 09:57:27'),
-(14, 'location_descriptions', 'location-descriptions', 'Location Description', 'Location Descriptions', NULL, 'App\\Models\\LocationDescription', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-19 10:04:06', '2021-07-21 09:30:27'),
+(14, 'location_descriptions', 'location-descriptions', 'Location Description', 'Location Descriptions', NULL, 'App\\Models\\LocationDescription', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-19 10:04:06', '2021-07-26 10:02:39'),
 (15, 'preferences', 'preferences', 'Preference', 'Preferences', NULL, 'App\\Models\\Preference', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-19 13:10:12', '2021-07-19 14:18:55'),
 (16, 'detailed_tasks', 'detailed-tasks', 'Detailed Task', 'Detailed Tasks', NULL, 'App\\Models\\DetailedTask', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-19 13:40:33', '2021-07-21 07:54:32'),
-(18, 'tasks', 'tasks', 'Task', 'Tasks', NULL, 'App\\Models\\Task', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-19 15:27:51', '2021-07-21 07:35:38'),
+(18, 'tasks', 'tasks', 'Task', 'Tasks', NULL, 'App\\Models\\Task', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-19 15:27:51', '2021-07-26 10:03:04'),
 (19, 'rules', 'rules', 'Rule', 'Rules', NULL, 'App\\Models\\Rule', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2021-07-20 12:15:10', '2021-07-20 12:15:10'),
 (20, 'notions', 'notions', 'Notion', 'Notions', NULL, 'App\\Models\\Notion', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2021-07-20 12:16:00', '2021-07-20 12:16:00'),
 (22, 'partner_rules', 'partner-rules', 'Partner Rule', 'Partner Rules', NULL, 'App\\Models\\PartnerRule', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2021-07-20 13:23:40', '2021-07-20 13:23:40'),
 (23, 'categories', 'categories', 'Category', 'Categories', NULL, 'App\\Models\\Category', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-22 09:44:30', '2021-07-22 09:46:39'),
-(24, 'posts', 'posts', 'Post', 'Posts', NULL, 'App\\Models\\Post', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-22 09:44:47', '2021-07-22 09:45:49');
+(24, 'posts', 'posts', 'Post', 'Posts', NULL, 'App\\Models\\Post', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-22 09:44:47', '2021-07-22 09:45:49'),
+(26, 'feedback_types', 'feedback-types', 'Feedback Type', 'Feedback Types', NULL, 'App\\Models\\FeedbackType', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2021-07-26 13:43:59', '2021-07-26 13:43:59'),
+(27, 'feedback', 'feedback', 'Feedback', 'Feedback', NULL, 'App\\Models\\Feedback', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-26 13:45:00', '2021-07-26 13:45:54');
 
 -- --------------------------------------------------------
 
@@ -270,7 +286,7 @@ CREATE TABLE `detailed_tasks` (
 INSERT INTO `detailed_tasks` (`id`, `description`, `custom_partner_task`, `location_type_id`, `preference_id`, `duration_id`, `user_level_id`, `gender_id`, `image`) VALUES
 (18, 'Ходити на рука ви будете найпростішим способом, просто беріть і йдіть на тих руках до біса.', NULL, 3, 1, 1, 1, 1, NULL),
 (19, 'Завязуєте очі і йдете на руках по канату між двома багатоповерхівками жонглюючи ногами пушечними ядрами. А з землі у вас будуть стріляти великокалібреного кулемету.', NULL, 3, 1, 1, 3, 1, NULL),
-(20, 'Берете два яйця і смажите яєшню. До яєшні можна додати бекончику.', NULL, 1, 13, 1, 1, 2, NULL),
+(20, 'Берете два яйця і смажите яєшню. До яєшні можна додати бекончику.', NULL, 1, 13, 1, 1, 2, 'detailed-tasks\\July2021\\v8g3b3eAbHW9G4a2K3LP.png'),
 (21, 'Їдете на ферму алігаторів, ниряєте в озеро відбираєте в алігатора яйця. Якщо вам не відкусили руки, ноги чи голову то частуєте свого коханого яєшнею. Смачного!', NULL, 1, 13, 1, 3, 2, NULL),
 (22, 'Копаєте яму на задньому дворі і лягаєте туди, притворяєтесь мертвим.', 'Сходіть на задній двір, там вас чекає сюрприз.', 2, 1, 2, 3, 1, NULL);
 
@@ -333,6 +349,50 @@ CREATE TABLE `failed_jobs` (
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `feedback`
+--
+
+CREATE TABLE `feedback` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `type_id` bigint(20) UNSIGNED NOT NULL,
+  `feedback` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `feedback`
+--
+
+INSERT INTO `feedback` (`id`, `user_id`, `type_id`, `feedback`, `created_at`, `updated_at`) VALUES
+(1, 14, 2, 'test', '2021-07-26 13:31:28', '2021-07-26 13:31:28');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `feedback_types`
+--
+
+CREATE TABLE `feedback_types` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `feedback_types`
+--
+
+INSERT INTO `feedback_types` (`id`, `name`) VALUES
+(1, 'Ідея'),
+(2, 'Побажання'),
+(3, 'Технічна проблема'),
+(4, 'Зауваження'),
+(5, 'Проблема з оплатою');
 
 -- --------------------------------------------------------
 
@@ -411,7 +471,9 @@ INSERT INTO `generated_tasks` (`id`, `user_id`, `partner_id`, `location_descript
 (77, 14, 3, 2, NULL, 3, 20, 37, 0, '2021-07-26 07:36:08', '2021-07-26 07:36:12'),
 (78, 14, 3, 3, NULL, 1, 18, 36, 0, '2021-07-26 07:38:58', '2021-07-26 07:44:12'),
 (79, 3, 14, 4, NULL, 1, 18, 36, 0, '2021-07-26 07:51:56', '2021-07-26 07:52:02'),
-(80, 3, 14, 2, NULL, 2, 20, 37, 0, '2021-07-26 07:52:23', '2021-07-26 07:52:30');
+(80, 3, 14, 2, NULL, 2, 20, 37, 0, '2021-07-26 07:52:23', '2021-07-26 07:52:30'),
+(81, 14, 3, 1, NULL, 3, 20, 34, 1, '2021-07-26 09:28:23', '2021-07-26 10:42:03'),
+(82, 14, 3, 2, NULL, 2, 20, 34, NULL, '2021-07-26 10:42:15', '2021-07-26 10:42:15');
 
 -- --------------------------------------------------------
 
@@ -469,20 +531,21 @@ CREATE TABLE `location_descriptions` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `partner_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `location_id` bigint(20) UNSIGNED NOT NULL
+  `location_id` bigint(20) UNSIGNED NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `location_descriptions`
 --
 
-INSERT INTO `location_descriptions` (`id`, `description`, `partner_description`, `location_id`) VALUES
-(1, 'Cтвори затишну атмосферу у себе вдома, зроби тьмяне світло ароматичні свічки.', 'Сьогоді все відбудеться вдома.', 2),
-(2, 'Зроби у невеличку перестановку у своєму домі, включи романтичну музику. Приготуйся гарно провести час.', 'Зручно влаштовуйся на своєму улюбленому кріслі.', 2),
-(3, 'Знайди затишне місце у парку, де можна провести час.', 'Зустрінься зі своєю парою у парку.', 3),
-(4, 'Знайди місце в парку звідки відкривається гарний вид на місто.', 'Приходь у ваш улюблений парк у місті.', 3),
-(5, 'Зніми номер у затишному готелі.  Приготуйся гарно провести час.', 'Сьогодні романтична зустріч в готелі.', 15),
-(6, 'Арендуй кучу сіна у фермера.', 'Приходть на ферму, буде цікаво :)', 8);
+INSERT INTO `location_descriptions` (`id`, `description`, `partner_description`, `location_id`, `image`) VALUES
+(1, 'Cтвори затишну атмосферу у себе вдома, зроби тьмяне світло ароматичні свічки.', 'Сьогоді все відбудеться вдома.', 2, 'location-descriptions\\July2021\\FebMSUi8ZkdC8JwWsXUF.png'),
+(2, 'Зроби у невеличку перестановку у своєму домі, включи романтичну музику. Приготуйся гарно провести час.', 'Зручно влаштовуйся на своєму улюбленому кріслі.', 2, 'location-descriptions\\July2021\\ZAl92QzTWUqA4ZjDKlpL.png'),
+(3, 'Знайди затишне місце у парку, де можна провести час.', 'Зустрінься зі своєю парою у парку.', 3, 'location-descriptions\\July2021\\ECDNs8LHKbF3YFj82YAf.png'),
+(4, 'Знайди місце в парку звідки відкривається гарний вид на місто.', 'Приходь у ваш улюблений парк у місті.', 3, 'location-descriptions\\July2021\\USbNAKsSoOZWjauxycFQ.png'),
+(5, 'Зніми номер у затишному готелі.  Приготуйся гарно провести час.', 'Сьогодні романтична зустріч в готелі.', 15, NULL),
+(6, 'Арендуй кучу сіна у фермера.', 'Приходть на ферму, буде цікаво :)', 8, NULL);
 
 -- --------------------------------------------------------
 
@@ -553,21 +616,21 @@ CREATE TABLE `menu_items` (
 
 INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class`, `color`, `parent_id`, `order`, `created_at`, `updated_at`, `route`, `parameters`) VALUES
 (1, 1, 'Dashboard', '', '_self', 'voyager-boat', NULL, NULL, 1, '2021-07-06 08:28:43', '2021-07-06 08:28:43', 'voyager.dashboard', NULL),
-(2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 9, '2021-07-06 08:28:43', '2021-07-22 09:50:24', 'voyager.media.index', NULL),
+(2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 9, '2021-07-06 08:28:43', '2021-07-26 13:47:14', 'voyager.media.index', NULL),
 (3, 1, 'Users', '', '_self', 'voyager-person', NULL, 16, 1, '2021-07-06 08:28:43', '2021-07-06 15:05:41', 'voyager.users.index', NULL),
 (4, 1, 'Roles', '', '_self', 'voyager-lock', NULL, 16, 2, '2021-07-06 08:28:44', '2021-07-06 15:05:42', 'voyager.roles.index', NULL),
-(5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 8, '2021-07-06 08:28:44', '2021-07-22 09:50:24', NULL, NULL),
+(5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 8, '2021-07-06 08:28:44', '2021-07-26 13:47:14', NULL, NULL),
 (6, 1, 'Menu Builder', '', '_self', 'voyager-list', NULL, 5, 1, '2021-07-06 08:28:44', '2021-07-06 09:18:28', 'voyager.menus.index', NULL),
 (7, 1, 'Database', '', '_self', 'voyager-data', NULL, 5, 2, '2021-07-06 08:28:44', '2021-07-06 09:18:28', 'voyager.database.index', NULL),
 (8, 1, 'Compass', '', '_self', 'voyager-compass', NULL, 5, 3, '2021-07-06 08:28:44', '2021-07-06 09:18:28', 'voyager.compass.index', NULL),
 (9, 1, 'BREAD', '', '_self', 'voyager-bread', NULL, 5, 4, '2021-07-06 08:28:44', '2021-07-06 09:18:28', 'voyager.bread.index', NULL),
-(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 10, '2021-07-06 08:28:44', '2021-07-22 09:50:25', 'voyager.settings.index', NULL),
+(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 10, '2021-07-06 08:28:44', '2021-07-26 13:47:14', 'voyager.settings.index', NULL),
 (11, 1, 'Hooks', '', '_self', 'voyager-hook', NULL, 5, 5, '2021-07-06 08:28:48', '2021-07-06 09:18:28', 'voyager.hooks', NULL),
 (12, 1, 'Genders', '', '_self', 'voyager-paw', '#000000', 16, 3, '2021-07-06 09:15:55', '2021-07-06 15:05:42', 'voyager.genders.index', 'null'),
 (13, 1, 'User Levels', '', '_self', 'voyager-double-up', '#000000', 16, 4, '2021-07-06 13:01:18', '2021-07-06 15:05:43', 'voyager.user-levels.index', 'null'),
 (15, 1, 'Partner Tasks', '', '_self', 'voyager-list-add', '#000000', 32, 2, '2021-07-06 13:27:51', '2021-07-22 09:43:00', 'voyager.partner-tasks.index', 'null'),
 (16, 1, 'User Info', '', '_self', 'voyager-people', '#000000', NULL, 2, '2021-07-06 15:05:32', '2021-07-06 15:05:40', NULL, ''),
-(18, 1, 'Accessories', '', '_self', 'voyager-trophy', '#000000', NULL, 7, '2021-07-16 11:59:29', '2021-07-22 09:50:24', 'voyager.accessories.index', 'null'),
+(18, 1, 'Accessories', '', '_self', 'voyager-trophy', '#000000', 32, 4, '2021-07-16 11:59:29', '2021-07-26 13:47:14', 'voyager.accessories.index', 'null'),
 (19, 1, 'Location Types', '', '_self', 'voyager-location', '#000000', 21, 3, '2021-07-16 14:33:02', '2021-07-22 09:52:26', 'voyager.location-types.index', 'null'),
 (20, 1, 'Locations', '', '_self', 'voyager-location', '#000000', 21, 1, '2021-07-16 14:35:43', '2021-07-22 09:52:11', 'voyager.locations.index', 'null'),
 (21, 1, 'Locations Info', '', '_self', 'voyager-location', '#000000', NULL, 5, '2021-07-16 14:43:45', '2021-07-22 09:42:42', NULL, ''),
@@ -582,7 +645,10 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class
 (32, 1, 'Detailed Tasks Info', '', '_self', 'voyager-documentation', '#000000', NULL, 4, '2021-07-22 09:42:35', '2021-07-22 09:44:10', NULL, ''),
 (33, 1, 'Categories', '', '_self', 'voyager-categories', '#000000', 35, 2, '2021-07-22 09:44:30', '2021-07-22 09:50:21', 'voyager.categories.index', 'null'),
 (34, 1, 'Posts', '', '_self', 'voyager-news', '#000000', 35, 1, '2021-07-22 09:44:48', '2021-07-22 09:50:19', 'voyager.posts.index', 'null'),
-(35, 1, 'News Info', '', '_self', 'voyager-documentation', '#000000', NULL, 6, '2021-07-22 09:50:14', '2021-07-22 09:51:16', NULL, '');
+(35, 1, 'News Info', '', '_self', 'voyager-documentation', '#000000', NULL, 6, '2021-07-22 09:50:14', '2021-07-22 09:51:16', NULL, ''),
+(36, 1, 'Feedback Types', '', '_self', NULL, NULL, 38, 2, '2021-07-26 13:44:00', '2021-07-26 13:46:50', 'voyager.feedback-types.index', NULL),
+(37, 1, 'Feedback', '', '_self', NULL, NULL, 38, 1, '2021-07-26 13:45:01', '2021-07-26 13:46:47', 'voyager.feedback.index', NULL),
+(38, 1, 'Feedback Info', '', '_self', 'voyager-group', '#000000', NULL, 7, '2021-07-26 13:46:41', '2021-07-26 13:46:56', NULL, '');
 
 -- --------------------------------------------------------
 
@@ -650,7 +716,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (56, '2021_07_20_155545_create_partner_rules_table', 15),
 (57, '2021_07_20_155645_create_partner_task_rule_table', 15),
 (58, '2021_07_22_113828_create_categories_table', 16),
-(59, '2021_07_22_114905_create_posts_table', 16);
+(59, '2021_07_22_114905_create_posts_table', 16),
+(60, '2021_07_26_152154_create_feedback_types_table', 17),
+(61, '2021_07_26_152943_create_feedback_table', 17);
 
 -- --------------------------------------------------------
 
@@ -699,21 +767,22 @@ INSERT INTO `partner_rules` (`id`, `description`) VALUES
 CREATE TABLE `partner_tasks` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `gender_id` bigint(20) UNSIGNED NOT NULL
+  `gender_id` bigint(20) UNSIGNED NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `partner_tasks`
 --
 
-INSERT INTO `partner_tasks` (`id`, `description`, `gender_id`) VALUES
-(32, 'Допоможіть сходити до біса.', 2),
-(33, 'Допоможіть зав\'язати очі партнеру, а потім стріляйте з великокаліберного кулемету по ньому під час його прохождення по канату.', 2),
-(34, 'Купіть два яйца і м\'ясо у магазині.', 1),
-(35, 'Вам потрібно звозити свою кохану на ферму алігаторів. Буде цікаво!', 2),
-(36, 'Допоможіть партнеру зрозуміти сенс його задачі.', 2),
-(37, 'Замаринуйте м\'ясо, та приготуйтеся смачно попоїсти.', 1),
-(38, 'Сходіть на задній двір, там вас чекає сюрприз.', 2);
+INSERT INTO `partner_tasks` (`id`, `description`, `gender_id`, `image`) VALUES
+(32, 'Допоможіть сходити до біса.', 2, NULL),
+(33, 'Допоможіть зав\'язати очі партнеру, а потім стріляйте з великокаліберного кулемету по ньому під час його прохождення по канату.', 2, NULL),
+(34, 'Купіть два яйца і м\'ясо у магазині.', 1, 'partner-tasks\\July2021\\xmdb2EHxFT1QbHSdDsSu.png'),
+(35, 'Вам потрібно звозити свою кохану на ферму алігаторів. Буде цікаво!', 2, NULL),
+(36, 'Допоможіть партнеру зрозуміти сенс його задачі.', 2, NULL),
+(37, 'Замаринуйте м\'ясо, та приготуйтеся смачно попоїсти.', 1, NULL),
+(38, 'Сходіть на задній двір, там вас чекає сюрприз.', 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -874,7 +943,17 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (108, 'read_posts', 'posts', '2021-07-22 09:44:47', '2021-07-22 09:44:47'),
 (109, 'edit_posts', 'posts', '2021-07-22 09:44:47', '2021-07-22 09:44:47'),
 (110, 'add_posts', 'posts', '2021-07-22 09:44:47', '2021-07-22 09:44:47'),
-(111, 'delete_posts', 'posts', '2021-07-22 09:44:47', '2021-07-22 09:44:47');
+(111, 'delete_posts', 'posts', '2021-07-22 09:44:47', '2021-07-22 09:44:47'),
+(112, 'browse_feedback_types', 'feedback_types', '2021-07-26 13:43:59', '2021-07-26 13:43:59'),
+(113, 'read_feedback_types', 'feedback_types', '2021-07-26 13:43:59', '2021-07-26 13:43:59'),
+(114, 'edit_feedback_types', 'feedback_types', '2021-07-26 13:43:59', '2021-07-26 13:43:59'),
+(115, 'add_feedback_types', 'feedback_types', '2021-07-26 13:43:59', '2021-07-26 13:43:59'),
+(116, 'delete_feedback_types', 'feedback_types', '2021-07-26 13:43:59', '2021-07-26 13:43:59'),
+(117, 'browse_feedback', 'feedback', '2021-07-26 13:45:00', '2021-07-26 13:45:00'),
+(118, 'read_feedback', 'feedback', '2021-07-26 13:45:01', '2021-07-26 13:45:01'),
+(119, 'edit_feedback', 'feedback', '2021-07-26 13:45:01', '2021-07-26 13:45:01'),
+(120, 'add_feedback', 'feedback', '2021-07-26 13:45:01', '2021-07-26 13:45:01'),
+(121, 'delete_feedback', 'feedback', '2021-07-26 13:45:01', '2021-07-26 13:45:01');
 
 -- --------------------------------------------------------
 
@@ -997,7 +1076,17 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (108, 1),
 (109, 1),
 (110, 1),
-(111, 1);
+(111, 1),
+(112, 1),
+(113, 1),
+(114, 1),
+(115, 1),
+(116, 1),
+(117, 1),
+(118, 1),
+(119, 1),
+(120, 1),
+(121, 1);
 
 -- --------------------------------------------------------
 
@@ -1146,17 +1235,18 @@ CREATE TABLE `tasks` (
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `partner_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `location_type_id` bigint(20) UNSIGNED NOT NULL,
-  `preference_id` bigint(20) UNSIGNED NOT NULL
+  `preference_id` bigint(20) UNSIGNED NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `tasks`
 --
 
-INSERT INTO `tasks` (`id`, `description`, `partner_description`, `location_type_id`, `preference_id`) VALUES
-(1, 'Сьогодні ви будете займатися хотьбою на руках, перший раз в житті спробуєте цей дивовижний пересування, відомий людству з давніх давен.', 'Сьогодні буде дуже весело.', 3, 1),
-(2, 'Сьогодні ви будете готувати яєшню.', 'Сьогодні ви смачно поїсте.', 1, 13),
-(3, 'Сьогодні ви будете готувати торт.', 'Сьогодні ви скуштуєте щось солоденьке.', 1, 13);
+INSERT INTO `tasks` (`id`, `description`, `partner_description`, `location_type_id`, `preference_id`, `image`) VALUES
+(1, 'Сьогодні ви будете займатися хотьбою на руках, перший раз в житті спробуєте цей дивовижний пересування, відомий людству з давніх давен.', 'Сьогодні буде дуже весело.', 3, 1, 'tasks\\July2021\\VEzIkEXFcsULPVNsKuhF.png'),
+(2, 'Сьогодні ви будете готувати яєшню.', 'Сьогодні ви смачно поїсте.', 1, 13, 'tasks\\July2021\\CyNM4nNlbRWXGMhRLboN.png'),
+(3, 'Сьогодні ви будете готувати торт.', 'Сьогодні ви скуштуєте щось солоденьке.', 1, 13, 'tasks\\July2021\\QLblRiCNF1EwpjkjbIa7.png');
 
 -- --------------------------------------------------------
 
@@ -1447,6 +1537,20 @@ ALTER TABLE `failed_jobs`
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
+-- Индексы таблицы `feedback`
+--
+ALTER TABLE `feedback`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `feedback_user_id_index` (`user_id`),
+  ADD KEY `feedback_type_id_index` (`type_id`);
+
+--
+-- Индексы таблицы `feedback_types`
+--
+ALTER TABLE `feedback_types`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `genders`
 --
 ALTER TABLE `genders`
@@ -1700,13 +1804,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT для таблицы `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
 
 --
 -- AUTO_INCREMENT для таблицы `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT для таблицы `detailed_tasks`
@@ -1733,6 +1837,18 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT для таблицы `feedback`
+--
+ALTER TABLE `feedback`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `feedback_types`
+--
+ALTER TABLE `feedback_types`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT для таблицы `genders`
 --
 ALTER TABLE `genders`
@@ -1742,7 +1858,7 @@ ALTER TABLE `genders`
 -- AUTO_INCREMENT для таблицы `generated_tasks`
 --
 ALTER TABLE `generated_tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT для таблицы `likes`
@@ -1778,13 +1894,13 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT для таблицы `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT для таблицы `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT для таблицы `notions`
@@ -1814,7 +1930,7 @@ ALTER TABLE `partner_task_rule`
 -- AUTO_INCREMENT для таблицы `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 
 --
 -- AUTO_INCREMENT для таблицы `posts`
@@ -1932,6 +2048,13 @@ ALTER TABLE `detailed_tasks`
 ALTER TABLE `detailed_task_notion`
   ADD CONSTRAINT `detailed_task_notion_detailed_task_id_foreign` FOREIGN KEY (`detailed_task_id`) REFERENCES `detailed_tasks` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `detailed_task_notion_notion_id_foreign` FOREIGN KEY (`notion_id`) REFERENCES `notions` (`id`) ON DELETE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `feedback`
+--
+ALTER TABLE `feedback`
+  ADD CONSTRAINT `feedback_type_id_foreign` FOREIGN KEY (`type_id`) REFERENCES `feedback_types` (`id`),
+  ADD CONSTRAINT `feedback_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `generated_tasks`
