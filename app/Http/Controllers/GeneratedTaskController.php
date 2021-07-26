@@ -34,7 +34,6 @@ class GeneratedTaskController extends Controller
         $intersect_preferences = $user_preferences->intersect($partner_preferences);
 
         $random_location_type = $user_locations_types->random();
-        dump($random_location_type);
         $random_location_description = $user->locations->where('location_type_id', $random_location_type)->random()->location_descriptions->random();
 
         if($intersect_preferences->isNotEmpty()) {
@@ -53,7 +52,7 @@ class GeneratedTaskController extends Controller
                     ['user_level_id', $final_user_level]
                 ])->firstOrFail(); // TODO додати фільтрацію по статі, лайкам
             } catch(ModelNotFoundException $e) {
-                dd($e->getMessage(), $random_location_type, $random_preference_from_intersect, $user->duration_id, $final_user_level);
+                // dd($e->getMessage(), $random_location_type, $random_preference_from_intersect, $user->duration_id, $final_user_level);
                 return view('errors.quest-error2');
             }
 
@@ -80,8 +79,8 @@ class GeneratedTaskController extends Controller
 
             // dd($generated_task);
             $generated_task->save();
-            // Mail::to(User::find($generated_task->user_id))->send(new UserQuestGenerated($generated_task));
-            // Mail::to(User::find($generated_task->partner_id))->send(new PartnerQuestGenerated($generated_task));
+            Mail::to(User::find($generated_task->user_id))->send(new UserQuestGenerated($generated_task));
+            Mail::to(User::find($generated_task->partner_id))->send(new PartnerQuestGenerated($generated_task));
             Notification::send(User::find($generated_task->user_id), new Telegram($generated_task));
             Notification::send(User::find($generated_task->partner_id), new PartnerTelegram($generated_task));
 
