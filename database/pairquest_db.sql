@@ -276,7 +276,7 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 CREATE TABLE `detailed_tasks` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `custom_partner_task` text COLLATE utf8mb4_unicode_ci DEFAULT 'NULL',
+  `custom_partner_task` text COLLATE utf8mb4_unicode_ci not NULL,
   `location_type_id` bigint(20) UNSIGNED NOT NULL,
   `preference_id` bigint(20) UNSIGNED NOT NULL,
   `duration_id` bigint(20) UNSIGNED NOT NULL,

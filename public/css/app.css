@@ -44,6 +44,14 @@ Template:		Newsman - Blog & Magazine Mobile HTML Template
 
 /*===============================================*/
 
+.page {
+    padding-bottom: 56px;
+}
+
+.md .navbar-inner.navbar-logo {
+    justify-content: center;
+}
+
 body {
     /* font-family: 'Raleway', sans-serif; */
     font-family: 'Montserrat', sans-serif;
@@ -797,10 +805,6 @@ img {
     padding: 20px 0px;
 }
 
-.form-wrapper.single-page.more-page.newsman-block .form-wrapper__inner {
-    padding: 20px 0px 100px;
-}
-
 input,
 select,
 textarea {
@@ -829,6 +833,12 @@ textarea {
     margin: 0px 0px 20px;
     text-align: center;
     white-space: initial;
+    font-size: 20px;
+}
+
+.form-wrapper__inner .form-wrapper__inner-title p {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .form-wrapper__inner .form-wrapper__content {
@@ -886,6 +896,7 @@ textarea {
     text-align: center;
     width: auto;
     margin: 0 auto;
+    line-height: 20px;
 }
 
 .form-wrapper__inner .form-wrapper__button button.Reject {
