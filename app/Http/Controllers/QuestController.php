@@ -25,7 +25,8 @@ class QuestController extends Controller
     {
         $user = User::findOrFail(Auth::user()->id);
 
-        if(isset($user->partner_email) && isset($user->user_levels)) {
+        if(isset($user->partner_email) && $user->user_levels->isNotEmpty()) {
+            dd($user->user_levels);
             if($generated_task = GeneratedTask::where('user_id', $user->id)->whereNull('is_rejected')->first()) {
                 $detailed_task = DetailedTask::findOrFail($generated_task->detailed_task_id);
                 $detailed_task_notion = $detailed_task->notions->random();
@@ -84,7 +85,7 @@ class QuestController extends Controller
     
                 return view('quest', ['durations' => Duration::all(), 'user_levels' => $intersect_level_stack]);
             }
-        } elseif (isset($user->partner_email) && is_null($user->user_levels)) {
+        } elseif (isset($user->partner_email) && $user->user_levels->isEmpty()) {
             return redirect()->route('prefs');
         } else {
             return view('partner');

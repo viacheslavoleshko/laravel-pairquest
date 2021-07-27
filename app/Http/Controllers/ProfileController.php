@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -30,6 +31,7 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
+        // $user = User::firstOrCreate([])
 
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
@@ -38,6 +40,17 @@ class ProfileController extends Controller
 
         if (!Hash::check($validatedData['current_password'], $user->password)) {
             return back()->withErrors(['current_password' => 'Password not match']);
+        }
+
+        if($request->hasFile('avatar')) {
+
+            $path = $request->file('avatar')->store('users');
+
+            if($user->avatar) {
+                Storage::delete($user->avatar);
+            }
+
+            $user->avatar = $path;
         }
 
         $user->name = $validatedData['name'];

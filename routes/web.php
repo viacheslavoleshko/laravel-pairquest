@@ -46,7 +46,7 @@ Route::get('/offline', function () {
 Route::get('/', [PostController::class, 'index'])->name('posts.index');
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-Route::post('/profile/{user}', [ProfileController::class, 'update'])->name('profile.update');
+Route::put('/profile/{user}', [ProfileController::class, 'update'])->name('profile.update');
 
 Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');
 Route::post('/feedback/{user}', [FeedbackController::class, 'store'])->name('feedback.store');

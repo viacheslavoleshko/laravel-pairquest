@@ -7,15 +7,21 @@
         <form method="POST" action="{{ route('partner.store', ['user' => Auth::user()->id]) }}">
             @csrf
             <div class="form-wrapper__inner">
-                <div class="form-wrapper__inner-title block-title-medium block-title text-semibold">
-                    @if ($errors->has('partner_email'))
+                @if ($errors->has('partner_email'))
+                    <div class="form-wrapper__inner-title block-title-medium block-title text-semibold">
                             Вашої пари не знайдено
-                            <p>Перевірте введений емейл</p>
-                    @else
-                            Введи емейл своєї пари
-                            <p>Перед додаванням партнера, він має бути зареєстрованим в системі.</p>
-                    @endif
-                </div>
+                    </div>
+                    <div class="form-wrapper__inner-text block-title-medium block-title text-semibold">
+                        Перевірте введений емейл
+                    </div>
+                @else
+                    <div class="form-wrapper__inner-title block-title-medium block-title text-semibold">
+                        Введи емейл своєї пари
+                    </div>
+                    <div class="form-wrapper__inner-text block-title-medium block-title text-semibold">
+                        Перед додаванням партнера, він має бути зареєстрованим в системі.
+                    </div>
+                @endif
                 <div class="form-wrapper__content">
                     <input class="input-text @error('partner_email') is-invalid @enderror" type="email" placeholder="Email" name="partner_email" value="{{ old('partner_email') }}" required autocomplete="partner_email" autofocus>
                     @error('partner_email')
