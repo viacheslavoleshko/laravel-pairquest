@@ -27,7 +27,7 @@
                     @endforeach
                 </div>
 
-                <div class="form-wrapper__button">
+                <div class="form-wrapper__inner-text">
                     <a href="{{ route('prefs') }}">Редагувати вподобання</a>
                 </div>
             </div>

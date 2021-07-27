@@ -44,6 +44,14 @@ Template:		Newsman - Blog & Magazine Mobile HTML Template
 
 /*===============================================*/
 
+.page {
+    padding-bottom: 56px;
+}
+
+.md .navbar-inner.navbar-logo {
+    justify-content: center;
+}
+
 body {
     /* font-family: 'Raleway', sans-serif; */
     font-family: 'Montserrat', sans-serif;
@@ -797,10 +805,6 @@ img {
     padding: 20px 0px;
 }
 
-.form-wrapper.single-page.more-page.newsman-block .form-wrapper__inner {
-    padding: 20px 0px 100px;
-}
-
 input,
 select,
 textarea {
@@ -829,6 +833,12 @@ textarea {
     margin: 0px 0px 20px;
     text-align: center;
     white-space: initial;
+    font-size: 20px;
+}
+
+.form-wrapper__inner .form-wrapper__inner-title p {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .form-wrapper__inner .form-wrapper__content {
@@ -843,6 +853,10 @@ textarea {
     border-radius: 30px;
     color: #fff;
     font-family: var(--f7-font-family);
+}
+
+.form-wrapper__inner .form-wrapper__content textarea.input-text {
+    border-radius: 20px;
 }
 
 .form-wrapper__content .select-content {
@@ -886,6 +900,7 @@ textarea {
     text-align: center;
     width: auto;
     margin: 0 auto;
+    line-height: 20px;
 }
 
 .form-wrapper__inner .form-wrapper__button button.Reject {
@@ -934,7 +949,7 @@ textarea {
 
 .form-wrapper__content .form-wrapper__content-text {
     font-size: 16px;
-    text-align: justify;
+    text-align: left;
 }
 
 .form-wrapper__content .form-wrapper__content-info+.form-wrapper__content-info {
@@ -947,8 +962,8 @@ textarea {
     font-weight: 700;
     font-family: var(--f7-font-family);
     text-transform: uppercase;
-    background-color: #17b12a;
-    color: #fff;
+    background-color: #fff;
+    color: #202020;
     padding: 25px 10px;
     border-radius: 30px;
 }
@@ -957,8 +972,8 @@ textarea {
     font-weight: 700;
     font-family: var(--f7-font-family);
     text-transform: uppercase;
-    background-color: #17b12a;
-    color: #fff;
+    background-color: #fff;
+    color: #202020;
     padding: 25px 10px;
     border-radius: 30px;
     display: block;
@@ -1006,7 +1021,7 @@ textarea {
 }
 
 .select-content-quest {
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .view {
