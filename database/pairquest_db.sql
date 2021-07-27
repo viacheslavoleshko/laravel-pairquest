@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 27 2021 г., 15:02
+-- Время создания: Июл 27 2021 г., 16:09
 -- Версия сервера: 10.3.16-MariaDB
 -- Версия PHP: 7.3.7
 
@@ -1364,20 +1364,21 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `partner_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `gender_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `duration_id` bigint(20) UNSIGNED DEFAULT NULL
+  `duration_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `accept` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `telegram_user_id`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`, `partner_email`, `gender_id`, `duration_id`) VALUES
-(1, 1, 'admin', 'admin@admin.com', NULL, 'users/default.png', NULL, '$2y$10$vALnBdtdRR7MYVorxGGEi.NwolxJ3R3/vqYPV1xdq2SyFdeBHjDre', NULL, '{\"locale\":\"en\"}', '2021-07-06 08:30:05', '2021-07-12 11:52:52', NULL, NULL, NULL),
-(3, 2, 'John', 'john@laravel.test', '378686094', 'users/default.png', NULL, '$2y$10$Vh0l/JzwtwBnCDcquRcOr.zfMsVUA57ebiHe2zL6X90e9CzPdjATO', NULL, NULL, '2021-07-07 05:56:24', '2021-07-16 13:18:17', 'vyacheslav.oleshko.work@gmail.com', 1, 2),
-(14, 2, 'Viacheslav', 'vyacheslav.oleshko.work@gmail.com', '378686094', 'users/ZP3ogKXFVm2PxsWiSy00XgpJTkuJqC12Gkj6TWta.png', NULL, '$2y$10$McRMdlbXwnsrCQseuaM8yuck9Sa6kARczRgd/prCEi2QG9Z3RigC.', NULL, NULL, '2021-07-07 11:46:32', '2021-07-27 08:57:14', 'john@laravel.test', 1, 1),
-(19, 2, 'Girl', 'girl@laravel.test', NULL, 'users/4aVbZFOMCtCPrH546gDbtlgamLtps9AbvycpSM0M.jpg', NULL, '$2y$10$XOW2AkhBgL2DEoFDo1zyeun6PYSkXPqkBU0ahWJiBFFEuGgkkhxmO', NULL, NULL, '2021-07-21 15:16:20', '2021-07-27 09:33:43', NULL, 2, 1),
-(32, 2, 'BigBoy', 'boy@laravel.test', '168384665', 'users/default.png', NULL, '$2y$10$cTvrhgtontC1Dzu4D8kbh.Ai0pesS9csk31NiI6IJblCrJw1OxvEe', NULL, NULL, '2021-07-26 14:12:24', '2021-07-26 14:31:42', 'vyacheslav.oleshko.work@gmail.com', 1, 1),
-(37, 2, 'test', 'test@laravel.test', NULL, NULL, NULL, '$2y$10$r1J0pNFuutTGBtqzueOs7exbCseccfZm95GbAM/sTO1020DghE8Ra', NULL, NULL, '2021-07-27 13:00:58', '2021-07-27 13:00:58', NULL, 1, NULL);
+INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `telegram_user_id`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`, `partner_email`, `gender_id`, `duration_id`, `accept`) VALUES
+(1, 1, 'admin', 'admin@admin.com', NULL, 'users/default.png', NULL, '$2y$10$vALnBdtdRR7MYVorxGGEi.NwolxJ3R3/vqYPV1xdq2SyFdeBHjDre', NULL, '{\"locale\":\"en\"}', '2021-07-06 08:30:05', '2021-07-12 11:52:52', NULL, NULL, NULL, NULL),
+(3, 2, 'John', 'john@laravel.test', '378686094', 'users/default.png', NULL, '$2y$10$Vh0l/JzwtwBnCDcquRcOr.zfMsVUA57ebiHe2zL6X90e9CzPdjATO', NULL, NULL, '2021-07-07 05:56:24', '2021-07-16 13:18:17', 'vyacheslav.oleshko.work@gmail.com', 1, 2, NULL),
+(14, 2, 'Viacheslav', 'vyacheslav.oleshko.work@gmail.com', '378686094', 'users/ZP3ogKXFVm2PxsWiSy00XgpJTkuJqC12Gkj6TWta.png', NULL, '$2y$10$McRMdlbXwnsrCQseuaM8yuck9Sa6kARczRgd/prCEi2QG9Z3RigC.', NULL, NULL, '2021-07-07 11:46:32', '2021-07-27 08:57:14', 'john@laravel.test', 1, 1, NULL),
+(19, 2, 'Girl', 'girl@laravel.test', NULL, 'users/4aVbZFOMCtCPrH546gDbtlgamLtps9AbvycpSM0M.jpg', NULL, '$2y$10$XOW2AkhBgL2DEoFDo1zyeun6PYSkXPqkBU0ahWJiBFFEuGgkkhxmO', NULL, NULL, '2021-07-21 15:16:20', '2021-07-27 09:33:43', NULL, 2, 1, NULL),
+(32, 2, 'BigBoy', 'boy@laravel.test', '168384665', 'users/default.png', NULL, '$2y$10$cTvrhgtontC1Dzu4D8kbh.Ai0pesS9csk31NiI6IJblCrJw1OxvEe', NULL, NULL, '2021-07-26 14:12:24', '2021-07-26 14:31:42', 'vyacheslav.oleshko.work@gmail.com', 1, 1, NULL),
+(37, 2, 'test', 'test@laravel.test', NULL, NULL, NULL, '$2y$10$r1J0pNFuutTGBtqzueOs7exbCseccfZm95GbAM/sTO1020DghE8Ra', NULL, NULL, '2021-07-27 13:00:58', '2021-07-27 13:51:31', NULL, 1, NULL, 1);
 
 -- --------------------------------------------------------
 
