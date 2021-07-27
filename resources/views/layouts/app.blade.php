@@ -89,9 +89,7 @@
     
     
     <script src="/js/macy.js"></script>
-    <!-- <script src="/js/feather.min.js"></script> -->
     <script src="/js/framework7.bundle.min.js"></script>
-    <!-- <script src="/js/routes.js"></script> -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/please-wait/0.0.5/please-wait.min.js" integrity="sha512-mEe6gLbPz5ZrXPgwBNL6KSNLjE1zvv4G31w/UdsGkaYrmFBLhGRH4iRI5SeoUppqdq/Ydn5A+ctDO2felJ8p5w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
