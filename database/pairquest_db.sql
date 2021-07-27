@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 27 2021 г., 16:09
+-- Время создания: Июл 27 2021 г., 16:42
 -- Версия сервера: 10.3.16-MariaDB
 -- Версия PHP: 7.3.7
 
@@ -277,7 +277,7 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 CREATE TABLE `detailed_tasks` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `custom_partner_task` text COLLATE utf8mb4_unicode_ci DEFAULT 'NULL',
+  `custom_partner_task` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `location_type_id` bigint(20) UNSIGNED NOT NULL,
   `preference_id` bigint(20) UNSIGNED NOT NULL,
   `duration_id` bigint(20) UNSIGNED NOT NULL,
