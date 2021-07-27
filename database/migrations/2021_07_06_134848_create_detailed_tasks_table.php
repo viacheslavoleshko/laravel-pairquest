@@ -16,7 +16,7 @@ class CreateDetailedTasksTable extends Migration
         Schema::create('detailed_tasks', function (Blueprint $table) {
             $table->id();
             $table->text('description');
-            $table->text('custom_partner_task');
+            $table->text('custom_partner_task')->nullable();
 
             $table->unsignedBigInteger('location_type_id')->index();
             $table->foreign('location_type_id')->references('id')->on('location_types')->onDelete('cascade');
