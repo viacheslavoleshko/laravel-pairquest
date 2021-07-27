@@ -11,7 +11,7 @@
                     <img src="./img/user2.png" alt="user2">
                 </div>
                 <h2>{{ Auth::user()->name }}</h2>
-                <div class="form-wrapper single-page newsman-block">
+                <div class="form-wrapper ">
                     <form method="POST" action="{{ route('partner.store', ['user' => Auth::user()->id]) }}">
                         @csrf
                         <div class="form-wrapper__inner">
