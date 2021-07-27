@@ -26,7 +26,6 @@ class QuestController extends Controller
         $user = User::findOrFail(Auth::user()->id);
 
         if(isset($user->partner_email) && $user->user_levels->isNotEmpty()) {
-            dd($user->user_levels);
             if($generated_task = GeneratedTask::where('user_id', $user->id)->whereNull('is_rejected')->first()) {
                 $detailed_task = DetailedTask::findOrFail($generated_task->detailed_task_id);
                 $detailed_task_notion = $detailed_task->notions->random();

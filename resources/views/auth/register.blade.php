@@ -22,7 +22,7 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                    <input class="input-text @error('telegram_user_id') is-invalid @enderror" type="text" placeholder="Telegram Login" name="telegram_user_id" value="{{ old('telegram_user_id') }}" required autocomplete="telegram_user_id">
+                    <input class="input-text @error('telegram_user_id') is-invalid @enderror" type="text" placeholder="Telegram Login" name="telegram_user_id" value="{{ old('telegram_user_id') }}" autocomplete="telegram_user_id">
                     @error('telegram_user_id')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

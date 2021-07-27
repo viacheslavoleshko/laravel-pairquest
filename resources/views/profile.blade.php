@@ -8,7 +8,13 @@
         <div class="newsman-block-content">
             <div class="profile">
                 <div class="post-author-img bg-color-teal newsman-object-fit profile-img">
+                    @if(is_null(Auth::user()->avatar) && Auth::user()->gender_id == 1)
+                        <img src="{{ Storage::url('users/default/dude.png') }}" alt="user2">
+                    @elseif(is_null(Auth::user()->avatar) && Auth::user()->gender_id == 2)
+                        <img src="{{ Storage::url('users/default/girl.png') }}" alt="user2">
+                    @else
                     <img src="{{ Storage::url(Auth::user()->avatar) }}" alt="user2">
+                    @endif
                 </div>
                 <h2>{{ Auth::user()->name }}</h2>
                 <div class="form-wrapper ">
