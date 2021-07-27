@@ -9,8 +9,9 @@
     <meta name="theme-color" content="#000000">
     <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
     <title>@yield('title')</title>
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/please-wait/0.0.5/please-wait.min.css" integrity="sha512-qHOnOjE4dPoo197XSBBgRB4bcqwiJkbZhvtvX/djtgkzEYLZtI4aods6PRPTNe8Yok1/O0CZnH0SkAvXQx4Vdg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/css/framework7.bundle.min.css">
+    
     <link rel="stylesheet" href="/css/app.css">
     <link rel="apple-touch-icon" href="/img/f7-icon-square.png">
     <link rel="icon" href="/img/f7-icon.png">
@@ -62,13 +63,58 @@
                 <!-- /Toolbar -->
             @endauth
         </div>
+       
     </div>
+
+    <div class="pg-loading-screen pg-loading" style="background-color: #202020;">
+        <div class="pg-loading-inner">
+            <div class="pg-loading-center-outer">
+                <div class="pg-loading-center-middle">
+                    <h1 class="pg-loading-logo-header">
+                        <img class="pg-loading-logo" src="/img/main-logo.svg">
+                    </h1>
+                    <div class="pg-loading-html pg-loaded">
+                        <div class="sk-spinner sk-spinner-wave">
+                            <div class="sk-rect1"></div>
+                            <div class="sk-rect2"></div>
+                            <div class="sk-rect3"></div>
+                            <div class="sk-rect4"></div>
+                            <div class="sk-rect5"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
     <script src="/js/macy.js"></script>
     <script src="/js/feather.min.js"></script>
     <script src="/js/framework7.bundle.min.js"></script>
     <script src="/js/routes.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/please-wait/0.0.5/please-wait.min.js" integrity="sha512-mEe6gLbPz5ZrXPgwBNL6KSNLjE1zvv4G31w/UdsGkaYrmFBLhGRH4iRI5SeoUppqdq/Ydn5A+ctDO2felJ8p5w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="/js/app.js"></script>
+    <script>
+    function fadeOutEffect() {
+        var fadeTarget = document.querySelector('.pg-loading');
+        var fadeEffect = setInterval(function() {
+            if (!fadeTarget.style.opacity) {
+                fadeTarget.style.opacity = 1;
+            }
+            if (fadeTarget.style.opacity > 0) {
+                fadeTarget.style.opacity -= 0.1;
+            } else {
+                clearInterval(fadeEffect);
+                fadeTarget.remove();
+            }
+        }, 50);
+    }
+    setTimeout(function() {
+        fadeOutEffect();
+    }, 500);
+    </script>
     @yield('javascript')
+    
 </body>
 
 </html>

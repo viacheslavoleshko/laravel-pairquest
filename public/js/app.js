@@ -202,7 +202,9 @@ $(document).on('page:init', '.page[data-name="page-blog-four"]', function(e) {
             1024: 4,
         },
     });
-})
+});
+
+
 
 
 
