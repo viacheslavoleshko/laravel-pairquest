@@ -12,7 +12,7 @@ class PreferenceController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'accept']);
     }
 
     public function index()

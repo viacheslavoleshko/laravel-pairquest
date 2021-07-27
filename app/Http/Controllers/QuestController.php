@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Models\User;
 use App\Models\Duration;
-use App\Models\Location;
-use App\Models\Accessory;
-use App\Models\PartnerTask;
 use App\Models\DetailedTask;
 use Illuminate\Http\Request;
 use App\Models\GeneratedTask;
@@ -18,7 +15,7 @@ class QuestController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'accept']);
     }
 
     public function index()

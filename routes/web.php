@@ -11,6 +11,7 @@ use App\Http\Controllers\PreferenceController;
 use App\Http\Controllers\ImportExportController;
 use App\Http\Controllers\GeneratedTaskController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,9 @@ Route::get('/', [PostController::class, 'index'])->name('posts.index');
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::put('/profile/{user}', [ProfileController::class, 'update'])->name('profile.update');
+
+Route::get('/accept', [UserController::class, 'index'])->name('user.index');
+Route::post('/accept/{user}', [UserController::class, 'accept'])->name('user.accept');
 
 Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');
 Route::post('/feedback/{user}', [FeedbackController::class, 'store'])->name('feedback.store');
