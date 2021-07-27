@@ -15,7 +15,7 @@
         <div class="newsman-block-content">
             <div id="masonry">
                 @foreach ($posts as $post)
-                    <div class="masonry-item">
+                    <div class="masonry-item" >
                         <img src="./img/04.jpg" alt="m1" class="masonry-img">
                         <div class="post-title">
                             <a href="{{ route('posts.show', ['post' => $post->id]) }}">

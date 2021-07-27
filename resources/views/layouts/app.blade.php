@@ -10,6 +10,7 @@
     <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
     <title>@yield('title')</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/please-wait/0.0.5/please-wait.min.css" integrity="sha512-qHOnOjE4dPoo197XSBBgRB4bcqwiJkbZhvtvX/djtgkzEYLZtI4aods6PRPTNe8Yok1/O0CZnH0SkAvXQx4Vdg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/framework7.bundle.min.css">
     
     <link rel="stylesheet" href="/css/app.css">
@@ -21,8 +22,8 @@
 <body class="theme-dark color-theme-white">
     <div id="app" class="framework7-root">
         <div class="view view-main view-init safe-areas" data-master-detail-breakpoint="800" data-url="/">
-            <div class="page page-home" aria-hidden="true">
-                <div class="page-content ">
+            <div class="page page-home " aria-hidden="true">
+                <div class="page-content " data-aos="fade-up"  data-aos-delay="1200">
                     <!-- Section -->
                     @yield('content')
                 </div>
@@ -86,9 +87,12 @@
         </div>
     </div>
     
-
+    
     <script src="/js/macy.js"></script>
+    <!-- <script src="/js/feather.min.js"></script> -->
     <script src="/js/framework7.bundle.min.js"></script>
+    <!-- <script src="/js/routes.js"></script> -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/please-wait/0.0.5/please-wait.min.js" integrity="sha512-mEe6gLbPz5ZrXPgwBNL6KSNLjE1zvv4G31w/UdsGkaYrmFBLhGRH4iRI5SeoUppqdq/Ydn5A+ctDO2felJ8p5w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         function fadeOutEffect() {
@@ -109,6 +113,11 @@
             fadeOutEffect();
         }, 500);
     </script>
+
+    <script>
+        AOS.init();
+    </script>
+
     @yield('javascript')
     
 </body>
