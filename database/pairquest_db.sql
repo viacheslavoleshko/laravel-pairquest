@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 26 2021 г., 17:54
+-- Время создания: Июл 27 2021 г., 15:02
 -- Версия сервера: 10.3.16-MariaDB
 -- Версия PHP: 7.3.7
 
@@ -124,8 +124,7 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (27, 4, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{}', 2),
 (28, 6, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
 (29, 6, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{}', 2),
-(30, 1, 'user_hasone_user_level_relationship', 'relationship', 'User Level', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\UserLevel\",\"table\":\"user_levels\",\"type\":\"belongsTo\",\"column\":\"user_level_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 5),
-(31, 1, 'user_level_id', 'text', 'User Level Id', 0, 1, 1, 1, 1, 1, '{}', 4),
+(30, 1, 'user_hasone_user_level_relationship', 'relationship', 'User Level', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\UserLevel\",\"table\":\"user_levels\",\"type\":\"belongsTo\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 5),
 (47, 8, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
 (49, 8, 'gender_id', 'text', 'Gender Id', 1, 1, 1, 1, 1, 1, '{}', 2),
 (50, 8, 'partner_task_belongsto_gender_relationship', 'relationship', 'Gender', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Gender\",\"table\":\"genders\",\"type\":\"belongsTo\",\"column\":\"gender_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 3),
@@ -214,7 +213,9 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (142, 27, 'feedback_belongsto_feedback_type_relationship', 'relationship', 'feedback_types', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\FeedbackType\",\"table\":\"feedback_types\",\"type\":\"belongsTo\",\"column\":\"type_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"accessories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 8),
 (143, 10, 'description', 'text', 'Description', 0, 1, 1, 1, 1, 1, '{}', 3),
 (144, 10, 'image', 'image', 'Image', 0, 1, 1, 1, 1, 1, '{}', 4),
-(145, 10, 'url', 'text', 'Url', 0, 1, 1, 1, 1, 1, '{}', 5);
+(145, 10, 'url', 'text', 'Url', 0, 1, 1, 1, 1, 1, '{}', 5),
+(146, 1, 'telegram_user_id', 'text', 'Telegram User Id', 0, 1, 1, 1, 1, 1, '{}', 7),
+(147, 1, 'duration_id', 'text', 'Duration Id', 0, 1, 1, 1, 1, 1, '{}', 4);
 
 -- --------------------------------------------------------
 
@@ -245,7 +246,7 @@ CREATE TABLE `data_types` (
 --
 
 INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `display_name_plural`, `icon`, `model_name`, `policy_name`, `controller`, `description`, `generate_permissions`, `server_side`, `details`, `created_at`, `updated_at`) VALUES
-(1, 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', 'TCG\\Voyager\\Http\\Controllers\\VoyagerUserController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2021-07-06 08:28:42', '2021-07-07 05:59:35'),
+(1, 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', 'TCG\\Voyager\\Http\\Controllers\\VoyagerUserController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2021-07-06 08:28:42', '2021-07-27 08:24:29'),
 (2, 'menus', 'menus', 'Menu', 'Menus', 'voyager-list', 'TCG\\Voyager\\Models\\Menu', NULL, '', '', 1, 0, NULL, '2021-07-06 08:28:42', '2021-07-06 08:28:42'),
 (3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, 'TCG\\Voyager\\Http\\Controllers\\VoyagerRoleController', '', 1, 0, NULL, '2021-07-06 08:28:42', '2021-07-06 08:28:42'),
 (4, 'genders', 'genders', 'Gender', 'Genders', NULL, 'App\\Models\\Gender', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-06 09:15:55', '2021-07-07 05:36:12'),
@@ -276,7 +277,7 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 CREATE TABLE `detailed_tasks` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `custom_partner_task` text COLLATE utf8mb4_unicode_ci not NULL,
+  `custom_partner_task` text COLLATE utf8mb4_unicode_ci DEFAULT 'NULL',
   `location_type_id` bigint(20) UNSIGNED NOT NULL,
   `preference_id` bigint(20) UNSIGNED NOT NULL,
   `duration_id` bigint(20) UNSIGNED NOT NULL,
@@ -1354,7 +1355,7 @@ CREATE TABLE `users` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `telegram_user_id` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'users/default.png',
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1373,9 +1374,10 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `telegram_user_id`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`, `partner_email`, `gender_id`, `duration_id`) VALUES
 (1, 1, 'admin', 'admin@admin.com', NULL, 'users/default.png', NULL, '$2y$10$vALnBdtdRR7MYVorxGGEi.NwolxJ3R3/vqYPV1xdq2SyFdeBHjDre', NULL, '{\"locale\":\"en\"}', '2021-07-06 08:30:05', '2021-07-12 11:52:52', NULL, NULL, NULL),
 (3, 2, 'John', 'john@laravel.test', '378686094', 'users/default.png', NULL, '$2y$10$Vh0l/JzwtwBnCDcquRcOr.zfMsVUA57ebiHe2zL6X90e9CzPdjATO', NULL, NULL, '2021-07-07 05:56:24', '2021-07-16 13:18:17', 'vyacheslav.oleshko.work@gmail.com', 1, 2),
-(14, 2, 'Viacheslav', 'vyacheslav.oleshko.work@gmail.com', '378686094', 'users/default.png', NULL, '$2y$10$McRMdlbXwnsrCQseuaM8yuck9Sa6kARczRgd/prCEi2QG9Z3RigC.', NULL, NULL, '2021-07-07 11:46:32', '2021-07-26 09:11:04', 'john@laravel.test', 1, 1),
-(19, 2, 'Girl', 'girl@laravel.test', NULL, 'users/default.png', NULL, '$2y$10$XOW2AkhBgL2DEoFDo1zyeun6PYSkXPqkBU0ahWJiBFFEuGgkkhxmO', NULL, NULL, '2021-07-21 15:16:20', '2021-07-21 15:17:58', 'vyacheslav.oleshko.work@gmail.com', 2, 1),
-(32, 2, 'BigBoy', 'boy@laravel.test', '168384665', 'users/default.png', NULL, '$2y$10$cTvrhgtontC1Dzu4D8kbh.Ai0pesS9csk31NiI6IJblCrJw1OxvEe', NULL, NULL, '2021-07-26 14:12:24', '2021-07-26 14:31:42', 'vyacheslav.oleshko.work@gmail.com', 1, 1);
+(14, 2, 'Viacheslav', 'vyacheslav.oleshko.work@gmail.com', '378686094', 'users/ZP3ogKXFVm2PxsWiSy00XgpJTkuJqC12Gkj6TWta.png', NULL, '$2y$10$McRMdlbXwnsrCQseuaM8yuck9Sa6kARczRgd/prCEi2QG9Z3RigC.', NULL, NULL, '2021-07-07 11:46:32', '2021-07-27 08:57:14', 'john@laravel.test', 1, 1),
+(19, 2, 'Girl', 'girl@laravel.test', NULL, 'users/4aVbZFOMCtCPrH546gDbtlgamLtps9AbvycpSM0M.jpg', NULL, '$2y$10$XOW2AkhBgL2DEoFDo1zyeun6PYSkXPqkBU0ahWJiBFFEuGgkkhxmO', NULL, NULL, '2021-07-21 15:16:20', '2021-07-27 09:33:43', NULL, 2, 1),
+(32, 2, 'BigBoy', 'boy@laravel.test', '168384665', 'users/default.png', NULL, '$2y$10$cTvrhgtontC1Dzu4D8kbh.Ai0pesS9csk31NiI6IJblCrJw1OxvEe', NULL, NULL, '2021-07-26 14:12:24', '2021-07-26 14:31:42', 'vyacheslav.oleshko.work@gmail.com', 1, 1),
+(37, 2, 'test', 'test@laravel.test', NULL, NULL, NULL, '$2y$10$r1J0pNFuutTGBtqzueOs7exbCseccfZm95GbAM/sTO1020DghE8Ra', NULL, NULL, '2021-07-27 13:00:58', '2021-07-27 13:00:58', NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -1419,8 +1421,6 @@ INSERT INTO `user_level_stack` (`id`, `user_id`, `user_level_id`) VALUES
 (24, 3, 1),
 (25, 3, 2),
 (26, 14, 3),
-(27, 19, 1),
-(28, 19, 3),
 (29, 32, 1),
 (30, 32, 3);
 
@@ -1446,10 +1446,6 @@ INSERT INTO `user_location` (`id`, `user_id`, `location_id`) VALUES
 (7, 3, 3),
 (8, 14, 1),
 (11, 14, 3),
-(13, 19, 2),
-(14, 19, 3),
-(15, 19, 8),
-(16, 19, 15),
 (17, 32, 2),
 (18, 32, 3);
 
@@ -1476,8 +1472,6 @@ INSERT INTO `user_preference` (`id`, `user_id`, `preference_id`) VALUES
 (101, 14, 1),
 (102, 3, 13),
 (103, 14, 13),
-(104, 19, 1),
-(105, 19, 13),
 (106, 32, 1),
 (107, 32, 13);
 
@@ -1823,7 +1817,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT для таблицы `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
 
 --
 -- AUTO_INCREMENT для таблицы `data_types`
@@ -1877,7 +1871,7 @@ ALTER TABLE `genders`
 -- AUTO_INCREMENT для таблицы `generated_tasks`
 --
 ALTER TABLE `generated_tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT для таблицы `likes`
@@ -2015,7 +2009,7 @@ ALTER TABLE `translations`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT для таблицы `user_levels`
@@ -2027,19 +2021,19 @@ ALTER TABLE `user_levels`
 -- AUTO_INCREMENT для таблицы `user_level_stack`
 --
 ALTER TABLE `user_level_stack`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT для таблицы `user_location`
 --
 ALTER TABLE `user_location`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT для таблицы `user_preference`
 --
 ALTER TABLE `user_preference`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
