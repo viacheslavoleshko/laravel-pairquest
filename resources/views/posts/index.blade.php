@@ -28,3 +28,7 @@
         </div>
     </div>
 @endsection
+
+@section('javascript')
+    <script src="/js/app.js"></script>
+@endsection

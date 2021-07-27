@@ -63,7 +63,6 @@
                 <!-- /Toolbar -->
             @endauth
         </div>
-       
     </div>
 
     <div class="pg-loading-screen pg-loading" style="background-color: #202020;">
@@ -91,25 +90,24 @@
     <script src="/js/macy.js"></script>
     <script src="/js/framework7.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/please-wait/0.0.5/please-wait.min.js" integrity="sha512-mEe6gLbPz5ZrXPgwBNL6KSNLjE1zvv4G31w/UdsGkaYrmFBLhGRH4iRI5SeoUppqdq/Ydn5A+ctDO2felJ8p5w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="/js/app.js"></script>
     <script>
-    function fadeOutEffect() {
-        var fadeTarget = document.querySelector('.pg-loading');
-        var fadeEffect = setInterval(function() {
-            if (!fadeTarget.style.opacity) {
-                fadeTarget.style.opacity = 1;
-            }
-            if (fadeTarget.style.opacity > 0) {
-                fadeTarget.style.opacity -= 0.1;
-            } else {
-                clearInterval(fadeEffect);
-                fadeTarget.remove();
-            }
-        }, 50);
-    }
-    setTimeout(function() {
-        fadeOutEffect();
-    }, 500);
+        function fadeOutEffect() {
+            var fadeTarget = document.querySelector('.pg-loading');
+            var fadeEffect = setInterval(function() {
+                if (!fadeTarget.style.opacity) {
+                    fadeTarget.style.opacity = 1;
+                }
+                if (fadeTarget.style.opacity > 0) {
+                    fadeTarget.style.opacity -= 0.1;
+                } else {
+                    clearInterval(fadeEffect);
+                    fadeTarget.remove();
+                }
+            }, 50);
+        }
+        setTimeout(function() {
+            fadeOutEffect();
+        }, 500);
     </script>
     @yield('javascript')
     
