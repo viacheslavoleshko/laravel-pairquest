@@ -59,12 +59,22 @@ class GeneratedTaskController extends Controller
             do {
                 // dump($final_user_level);
                 if($final_user_level >= 1) {
-                    $detailed_task = DetailedTask::inRandomOrder()->with('partner_tasks')->where([
-                        ['location_type_id', $random_location_type],
-                        ['preference_id', $random_preference_from_intersect],
-                        ['duration_id', $user->duration_id],
-                        ['user_level_id', $final_user_level]
-                    ])->first(); // TODO додати фільтрацію по статі, лайкам
+                    if($user->intimate == false) {
+                        $detailed_task = DetailedTask::inRandomOrder()->with('partner_tasks')->where([
+                            ['location_type_id', $random_location_type],
+                            ['preference_id', $random_preference_from_intersect],
+                            ['duration_id', $user->duration_id],
+                            ['user_level_id', $final_user_level],
+                            ['intimate', false]
+                        ])->first(); // TODO додати фільтрацію по статі, лайкам
+                    } else {
+                        $detailed_task = DetailedTask::inRandomOrder()->with('partner_tasks')->where([
+                            ['location_type_id', $random_location_type],
+                            ['preference_id', $random_preference_from_intersect],
+                            ['duration_id', $user->duration_id],
+                            ['user_level_id', $final_user_level]
+                        ])->first(); // TODO додати фільтрацію по статі, лайкам
+                    }
                     $final_user_level--;
                 } else {
                     // dd('no detailed tasks', $random_location_type, $random_preference_from_intersect, $user->duration_id, $final_user_level);

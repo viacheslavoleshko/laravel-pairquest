@@ -33,6 +33,9 @@ class PreferenceController extends Controller
         $user->user_levels()->sync($validatedData['user_levels']);
         $user->locations()->sync($validatedData['locations']);
         $user->preferences()->sync($validatedData['preferences']);
+        $user->intimate = $request->intimate;
+        $user->save();
+
         return redirect()->route('quest');
     }
 }

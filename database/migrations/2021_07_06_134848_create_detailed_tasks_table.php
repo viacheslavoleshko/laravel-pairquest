@@ -32,7 +32,8 @@ class CreateDetailedTasksTable extends Migration
 
             $table->unsignedBigInteger('gender_id')->index();
             $table->foreign('gender_id')->references('id')->on('genders')->onDelete('cascade');
-
+            
+            $table->boolean('intimate')->default(false);
             $table->string('image')->nullable();
         });
     }

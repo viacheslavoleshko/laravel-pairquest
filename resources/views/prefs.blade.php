@@ -70,6 +70,24 @@
                         @enderror
                     </div>
                 </div>
+                <div class="form-wrapper__inner-title block-title-medium block-title text-semibold">
+                    Завдання 18+
+                </div>
+                <div class="form-wrapper__content">
+                    <div class="form-wrapper__content-checkbox-wrapper">
+                            <div class="form-wrapper__content-checkbox-inner">
+                                <input id="intimate" class="categories-radio" type="checkbox" value="1" name="intimate" {{ old('intimate', Auth::user()->intimate ? 'checked' : '') }} >
+                                <label for="intimate">
+                                    Я хочу отримувати завдання 18+
+                                </label>
+                            </div>
+                        @error('user_levels')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                </div>
                 <div class="form-wrapper__button">
 
                     <button type="submit">Далі</button>

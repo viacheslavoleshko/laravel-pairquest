@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 27 2021 г., 16:42
+-- Время создания: Июл 28 2021 г., 15:32
 -- Версия сервера: 10.3.16-MariaDB
 -- Версия PHP: 7.3.7
 
@@ -215,7 +215,10 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (144, 10, 'image', 'image', 'Image', 0, 1, 1, 1, 1, 1, '{}', 4),
 (145, 10, 'url', 'text', 'Url', 0, 1, 1, 1, 1, 1, '{}', 5),
 (146, 1, 'telegram_user_id', 'text', 'Telegram User Id', 0, 1, 1, 1, 1, 1, '{}', 7),
-(147, 1, 'duration_id', 'text', 'Duration Id', 0, 1, 1, 1, 1, 1, '{}', 4);
+(147, 1, 'duration_id', 'text', 'Duration Id', 0, 1, 1, 1, 1, 1, '{}', 4),
+(148, 1, 'accept', 'text', 'Accept', 0, 1, 1, 1, 1, 1, '{}', 16),
+(149, 1, 'intimate', 'text', 'Intimate', 1, 1, 1, 1, 1, 1, '{}', 17),
+(150, 16, 'intimate', 'select_dropdown', 'Intimate', 1, 1, 1, 1, 1, 1, '{\"options\":{\"0\":\"No\",\"1\":\"Yes\"}}', 9);
 
 -- --------------------------------------------------------
 
@@ -246,7 +249,7 @@ CREATE TABLE `data_types` (
 --
 
 INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `display_name_plural`, `icon`, `model_name`, `policy_name`, `controller`, `description`, `generate_permissions`, `server_side`, `details`, `created_at`, `updated_at`) VALUES
-(1, 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', 'TCG\\Voyager\\Http\\Controllers\\VoyagerUserController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2021-07-06 08:28:42', '2021-07-27 08:24:29'),
+(1, 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', 'TCG\\Voyager\\Http\\Controllers\\VoyagerUserController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2021-07-06 08:28:42', '2021-07-28 13:25:41'),
 (2, 'menus', 'menus', 'Menu', 'Menus', 'voyager-list', 'TCG\\Voyager\\Models\\Menu', NULL, '', '', 1, 0, NULL, '2021-07-06 08:28:42', '2021-07-06 08:28:42'),
 (3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, 'TCG\\Voyager\\Http\\Controllers\\VoyagerRoleController', '', 1, 0, NULL, '2021-07-06 08:28:42', '2021-07-06 08:28:42'),
 (4, 'genders', 'genders', 'Gender', 'Genders', NULL, 'App\\Models\\Gender', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-06 09:15:55', '2021-07-07 05:36:12'),
@@ -258,7 +261,7 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (13, 'locations_description', 'locations-description', 'Locations Description', 'Locations Descriptions', NULL, 'App\\Models\\LocationDescription', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-19 09:56:23', '2021-07-19 09:57:27'),
 (14, 'location_descriptions', 'location-descriptions', 'Location Description', 'Location Descriptions', NULL, 'App\\Models\\LocationDescription', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-19 10:04:06', '2021-07-26 10:02:39'),
 (15, 'preferences', 'preferences', 'Preference', 'Preferences', NULL, 'App\\Models\\Preference', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-19 13:10:12', '2021-07-19 14:18:55'),
-(16, 'detailed_tasks', 'detailed-tasks', 'Detailed Task', 'Detailed Tasks', NULL, 'App\\Models\\DetailedTask', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-19 13:40:33', '2021-07-21 07:54:32'),
+(16, 'detailed_tasks', 'detailed-tasks', 'Detailed Task', 'Detailed Tasks', NULL, 'App\\Models\\DetailedTask', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-19 13:40:33', '2021-07-28 13:29:27'),
 (18, 'tasks', 'tasks', 'Task', 'Tasks', NULL, 'App\\Models\\Task', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-07-19 15:27:51', '2021-07-26 10:03:04'),
 (19, 'rules', 'rules', 'Rule', 'Rules', NULL, 'App\\Models\\Rule', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2021-07-20 12:15:10', '2021-07-20 12:15:10'),
 (20, 'notions', 'notions', 'Notion', 'Notions', NULL, 'App\\Models\\Notion', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2021-07-20 12:16:00', '2021-07-20 12:16:00'),
@@ -283,6 +286,7 @@ CREATE TABLE `detailed_tasks` (
   `duration_id` bigint(20) UNSIGNED NOT NULL,
   `user_level_id` bigint(20) UNSIGNED NOT NULL,
   `gender_id` bigint(20) UNSIGNED NOT NULL,
+  `intimate` tinyint(4) NOT NULL DEFAULT 0,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -290,12 +294,12 @@ CREATE TABLE `detailed_tasks` (
 -- Дамп данных таблицы `detailed_tasks`
 --
 
-INSERT INTO `detailed_tasks` (`id`, `description`, `custom_partner_task`, `location_type_id`, `preference_id`, `duration_id`, `user_level_id`, `gender_id`, `image`) VALUES
-(18, 'Ходити на рука ви будете найпростішим способом, просто беріть і йдіть на тих руках до біса.', NULL, 3, 1, 1, 1, 1, NULL),
-(19, 'Завязуєте очі і йдете на руках по канату між двома багатоповерхівками жонглюючи ногами пушечними ядрами. А з землі у вас будуть стріляти великокалібреного кулемету.', NULL, 3, 1, 1, 3, 1, NULL),
-(20, 'Берете два яйця і смажите яєшню. До яєшні можна додати бекончику.', NULL, 1, 13, 1, 1, 2, 'detailed-tasks\\July2021\\v8g3b3eAbHW9G4a2K3LP.png'),
-(21, 'Їдете на ферму алігаторів, ниряєте в озеро відбираєте в алігатора яйця. Якщо вам не відкусили руки, ноги чи голову то частуєте свого коханого яєшнею. Смачного!', NULL, 1, 13, 1, 3, 2, NULL),
-(22, 'Копаєте яму на задньому дворі і лягаєте туди, притворяєтесь мертвим.', 'Сходіть на задній двір, там вас чекає сюрприз.', 2, 1, 2, 3, 1, NULL);
+INSERT INTO `detailed_tasks` (`id`, `description`, `custom_partner_task`, `location_type_id`, `preference_id`, `duration_id`, `user_level_id`, `gender_id`, `intimate`, `image`) VALUES
+(18, 'Ходити на рука ви будете найпростішим способом, просто беріть і йдіть на тих руках до біса.', NULL, 3, 1, 1, 1, 1, 0, NULL),
+(19, 'Завязуєте очі і йдете на руках по канату між двома багатоповерхівками жонглюючи ногами пушечними ядрами. А з землі у вас будуть стріляти великокалібреного кулемету.', NULL, 3, 1, 1, 3, 1, 0, NULL),
+(20, 'Берете два яйця і смажите яєшню. До яєшні можна додати бекончику.', NULL, 1, 13, 1, 1, 2, 0, 'detailed-tasks\\July2021\\v8g3b3eAbHW9G4a2K3LP.png'),
+(21, 'Їдете на ферму алігаторів, ниряєте в озеро відбираєте в алігатора яйця. Якщо вам не відкусили руки, ноги чи голову то частуєте свого коханого яєшнею. Смачного!', NULL, 1, 13, 1, 3, 2, 0, NULL),
+(22, 'Копаєте яму на задньому дворі і лягаєте туди, притворяєтесь мертвим.', 'Сходіть на задній двір, там вас чекає сюрприз.', 2, 1, 2, 3, 1, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -481,11 +485,17 @@ INSERT INTO `generated_tasks` (`id`, `user_id`, `partner_id`, `location_descript
 (79, 3, 14, 4, NULL, 1, 18, 36, 0, '2021-07-26 07:51:56', '2021-07-26 07:52:02'),
 (80, 3, 14, 2, NULL, 2, 20, 37, 0, '2021-07-26 07:52:23', '2021-07-26 07:52:30'),
 (81, 14, 3, 1, NULL, 3, 20, 34, 1, '2021-07-26 09:28:23', '2021-07-26 10:42:03'),
-(82, 14, 3, 2, NULL, 2, 20, 34, NULL, '2021-07-26 10:42:15', '2021-07-26 10:42:15'),
+(82, 14, 3, 2, NULL, 2, 20, 34, 1, '2021-07-26 10:42:15', '2021-07-28 10:27:57'),
 (83, 32, 14, 2, '2021-07-27 14:31:00', 3, 20, 34, 1, '2021-07-26 14:32:01', '2021-07-26 14:33:50'),
 (84, 32, 14, 1, '2021-07-27 14:31:00', 3, 20, 34, 1, '2021-07-26 14:32:25', '2021-07-26 14:33:54'),
 (85, 32, 14, 1, '2021-07-27 14:34:00', 2, 20, 37, 0, '2021-07-26 14:34:19', '2021-07-26 14:42:48'),
-(86, 32, 14, 1, NULL, 3, 20, 34, NULL, '2021-07-26 15:15:44', '2021-07-26 15:15:44');
+(86, 32, 14, 1, NULL, 3, 20, 34, 1, '2021-07-26 15:15:44', '2021-07-28 10:28:02'),
+(88, 14, 3, 2, NULL, 2, 20, 34, 1, '2021-07-28 11:26:04', '2021-07-28 11:37:47'),
+(89, 14, 3, 3, NULL, 1, 18, 32, 1, '2021-07-28 11:38:11', '2021-07-28 11:38:18'),
+(90, 14, 3, 2, NULL, 3, 20, 34, 1, '2021-07-28 11:46:32', '2021-07-28 11:46:56'),
+(91, 14, 3, 3, NULL, 1, 18, 32, 1, '2021-07-28 11:47:04', '2021-07-28 11:47:18'),
+(92, 14, 3, 1, NULL, 2, 20, 37, 1, '2021-07-28 11:47:29', '2021-07-28 11:47:37'),
+(93, 14, 3, 1, NULL, 2, 20, 34, NULL, '2021-07-28 13:21:44', '2021-07-28 13:21:44');
 
 -- --------------------------------------------------------
 
@@ -1365,20 +1375,21 @@ CREATE TABLE `users` (
   `partner_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `gender_id` bigint(20) UNSIGNED DEFAULT NULL,
   `duration_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `accept` tinyint(4) DEFAULT NULL
+  `accept` tinyint(4) DEFAULT NULL,
+  `intimate` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `telegram_user_id`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`, `partner_email`, `gender_id`, `duration_id`, `accept`) VALUES
-(1, 1, 'admin', 'admin@admin.com', NULL, 'users/default.png', NULL, '$2y$10$vALnBdtdRR7MYVorxGGEi.NwolxJ3R3/vqYPV1xdq2SyFdeBHjDre', NULL, '{\"locale\":\"en\"}', '2021-07-06 08:30:05', '2021-07-12 11:52:52', NULL, NULL, NULL, NULL),
-(3, 2, 'John', 'john@laravel.test', '378686094', 'users/default.png', NULL, '$2y$10$Vh0l/JzwtwBnCDcquRcOr.zfMsVUA57ebiHe2zL6X90e9CzPdjATO', NULL, NULL, '2021-07-07 05:56:24', '2021-07-16 13:18:17', 'vyacheslav.oleshko.work@gmail.com', 1, 2, NULL),
-(14, 2, 'Viacheslav', 'vyacheslav.oleshko.work@gmail.com', '378686094', 'users/ZP3ogKXFVm2PxsWiSy00XgpJTkuJqC12Gkj6TWta.png', NULL, '$2y$10$McRMdlbXwnsrCQseuaM8yuck9Sa6kARczRgd/prCEi2QG9Z3RigC.', NULL, NULL, '2021-07-07 11:46:32', '2021-07-27 08:57:14', 'john@laravel.test', 1, 1, NULL),
-(19, 2, 'Girl', 'girl@laravel.test', NULL, 'users/4aVbZFOMCtCPrH546gDbtlgamLtps9AbvycpSM0M.jpg', NULL, '$2y$10$XOW2AkhBgL2DEoFDo1zyeun6PYSkXPqkBU0ahWJiBFFEuGgkkhxmO', NULL, NULL, '2021-07-21 15:16:20', '2021-07-27 09:33:43', NULL, 2, 1, NULL),
-(32, 2, 'BigBoy', 'boy@laravel.test', '168384665', 'users/default.png', NULL, '$2y$10$cTvrhgtontC1Dzu4D8kbh.Ai0pesS9csk31NiI6IJblCrJw1OxvEe', NULL, NULL, '2021-07-26 14:12:24', '2021-07-26 14:31:42', 'vyacheslav.oleshko.work@gmail.com', 1, 1, NULL),
-(37, 2, 'test', 'test@laravel.test', NULL, NULL, NULL, '$2y$10$r1J0pNFuutTGBtqzueOs7exbCseccfZm95GbAM/sTO1020DghE8Ra', NULL, NULL, '2021-07-27 13:00:58', '2021-07-27 13:51:31', NULL, 1, NULL, 1);
+INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `telegram_user_id`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`, `partner_email`, `gender_id`, `duration_id`, `accept`, `intimate`) VALUES
+(1, 1, 'admin', 'admin@admin.com', NULL, 'users/default.png', NULL, '$2y$10$vALnBdtdRR7MYVorxGGEi.NwolxJ3R3/vqYPV1xdq2SyFdeBHjDre', NULL, '{\"locale\":\"en\"}', '2021-07-06 08:30:05', '2021-07-12 11:52:52', NULL, NULL, NULL, NULL, 0),
+(3, 2, 'John', 'john@laravel.test', '378686094', 'users/default.png', NULL, '$2y$10$Vh0l/JzwtwBnCDcquRcOr.zfMsVUA57ebiHe2zL6X90e9CzPdjATO', NULL, NULL, '2021-07-07 05:56:24', '2021-07-16 13:18:17', 'vyacheslav.oleshko.work@gmail.com', 1, 2, NULL, 0),
+(14, 2, 'Viacheslav', 'vyacheslav.oleshko.work@gmail.com', '378686094', 'users/ZP3ogKXFVm2PxsWiSy00XgpJTkuJqC12Gkj6TWta.png', NULL, '$2y$10$McRMdlbXwnsrCQseuaM8yuck9Sa6kARczRgd/prCEi2QG9Z3RigC.', NULL, NULL, '2021-07-07 11:46:32', '2021-07-28 13:02:50', 'john@laravel.test', 1, 1, 1, 1),
+(19, 2, 'Girl', 'girl@laravel.test', NULL, 'users/4aVbZFOMCtCPrH546gDbtlgamLtps9AbvycpSM0M.jpg', NULL, '$2y$10$XOW2AkhBgL2DEoFDo1zyeun6PYSkXPqkBU0ahWJiBFFEuGgkkhxmO', NULL, NULL, '2021-07-21 15:16:20', '2021-07-27 09:33:43', NULL, 2, 1, NULL, 0),
+(32, 2, 'BigBoy', 'boy@laravel.test', '168384665', 'users/default.png', NULL, '$2y$10$cTvrhgtontC1Dzu4D8kbh.Ai0pesS9csk31NiI6IJblCrJw1OxvEe', NULL, NULL, '2021-07-26 14:12:24', '2021-07-26 14:31:42', 'vyacheslav.oleshko.work@gmail.com', 1, 1, NULL, 0),
+(37, 2, 'test', 'test@laravel.test', NULL, NULL, NULL, '$2y$10$r1J0pNFuutTGBtqzueOs7exbCseccfZm95GbAM/sTO1020DghE8Ra', NULL, NULL, '2021-07-27 13:00:58', '2021-07-27 13:51:31', NULL, 1, NULL, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -1442,13 +1453,12 @@ CREATE TABLE `user_location` (
 --
 
 INSERT INTO `user_location` (`id`, `user_id`, `location_id`) VALUES
-(1, 14, 2),
 (6, 3, 2),
 (7, 3, 3),
-(8, 14, 1),
-(11, 14, 3),
 (17, 32, 2),
-(18, 32, 3);
+(18, 32, 3),
+(25, 14, 2),
+(26, 14, 3);
 
 -- --------------------------------------------------------
 
@@ -1818,7 +1828,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT для таблицы `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
 
 --
 -- AUTO_INCREMENT для таблицы `data_types`
@@ -1872,7 +1882,7 @@ ALTER TABLE `genders`
 -- AUTO_INCREMENT для таблицы `generated_tasks`
 --
 ALTER TABLE `generated_tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT для таблицы `likes`
@@ -2028,7 +2038,7 @@ ALTER TABLE `user_level_stack`
 -- AUTO_INCREMENT для таблицы `user_location`
 --
 ALTER TABLE `user_location`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT для таблицы `user_preference`
