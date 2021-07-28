@@ -77,23 +77,7 @@
                                 <div class="checkbox-inner">
                                     <input id="test-1" class="checkbox-categories" type="checkbox" name="field1">
                                     <label for="test-1">
-                                        Вподобання 1
-                                    </label>
-                                </div>
-                        </div>
-                        <div class="checkbox-wrapper">
-                                <div class="checkbox-inner">
-                                    <input id="test-2" class="checkbox-categories" type="checkbox" name="field2">
-                                    <label for="test-2">
-                                        Вподобання 1
-                                    </label>
-                                </div>
-                        </div>
-                        <div class="checkbox-wrapper">
-                                <div class="checkbox-inner">
-                                    <input id="test-3" class="checkbox-categories" type="checkbox" name="field3">
-                                    <label for="test-3">
-                                        Вподобання 1
+                                        Я хочу отримувати завдання 18+
                                     </label>
                                 </div>
                         </div>
@@ -111,18 +95,5 @@
 @endsection
 
 @section('javascript')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-    $('form').eq(0).on("change", function(e) {
-    $('input[name^=field]').each(function() {
-        if (e.target != this)
-            this.checked = false;
-    });
-    console.log('1')
-})
 
-$('form').eq(0).on('submit', function() {
-    return $('input[name^=field]:checked:enabled').length == 1;
-});
-</script>
 @endsection
