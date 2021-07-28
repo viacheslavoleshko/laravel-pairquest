@@ -119,7 +119,7 @@ Template:		Newsman - Blog & Magazine Mobile HTML Template
     justify-content: space-between;
 }
 
-.md .navbar-inner.navbar-inner-profile .navbar-inner-exit {
+.md .navbar-inner.navbar-inner-profile .navbar-inner-exit a {
     padding: 0 16px;
     display: flex;
 }
@@ -127,6 +127,7 @@ Template:		Newsman - Blog & Magazine Mobile HTML Template
 body {
     /* font-family: 'Raleway', sans-serif; */
     font-family: 'Montserrat', sans-serif;
+    background-color: #202020 !important;
 }
 
 .md {
@@ -866,6 +867,10 @@ img {
     color: rgba(255, 255, 255, 0.6);
 }
 
+.form-wrapper__inner-text p {
+    text-align: left;
+}
+
 .form-wrapper.single-page.newsman-block form {
     margin: auto;
     width: 100%;
@@ -1098,4 +1103,33 @@ textarea {
 
 .view {
     position: static;
+}
+
+.form-wrapper__content-file {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-wrapper__inner .form-wrapper__content .form-wrapper__content-file label {
+    width: initial;
+    margin-bottom: 15px;
+    text-align: center;
+    border-style: dashed;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-wrapper__inner .form-wrapper__content .form-wrapper__content-file label svg {
+    margin-right: 15px;
+}
+
+#upload-file {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
 }
