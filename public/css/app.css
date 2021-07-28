@@ -1181,6 +1181,10 @@ label.item-checkbox {
     display: none;
 }
 
+.checkbox-inner label {
+    line-height: 22px;
+}
+
 .checkbox-inner label::before {
     content: '';
     position: absolute;
