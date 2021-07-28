@@ -18,6 +18,7 @@ use App\Notifications\PartnerTelegram;
 use App\Notifications\TelegramNotification;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Exception;
 
 class GeneratedTaskController extends Controller
 {
@@ -34,7 +35,12 @@ class GeneratedTaskController extends Controller
         $intersect_preferences = $user_preferences->intersect($partner_preferences);
 
         $random_location_type = $user_locations_types->random();
-        $random_location_description = $user->locations->where('location_type_id', $random_location_type)->random()->location_descriptions->random();
+        try {
+            $random_location_description = $user->locations->where('location_type_id', $random_location_type)->random()->location_descriptions->random();
+        } catch(Exception $e) {
+            return view('errors.quest-error2');
+        }
+        
 
         if($intersect_preferences->isNotEmpty()) {
             $random_preference_from_intersect = $intersect_preferences->random();
@@ -44,17 +50,27 @@ class GeneratedTaskController extends Controller
                     ['location_type_id', $random_location_type],
                     ['preference_id', $random_preference_from_intersect],
                 ])->firstOrFail();
-
-                $detailed_task = DetailedTask::inRandomOrder()->with('partner_tasks')->where([
-                    ['location_type_id', $random_location_type],
-                    ['preference_id', $random_preference_from_intersect],
-                    ['duration_id', $user->duration_id],
-                    ['user_level_id', $final_user_level]
-                ])->firstOrFail(); // TODO додати фільтрацію по статі, лайкам
             } catch(ModelNotFoundException $e) {
                 // dd($e->getMessage(), $random_location_type, $random_preference_from_intersect, $user->duration_id, $final_user_level);
+                // dd('no tasks');
                 return view('errors.quest-error2');
             }
+
+            do {
+                // dump($final_user_level);
+                if($final_user_level >= 1) {
+                    $detailed_task = DetailedTask::inRandomOrder()->with('partner_tasks')->where([
+                        ['location_type_id', $random_location_type],
+                        ['preference_id', $random_preference_from_intersect],
+                        ['duration_id', $user->duration_id],
+                        ['user_level_id', $final_user_level]
+                    ])->first(); // TODO додати фільтрацію по статі, лайкам
+                    $final_user_level--;
+                } else {
+                    // dd('no detailed tasks', $random_location_type, $random_preference_from_intersect, $user->duration_id, $final_user_level);
+                    return view('errors.quest-error2');
+                }
+            } while (is_null($detailed_task));
 
             // dump($random_location_description->description);
             // dump($task->description);

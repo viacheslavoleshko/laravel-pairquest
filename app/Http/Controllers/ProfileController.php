@@ -31,10 +31,10 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        // $user = User::firstOrCreate([])
 
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
+            'telegram_user_id' => 'nullable|numeric|unique:users',
             'current_password' => 'required',
         ]);
 
@@ -54,6 +54,9 @@ class ProfileController extends Controller
         }
 
         $user->name = $validatedData['name'];
+        if(isset($validatedData['telegram_user_id'])) {
+            $user->telegram_user_id = $validatedData['telegram_user_id'];
+        }
         $user->save();
 
         return back()->with('status', 'Profile Updated!');

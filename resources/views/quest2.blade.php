@@ -16,7 +16,7 @@
 
                 <div class="form-wrapper__content">
                     <a class="button-link" href="{{ route('quest-organisator', ['organisator' => 1]) }}">Я</a>
-                <a class="button-link" href="{{ route('quest-organisator', ['organisator' => 0]) }}">Партнер</a>
+                    <a class="button-link" href="{{ route('quest-organisator', ['organisator' => 0]) }}">Партнер</a>
                 </div>
             </div>
 
