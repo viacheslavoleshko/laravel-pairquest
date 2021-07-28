@@ -86,7 +86,7 @@
                     
                 </div>
                 <div class="form-wrapper__button">
-                    <a href="{{ url('https://t.me/my_bot_id?start') }}">Дізнатись свій Telegram ID</a>
+                    <a href="{{ url('https://t.me/my_id_bot?start') }}">Дізнатись свій Telegram ID</a>
                     <a href="{{ url('https://t.me/' . env('TELEGRAM_BOT_USERNAME') . '?start') }}">Напишіть нашому боту</a>
                 </div>
                 <div class="form-wrapper__button">
