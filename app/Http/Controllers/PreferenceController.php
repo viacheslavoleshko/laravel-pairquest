@@ -23,7 +23,7 @@ class PreferenceController extends Controller
     public function store(Request $request, $id)
     {
         $user = User::findOrFail($id);
-
+        dump(isset($request->intimate));
         $validatedData = $request->validate([
             'preferences' => 'required',
             'user_levels' => 'required',
@@ -33,7 +33,12 @@ class PreferenceController extends Controller
         $user->user_levels()->sync($validatedData['user_levels']);
         $user->locations()->sync($validatedData['locations']);
         $user->preferences()->sync($validatedData['preferences']);
-        $user->intimate = $request->intimate;
+        
+        if($request->has('intimate')) {
+            $user->intimate = true;
+        } else {
+            $user->intimate = false;
+        }
         $user->save();
 
         return redirect()->route('quest');
