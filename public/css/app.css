@@ -44,6 +44,19 @@ Template:		Newsman - Blog & Magazine Mobile HTML Template
 
 /*===============================================*/
 
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #4d4d4d;
+    border-radius: 30px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
 .sk-spinner-wave.sk-spinner {
     margin: 0 auto;
     height: 60px;
@@ -930,6 +943,12 @@ textarea {
     border-radius: 30px;
     color: #fff;
     font-family: var(--f7-font-family);
+    transition: all 0.3s;
+}
+
+.form-wrapper__inner .form-wrapper__content .input-text:focus {
+    border-color: #e3bf54;
+    transition: all 0.3s;
 }
 
 .form-wrapper__inner .form-wrapper__content textarea.input-text {
@@ -1119,6 +1138,7 @@ textarea {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .form-wrapper__inner .form-wrapper__content .form-wrapper__content-file label svg {

@@ -83,7 +83,7 @@
         </div>
     </div>
     
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js"></script>
     <script src="/js/macy.js"></script>
     <script src="/js/framework7.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
