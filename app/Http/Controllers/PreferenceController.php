@@ -23,7 +23,6 @@ class PreferenceController extends Controller
     public function store(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        dump(isset($request->intimate));
         $validatedData = $request->validate([
             'preferences' => 'required',
             'user_levels' => 'required',
