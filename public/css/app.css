@@ -1153,3 +1153,62 @@ textarea {
     position: absolute;
     z-index: -1;
 }
+
+
+/*===============================================*/
+
+
+/* 16. checkbox		    	         */
+
+
+/*===============================================*/
+
+.checkbox,
+label.item-checkbox {
+    cursor: initial;
+}
+
+.checkbox-wrapper {
+    padding-left: 40px;
+    position: relative;
+}
+
+.checkbox-wrapper+.checkbox-wrapper {
+    margin-top: 15px;
+}
+
+.checkbox-categories {
+    display: none;
+}
+
+.checkbox-inner label::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #e3bf54;
+    border-radius: 50%;
+    left: 6px;
+    top: 6px;
+    transform: scale(0) rotateZ( 180deg);
+    transition: all .3s;
+}
+
+.checkbox-inner label::after {
+    content: '';
+    position: absolute;
+    border: 1px solid #DFD4E9;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    left: 0;
+    top: 0;
+}
+
+.checkbox-categories:checked+label::before {
+    transform: scale(1) rotateZ(0deg);
+}
+
+.checkbox-categories:checked+label::after {
+    border: 1px solid #e3bf54;
+}
