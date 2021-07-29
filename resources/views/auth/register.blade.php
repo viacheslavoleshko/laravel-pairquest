@@ -2,6 +2,10 @@
 
 @section('title', 'Registration')
 
+@section('style')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/please-wait/0.0.5/please-wait.min.css" integrity="sha512-qHOnOjE4dPoo197XSBBgRB4bcqwiJkbZhvtvX/djtgkzEYLZtI4aods6PRPTNe8Yok1/O0CZnH0SkAvXQx4Vdg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+@endsection
+
 @section('content')
     <!-- form -->
     <div class="form-wrapper single-page newsman-block">
@@ -63,4 +67,26 @@
             </div>
         </form>
     </div>
+@endsection
+@section('javascript')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/please-wait/0.0.5/please-wait.min.js" integrity="sha512-mEe6gLbPz5ZrXPgwBNL6KSNLjE1zvv4G31w/UdsGkaYrmFBLhGRH4iRI5SeoUppqdq/Ydn5A+ctDO2felJ8p5w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        function fadeOutEffect() {
+            var fadeTarget = document.querySelector('.pg-loading');
+            var fadeEffect = setInterval(function() {
+                if (!fadeTarget.style.opacity) {
+                    fadeTarget.style.opacity = 1;
+                }
+                if (fadeTarget.style.opacity > 0) {
+                    fadeTarget.style.opacity -= 0.1;
+                } else {
+                    clearInterval(fadeEffect);
+                    fadeTarget.remove();
+                }
+            }, 50);
+        }
+        setTimeout(function() {
+            fadeOutEffect();
+        }, 500);
+    </script>
 @endsection
