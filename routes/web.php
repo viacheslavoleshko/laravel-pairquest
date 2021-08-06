@@ -61,7 +61,7 @@ Route::get('/prefs', [PreferenceController::class, 'index'])->name('prefs');
 Route::post('/prefs/{user}', [PreferenceController::class, 'store'])->name('prefs.store');
 
 Route::get('/quest', [QuestController::class, 'index'])->name('quest');
-Route::post('/quest-duration/{user}', [QuestController::class, 'duration'])->name('quest-duration');
+Route::get('/quest-final-user-level/{user_level}', [QuestController::class, 'final_user_level'])->name('quest-final-user-level');
 Route::get('/quest-organisator/{organisator}', [QuestController::class, 'organisator'])->name('quest-organisator');
 Route::post('/end-quest/{generated_task}', [QuestController::class, 'finish'])->name('end-quest');
 Route::post('/like/{detailed_task}', [LikeController::class, 'store'])->name('like');

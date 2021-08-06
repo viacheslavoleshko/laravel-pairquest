@@ -24,9 +24,6 @@ class CreateDetailedTasksTable extends Migration
             $table->unsignedBigInteger('preference_id')->index();
             $table->foreign('preference_id')->references('id')->on('preferences')->onDelete('cascade');
 
-            $table->unsignedBigInteger('duration_id')->index();
-            $table->foreign('duration_id')->references('id')->on('durations')->onDelete('cascade');
-
             $table->unsignedBigInteger('user_level_id')->index();
             $table->foreign('user_level_id')->references('id')->on('user_levels')->onDelete('cascade');
 

@@ -63,7 +63,6 @@ class GeneratedTaskController extends Controller
                         $detailed_task = DetailedTask::inRandomOrder()->with('partner_tasks')->where([
                             ['location_type_id', $random_location_type],
                             ['preference_id', $random_preference_from_intersect],
-                            ['duration_id', $user->duration_id],
                             ['user_level_id', $final_user_level],
                             ['intimate', false]
                         ])->first(); // TODO додати фільтрацію по статі, лайкам
@@ -71,7 +70,6 @@ class GeneratedTaskController extends Controller
                         $detailed_task = DetailedTask::inRandomOrder()->with('partner_tasks')->where([
                             ['location_type_id', $random_location_type],
                             ['preference_id', $random_preference_from_intersect],
-                            ['duration_id', $user->duration_id],
                             ['user_level_id', $final_user_level]
                         ])->first(); // TODO додати фільтрацію по статі, лайкам
                     }

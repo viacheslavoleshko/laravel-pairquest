@@ -18,9 +18,6 @@ class AddGenderToUsersTable extends Migration
 
             $table->unsignedBigInteger('gender_id')->index()->nullable();
             $table->foreign('gender_id')->references('id')->on('genders');
-
-            $table->unsignedBigInteger('duration_id')->index()->nullable();
-            $table->foreign('duration_id')->references('id')->on('durations');
         });
     }
 
@@ -32,9 +29,9 @@ class AddGenderToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign(['gender_id', 'duration_id']);
-            $table->dropIndex(['gender_id', 'duration_id']);
-            $table->dropColumn(['gender_id', 'duration_id', 'partner_email']);
+            $table->dropForeign(['gender_id']);
+            $table->dropIndex(['gender_id']);
+            $table->dropColumn(['gender_id', 'partner_email']);
         });
     }
 }

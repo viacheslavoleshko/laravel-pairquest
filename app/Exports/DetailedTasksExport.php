@@ -11,6 +11,6 @@ class DetailedTasksExport implements FromView, ShouldAutoSize
 {
     public function view(): View
     {
-        return view('exports.detailed-tasks', ['detailed_tasks' => DetailedTask::with(['location_type', 'preference', 'duration', 'user_level', 'gender'])->get()]);
+        return view('exports.detailed-tasks', ['detailed_tasks' => DetailedTask::with(['location_type', 'preference', 'user_level', 'gender'])->get()]);
     }
 }

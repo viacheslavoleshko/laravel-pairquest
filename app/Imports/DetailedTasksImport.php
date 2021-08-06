@@ -26,7 +26,6 @@ class DetailedTasksImport implements ToModel, WithValidation, WithHeadingRow
             'custom_partner_task' => $row['custom_partner_task'],
             'location_type_id'    => LocationType::where('name', 'like', $row['location_type'])->firstOrFail()->id,
             'preference_id'       => Preference::where('description', 'like', $row['preference'])->firstOrFail()->id,
-            'duration_id'         => Duration::where('name', 'like', $row['duration'])->firstOrFail()->id,
             'user_level_id'       => UserLevel::where('name', 'like', $row['user_level'])->firstOrFail()->id,
             'gender_id'           => Gender::where('name', 'like', $row['gender'])->firstOrFail()->id,
             'image'               => $row['image'],
@@ -40,7 +39,6 @@ class DetailedTasksImport implements ToModel, WithValidation, WithHeadingRow
             'custom_partner_task' => 'string',
             'location_type' => 'bail|required|string|max:255|exists:location_types,name',
             'preference' => 'bail|required|string|max:255|exists:preferences,description',
-            'duration' => 'bail|required|string|max:255|exists:durations,name',
             'user_level' => 'bail|required|string|max:255|exists:user_levels,name',
             'gender' => 'bail|required|string|max:255|exists:genders,name',
         ];
@@ -63,7 +61,7 @@ class DetailedTasksImport implements ToModel, WithValidation, WithHeadingRow
 //             $task->description       = $row['description'];
 //             $task->is_accessories    = $row['is_accessories'];
 //             $task->gender_id         = Gender::where('name', 'like', $row['gender'])->firstOrFail()->id;
-//             // $task->image             = $row['image'];
+//             $task->image             = $row['image'];
 
 //             dd($task);
 //         }

@@ -79,7 +79,7 @@ class QuestController extends Controller
                     return view('errors.quest-error');
                 }
     
-                return view('quest', ['durations' => Duration::all(), 'user_levels' => $intersect_level_stack]);
+                return view('quest', ['user_levels' => $intersect_level_stack]);
             }
         } elseif (isset($user->partner_email) && $user->user_levels->isEmpty()) {
             return redirect()->route('prefs');
@@ -88,18 +88,10 @@ class QuestController extends Controller
         }
     }
 
-    public function duration(Request $request, $id)
+    public function final_user_level($user_level)
     {
 
-        $validatedData = $request->validate([
-            'duration' => 'required',
-            'user_level' => 'required',
-        ]);
-
-        session(['final_user_level' => $validatedData['user_level']]);
-        $user = User::with(['generated_task'])->findOrFail($id);
-        $user->duration_id = $validatedData['duration'];
-        $user->save();
+        session(['final_user_level' => $user_level]);
         return view('quest2');
     }
 
